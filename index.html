@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Computational Design — Systems, not renders</title>
+<link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+<canvas id="field" aria-hidden="true"></canvas>
+<div class="cursor-plus" id="cursorPlus"></div>
+
+<nav class="nav">
+  <a class="nav__mark" href="index.html"><svg class="nav__mark-icon" width="26" height="26" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true"><path d="m176-120-56-56 301-302-181-45 198-123-17-234 179 151 216-88-87 217 151 178-234-16-124 198-45-181-301 301Zm24-520-80-80 80-80 80 80-80 80Zm355 197 48-79 93 7-60-71 35-86-86 35-71-59 7 92-79 49 90 22 23 90Zm165 323-80-80 80-80 80 80-80 80ZM569-570Z"/></svg>Computational&nbsp;Design</a>
+  <div class="nav__links">
+    <a href="#focus">Focus</a>
+    <a href="#about">About</a>
+    <a href="#systems">Systems</a>
+    <a href="#contact">Contact</a>
+    <a class="nav__cta" href="https://github.com/" target="_blank" rel="noopener">
+      <svg width="13" height="13" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      GitHub
+    </a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <p class="eyebrow">Computational Design Architect</p>
+    <h1>An AI that <span class="accent">operates Rhino</span>. A packing engine that cut a real roof. Seven other systems in between.</h1>
+    <p class="stack">Grasshopper &middot; C# &middot; Python &middot; Rhino.Inside.Revit &middot; MCP</p>
+  </div>
+</section>
+
+<section class="focus" id="focus">
+  <div class="container">
+    <p class="statement" data-reveal>Most computational-design portfolios show renders. This one shows systems: code you can read, tools you can install, one roof that <span class="accent">actually got built</span>.</p>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="container about__grid">
+    <a class="media-frame has-photo about__portrait" href="experience.html" data-reveal><img src="assets/img/portrait.png" alt="Portrait of Dariy Nazarov" /></a>
+
+    <div class="about__intro" data-reveal style="--i:1">
+      <h2>About</h2>
+      <p class="desc">Trained as an architect, not a developer, which is why these systems solve real fabrication and layout problems instead of showing off code for its own sake. Five years at MARCHI, then a shift toward writing the tools rather than only using them: Grasshopper, C#, Python, whatever gets a real constraint solved.</p>
+      <p class="desc">Currently pairing that with a Master's in Applied Informatics, and open to computational-design roles across the EU. The roof got built; the packing engine, the crowd-flow plugin, and the Rhino-driving agent are what's next to prove out.</p>
+    </div>
+
+    <ul class="about__contacts" data-reveal style="--i:1">
+      <li class="about__contacts-row">
+        <a href="mailto:hello@example.com"><svg width="14" height="14" viewBox="0 -960 960 960"><path fill="currentColor" d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-400L480-440Zm0-80 320-200H160l320 200ZM160-640v-80 480-400Z"/></svg> Email</a>
+        <a href="https://github.com/" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg> GitHub</a>
+      </li>
+      <li><a href="tel:+79858843727"><svg width="14" height="14" viewBox="0 -960 960 960"><path fill="currentColor" d="M798-120q-125 0-247-54.5T329-329Q229-429 174.5-551T120-798q0-18 12-30t30-12h162q14 0 25 9.5t13 22.5l26 140q2 16-1 27t-11 19l-97 98q20 37 47.5 71.5T387-386q31 31 65 57.5t72 48.5l94-94q9-9 23.5-13.5T670-390l138 28q14 4 23 14.5t9 23.5v162q0 18-12 30t-30 12ZM241-600l66-66-17-94h-89q5 41 14 81t26 79Zm358 358q39 17 79.5 27t81.5 13v-88l-94-19-67 67ZM241-600Zm358 358Z"/></svg> +7 985 884 37 27</a></li>
+    </ul>
+
+    <div class="about__facts-row" data-reveal style="--i:2">
+      <ul class="about__facts">
+        <li>MARCHI &middot; B.Arch, 2020&ndash;2025</li>
+        <li>Tomsk State University &middot; M.S. Informatics, 2025&ndash;2027</li>
+      </ul>
+      <div class="about__cta-block">
+        <a class="about__cta" href="experience.html">
+          Experience &amp; partners
+          <svg width="12" height="12" viewBox="0 -960 960 960" fill="currentColor"><path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="systems" id="systems">
+  <div class="container">
+    <h2 data-reveal>Selected Systems</h2>
+    <p class="intro" data-reveal style="--i:1">Eight systems, ranked by how real they are: what shipped, what's built, and what's still a study. Media is real where a system has been documented so far; the rest are still dashed placeholder frames.</p>
+
+    <a class="project-link" href="projects/mcp-rhino-agent.html">
+    <div class="featured" data-reveal>
+      <div class="featured__media">
+        <div class="media-frame has-photo"><img src="assets/img/mcp-rhino-agent.jpg" alt="MCP scenario graph or a terminal capture of Rhino being driven live" /></div>
+      </div>
+      <div class="featured__text">
+        <span class="tag">Open Source</span>
+        <h3>An LLM that operates Rhino</h3>
+        <p class="desc">A rule-and-scenario library, exposed through the Model Context Protocol, that lets a language model place geometry, run solvers, and read back model state directly inside Rhino, no macros, no screen-scraping. Public on GitHub.</p>
+        <p class="meta">MCP &middot; Python &middot; RhinoCommon</p>
+      </div>
+    </div></a>
+
+    <a class="project-link" href="projects/panel-nesting-engine.html">
+    <div class="featured featured--reverse" data-reveal>
+      <div class="featured__media">
+        <div class="media-frame has-photo"><img src="assets/img/panel-nesting-engine.jpg" alt="Photo of the built roof, plus the nested cut-sheet layout" /></div>
+      </div>
+      <div class="featured__text">
+        <span class="tag">Built</span>
+        <h3>The algorithm that cut a roof</h3>
+        <p class="desc">A custom C# packing engine for a triangulated canopy roof: an evolutionary search runs one packing strategy per CPU core, no-fit polygons built from Minkowski hulls keep panels from overlapping, and adjacent cut-cells stay paired so mating edges line up. It shipped. The roof is built.</p>
+        <p class="meta">C# &middot; Rhino &middot; Genetic packing</p>
+      </div>
+    </div></a>
+
+    <div class="grid">
+
+      <a class="project-link" href="projects/casting-feasibility.html"><article class="card" data-reveal style="--i:0">
+        <div class="media-frame has-photo"><img src="assets/img/casting-feasibility.jpg" alt="Casting-risk render for two alloys" /></div>
+        <span class="tag">In Use</span>
+        <h3>Will it actually pour?</h3>
+        <p class="desc">A casting-feasibility checker that flags where a given alloy risks misrun before a mould is ever cut, run alongside the panel-nesting engine so fabricability gets checked at the same stage as geometry, not after.</p>
+        <p class="meta">Grasshopper &middot; Casting simulation</p>
+      </article></a>
+
+      <a class="project-link" href="projects/pedestrian-flow.html"><article class="card" data-reveal style="--i:1">
+        <div class="media-frame has-photo"><video src="assets/img/pedestrian-flow-home.mp4" poster="assets/img/pedestrian-flow-home-poster.jpg" autoplay loop muted playsinline aria-label="CrowdFlow's pedestrian animation running"></video></div>
+        <span class="tag">Published</span>
+        <h3>Crowd flow, published</h3>
+        <p class="desc">An agent-based pedestrian-flow plugin for Grasshopper, released on Food4Rhino: anyone can install it and run their own crowd simulation, not just look at a rendered result.</p>
+        <p class="meta">Grasshopper &middot; Agent-based sim</p>
+      </article></a>
+
+      <a class="project-link" href="projects/revit-panel-export.html"><article class="card" data-reveal style="--i:2">
+        <div class="media-frame has-photo"><img src="assets/img/revit-panel-export.jpg" alt="Revit family schedule + GH definition" /></div>
+        <span class="tag">In Use</span>
+        <h3>Geometry that keeps its parameters</h3>
+        <p class="desc">A Grasshopper-to-Revit bridge that exports parametric fa&ccedil;ade panels as scheduled Revit families. Panel count, area and type survive the round trip instead of being redrawn by hand.</p>
+        <p class="meta">Rhino.Inside.Revit &middot; Revit API</p>
+      </article></a>
+
+      <a class="project-link" href="projects/daylight-massing.html"><article class="card" data-reveal style="--i:3">
+        <div class="media-frame has-photo"><img src="assets/img/daylight-massing.jpg" alt="Massing study, stepped sun-access diagram" /></div>
+        <span class="tag">Built</span>
+        <h3>Massing shaped by sunlight</h3>
+        <p class="desc">A daylight-driven massing optimizer that generates stepped, terraced forms directly from insolation constraints, not sculpted first and checked after.</p>
+        <p class="meta">Grasshopper &middot; Daylight analysis</p>
+      </article></a>
+
+      <a class="project-link" href="projects/wind-comfort.html"><article class="card" data-reveal style="--i:4">
+        <div class="media-frame has-photo"><video src="assets/img/wind-comfort-demo.mp4" poster="assets/img/wind-comfort-demo-poster.jpg" autoplay loop muted playsinline aria-label="Wind-flow calculation running against a building's geometry"></video></div>
+        <span class="tag">In Use</span>
+        <h3>Wind comfort, without the queue</h3>
+        <p class="desc">A wind-comfort analysis tool built so architects can run it themselves, end to end, without waiting on the computational-design department.</p>
+        <p class="meta">Grasshopper &middot; ParaView &middot; UX for internal tools</p>
+      </article></a>
+
+      <a class="project-link" href="projects/tessellation-studies.html"><article class="card" data-reveal style="--i:5">
+        <div class="media-frame has-photo"><img src="assets/img/tessellation-studies.jpg" alt="Tiling pattern renders + GH definition" /></div>
+        <span class="tag">Study</span>
+        <h3>Tiling patterns as constraint problems</h3>
+        <p class="desc">A set of tessellation and paneling algorithms for freeform surfaces, each built around one real constraint (minimum panel count, node repetition, fabrication limits) and treated as an engineering problem, not a decoration.</p>
+        <p class="meta">Grasshopper &middot; C# &middot; Computational geometry</p>
+      </article></a>
+
+    </div>
+
+    <p class="aside-note" data-reveal>Also built, not shown as headline work: <strong>a Grasshopper node-click heatmap</strong> for auditing design workflows, and <strong>a Telegram bot</strong> that collects tasks across architecture teams.</p>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="container">
+    <p class="eyebrow">Contact</p>
+    <h2>Let's build the next one.</h2>
+    <ul class="contact-list">
+      <li><a href="mailto:hello@example.com">
+        <svg width="15" height="15" viewBox="0 -960 960 960"><path fill="currentColor" d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-400L480-440Zm0-80 320-200H160l320 200ZM160-640v-80 480-400Z"/></svg>
+        Email
+      </a></li>
+      <li><a href="https://github.com/" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        GitHub
+      </a></li>
+      <li><a href="https://linkedin.com/" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 24 24"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="assets/field.js"></script>
+
+</body>
+</html>
