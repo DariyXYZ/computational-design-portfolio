@@ -736,20 +736,26 @@ footer .eyebrow {
 }
 
 .blueprint__stamp {
+  /* Offset by the frame's own border-width so the stamp's outer edge
+     coincides with the frame line instead of sitting flush beside it —
+     two adjacent 1px lines read as one thick line; overlapping them
+     keeps it a single hairline. */
   position: absolute;
-  right: 0;
-  bottom: 0;
+  right: -1px;
+  bottom: -1px;
   display: grid;
   grid-template-columns: 50px 92px 44px 92px;
   grid-template-rows: 18px;
-  border: 1px solid #888;
   background: #ffffff;
 }
 .blueprint__stamp-label,
 .blueprint__stamp-value {
   display: flex;
   align-items: center;
+  justify-content: center;
+  text-align: center;
   border: 1px solid #888;
+  margin-left: -1px;
   padding: 0 5px;
   font-family: var(--font-mono);
   font-size: 8px;
@@ -758,6 +764,7 @@ footer .eyebrow {
   white-space: nowrap;
   overflow: hidden;
 }
+.blueprint__stamp-label:first-child { margin-left: 0; }
 .blueprint__stamp-label { text-transform: uppercase; color: #888; }
 .blueprint__stamp-value { font-weight: 600; }
 
