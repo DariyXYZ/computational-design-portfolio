@@ -740,15 +740,11 @@ footer .eyebrow {
   right: 0;
   bottom: 0;
   display: grid;
-  grid-template-columns: repeat(3, 50px);
-  grid-template-rows: repeat(2, 18px);
+  grid-template-columns: 50px 92px 44px 92px;
+  grid-template-rows: 18px;
   border: 1px solid #888;
   background: #ffffff;
 }
-.blueprint__stamp > :nth-child(1),
-.blueprint__stamp > :nth-child(2) { grid-row: 1; }
-.blueprint__stamp > :nth-child(3),
-.blueprint__stamp > :nth-child(4) { grid-row: 2; }
 .blueprint__stamp-label,
 .blueprint__stamp-value {
   display: flex;
@@ -762,8 +758,8 @@ footer .eyebrow {
   white-space: nowrap;
   overflow: hidden;
 }
-.blueprint__stamp-label { grid-column: 1; text-transform: uppercase; color: #888; }
-.blueprint__stamp-value { grid-column: 2 / 4; font-weight: 600; }
+.blueprint__stamp-label { text-transform: uppercase; color: #888; }
+.blueprint__stamp-value { font-weight: 600; }
 
 /* ---------- experience page ---------- */
 
