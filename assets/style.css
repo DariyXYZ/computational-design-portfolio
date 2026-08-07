@@ -715,6 +715,52 @@ footer .eyebrow {
   object-fit: contain;
 }
 
+/* ---------- blueprint: drawing-sheet frame + title-block stamp ---------- */
+/* GOST-style sheet convention: a thin margin on three sides, a wider margin
+   on the left (for binding), a ruled border just inside that margin, and a
+   small title-block stamp flush with the bottom-right corner of that border.
+   The margin is always white paper, regardless of what's drawn inside. */
+
+.blueprint {
+  background: #ffffff;
+  padding: 14px 14px 14px 56px;
+}
+.blueprint__frame {
+  position: relative;
+  border: 1.5px solid #000;
+}
+.blueprint__frame img,
+.blueprint__frame video {
+  display: block;
+  width: 100%;
+}
+
+.blueprint__stamp {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 50px);
+  grid-template-rows: repeat(2, 18px);
+  border: 1.5px solid #000;
+  background: #ffffff;
+}
+.blueprint__stamp-label,
+.blueprint__stamp-value {
+  display: flex;
+  align-items: center;
+  border: 0.75px solid #000;
+  padding: 0 5px;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.02em;
+  color: #000;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.blueprint__stamp-label { grid-column: 1; text-transform: uppercase; color: #666; }
+.blueprint__stamp-value { grid-column: 2 / 4; font-weight: 600; }
+
 /* ---------- experience page ---------- */
 
 .exp-hero__grid {
