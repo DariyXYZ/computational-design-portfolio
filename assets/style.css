@@ -703,6 +703,12 @@ footer .eyebrow {
 }
 
 .media-frame--wide { grid-column: 1 / -1; }
+.media-frame.has-photo.media-frame--wide {
+  /* Solid backdrop, not the page's own dark background — some of these are
+     transparent-PNG Grasshopper canvases, and without an opaque fill behind
+     them the fixed arrow field paints straight through. */
+  background: var(--ink);
+}
 .media-frame.has-photo.media-frame--wide img,
 .media-frame.has-photo.media-frame--wide video {
   height: auto;
