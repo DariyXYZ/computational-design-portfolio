@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>The algorithm that cut a roof — Computational Design</title>
+<title>One script, from form to fabrication — Computational Design</title>
 <link rel="stylesheet" href="../assets/style.css" />
 </head>
 <body>
@@ -30,14 +30,14 @@
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <a href="../index.html">Computational Design</a>
       <span aria-hidden="true">/</span>
-      <span class="current">The algorithm that cut a roof</span>
+      <span class="current">One script, from form to fabrication</span>
     </nav>
-    <span class="tag">Built</span>
-    <h1>The algorithm that cut a roof</h1>
-    <p class="project-summary">A custom C# packing engine for a triangulated canopy roof, run on real fabrication geometry. The roof it produced a cutting layout for is built.</p>
-    <p class="meta">C# &middot; Rhino &middot; Genetic packing</p>
+    <span class="tag">In Progress</span>
+    <h1>One script, from form to fabrication</h1>
+    <p class="project-summary">A single Grasshopper definition that takes a triangulated copper-panel canopy from geometry straight to labeled, ready-to-cut sheets, for a bus station under construction in Bishkek.</p>
+    <p class="meta">Grasshopper &middot; Rhino &middot; Panel nesting &amp; marking</p>
     <div class="media-frame media-frame--hero has-photo">
-      <img src="../assets/img/panel-nesting-engine.jpg" alt="Photo of the built roof, plus the nested cut-sheet layout" />
+      <img src="../assets/img/copper-facade-bishkek.jpg" alt="Rendered visualization of the Bishkek bus station's copper canopy" />
     </div>
   </div>
 </header>
@@ -45,38 +45,39 @@
 <section class="project-content container">
   <div class="project-block">
     <h2>Problem</h2>
-    <p>A triangulated canopy roof meant hundreds of uniquely-shaped panels that had to be packed onto standard stock sheets with minimal offcut, and panels sharing an edge on the roof needed to end up adjacent on the cutting layout, or assembly turns into a puzzle.</p>
+    <p>A triangulated copper canopy means hundreds of uniquely-shaped panels, and that normally means three separate handoffs: one model for the form, a second pass to nest the panels onto stock sheets, and a third round of manual labeling so the fabricator knows which cut panel goes where on the building.</p>
   </div>
 
   <div class="project-block">
     <h2>Method</h2>
-    <p>A custom C# genetic-packing engine: one packing strategy per CPU core evaluated in parallel each generation, no-fit polygons computed via Minkowski hulls to test placements without overlap, and a mate-pairing step that keeps geometrically adjacent cut-cells next to each other on the sheet.</p>
+    <p>One Grasshopper definition that stays a single script end to end: it generates the canopy's triangulated geometry, nests the panels onto cutting sheets, and labels every panel with its own position code, roof zone, row, column, left or right pair, then exports per-layer lines ready to hand straight to the cutter. Nothing gets redrawn or relabeled by hand between the model and the fabricator.</p>
 
   </div>
 
-  <div class="media-row">
-    <div class="media-frame media-frame--md"><svg width="30" height="30" viewBox="0 -960 960 960" fill="currentColor"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm40-80h480L570-480 450-320l-90-120-120 160Zm-40 80v-560 560Z"/></svg><span>Nested cut-sheet layout, one sheet</span></div>
-    <div class="media-frame media-frame--md"><svg width="30" height="30" viewBox="0 -960 960 960" fill="currentColor"><path d="M600-120v-120H440v-400h-80v120H80v-320h280v120h240v-120h280v320H600v-120h-80v320h80v-120h280v320H600ZM160-760v160-160Zm520 400v160-160Zm0-400v160-160Zm0 160h120v-160H680v160Zm0 400h120v-160H680v160ZM160-600h120v-160H160v160Z"/></svg><span>Packing algorithm structure</span></div>
+  <div class="media-row media-row--wide">
+    <div class="media-frame has-photo media-frame--wide"><img src="../assets/img/copper-facade-marking.jpg" alt="One mockup section isolated from the canopy, every panel labeled with its position code" /></div>
+    <div class="media-frame has-photo media-frame--wide"><img src="../assets/img/copper-facade-cutsheets.jpg" alt="Nested cutting sheets exported straight from the same definition, each panel pre-labeled" /></div>
+    <div class="media-frame has-photo media-frame--wide"><img src="../assets/img/copper-facade-nodes.png" alt="The full Grasshopper definition: geometry, nesting, marking, and export in one script" /></div>
   </div>
 
   <div class="project-block">
     <h2>Code</h2>
-    <p>Not published yet. The core packing algorithm is on the list to open-source once it's cleaned up from the project-specific version.</p>
+    <p>Internal tool, built for this project's fabrication pipeline.</p>
   </div>
 
   <div class="project-block">
     <h2>Validation</h2>
-    <p>Run directly against the real roof geometry, not a synthetic benchmark: sheet count and material utilization were checked against the actual stock sizes available for fabrication.</p>
+    <p>Checked against the real triangulated canopy geometry for this project, not a synthetic test case: every panel in the cutting layout carries a position code that traces back to its exact spot on the roof.</p>
   </div>
 
   <div class="project-block">
     <h2>Result</h2>
-    <p>The roof was built from the nested layout this engine produced.</p>
+    <p>A physical mockup is next, followed by real construction. The same script that placed the panels is the one handing the cutter their sheets, with the marking already on them.</p>
   </div>
 
   <div class="project-nav-footer">
-    <a href="mcp-rhino-agent.html"><svg width="16" height="16" viewBox="0 -960 960 960" fill="currentColor"><path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/></svg> An LLM that operates Rhino</a>
-    <a href="copper-facade-bishkek.html">One script, from form to fabrication →</a>
+    <a href="panel-nesting-engine.html"><svg width="16" height="16" viewBox="0 -960 960 960" fill="currentColor"><path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/></svg> The algorithm that cut a roof</a>
+    <a href="casting-feasibility.html">Will it actually pour? →</a>
   </div>
 </section>
 
