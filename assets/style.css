@@ -721,6 +721,61 @@ footer .eyebrow {
   object-fit: contain;
 }
 
+/* ---------- grouped media: a labeled set of related shots in one frame ---------- */
+/* For a project with several real screenshots that only make sense read
+   together (stages of one pipeline, before/after). Each cell keeps its
+   source image's own aspect ratio, so nothing gets cropped to fit a grid. */
+.media-frame--group {
+  grid-column: 1 / -1;
+  background: var(--panel);
+  border-style: solid;
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+.media-group__title {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.media-group {
+  display: grid;
+  grid-template-columns: repeat(var(--group-cols, 2), 1fr);
+  gap: 8px;
+}
+.media-group__cell {
+  position: relative;
+  aspect-ratio: var(--group-ratio, 1 / 1);
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--ink);
+}
+.media-group__cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.media-group__label {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  background: rgba(10, 10, 10, 0.78);
+  backdrop-filter: blur(6px);
+  padding: 4px 10px;
+  border-radius: 5px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+}
+@media (max-width: 640px) {
+  .media-group { grid-template-columns: 1fr; }
+}
+
 /* ---------- blueprint: drawing-sheet frame + title-block stamp ---------- */
 /* GOST-style sheet convention: a thin margin on three sides, a wider margin
    on the left (for binding), a ruled border just inside that margin, and a
