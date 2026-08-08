@@ -37,7 +37,7 @@
     <p class="project-summary">A rule-and-scenario library, exposed through the Model Context Protocol, that lets a language model place geometry, run solvers, and read back model state directly inside Rhino.</p>
     <p class="meta">MCP &middot; Python &middot; RhinoCommon</p>
     <div class="media-frame media-frame--hero has-photo">
-      <img src="../assets/img/mcp-rhino-agent.jpg" alt="MCP scenario graph or a terminal capture of Rhino being driven live" />
+      <img src="../assets/img/mcp-rhino-agent.jpg" alt="A cluster of AI-generated towers on a real site plan, scored against a municipal design-review checklist" />
     </div>
   </div>
 </header>
@@ -45,33 +45,33 @@
 <section class="project-content container">
   <div class="project-block">
     <h2>Problem</h2>
-    <p>Driving Rhino from natural language usually means either brittle macro recording or one-off scripts that only work for a single task. There was no general way to let an LLM issue real modeling commands and get real model state back.</p>
+    <p>Driving Rhino from natural language usually means either brittle macro recording or one-off scripts that only work for a single task. There was no general way to let an LLM issue real modeling commands and get real model state back, across more than one kind of design problem.</p>
   </div>
 
   <div class="project-block">
     <h2>Method</h2>
-    <p>A rule-and-scenario library exposed over the Model Context Protocol (MCP): a growing set of typed operations (place geometry, run solvers, query the model) an LLM can call directly, plus a scenario layer that encodes common modeling patterns so the model doesn't rediscover them from scratch each session.</p>
+    <p>A rule-and-scenario library exposed over the Model Context Protocol (MCP): the agent reads a repository of scenarios, form-finding patterns, and a documented error library before writing a line, then RhinoMCP runs the resulting Python or C# script live inside the open Rhino file. The same setup covers six directions of use: modeling from a reference photo or plan, turning a site brief into zoning and massing, generating form variants from an approved massing, and preparing a finished model for downstream calculation.</p>
 
   </div>
 
-  <div class="media-row">
-    <div class="media-frame media-frame--md"><svg width="30" height="30" viewBox="0 -960 960 960" fill="currentColor"><path d="M600-120v-120H440v-400h-80v120H80v-320h280v120h240v-120h280v320H600v-120h-80v320h80v-120h280v320H600ZM160-760v160-160Zm520 400v160-160Zm0-400v160-160Zm0 160h120v-160H680v160Zm0 400h120v-160H680v160ZM160-600h120v-160H160v160Z"/></svg><span>Scenario / rule library structure</span></div>
-    <div class="media-frame media-frame--md"><svg width="30" height="30" viewBox="0 -960 960 960" fill="currentColor"><path d="m160-800 80 160h120l-80-160h80l80 160h120l-80-160h80l80 160h120l-80-160h120q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800Zm0 240v320h640v-320H160Zm0 0v320-320Z"/></svg><span>Screen recording of a live session</span></div>
+  <div class="media-row media-row--wide">
+    <div class="media-frame has-photo media-frame--wide"><img src="../assets/img/mcp-rhino-agent-forms.jpg" alt="A range of tower forms the agent produced from written briefs alone, Karlatornet, Aqua Tower, and Absolute World-style geometries among them" /></div>
+    <div class="media-frame has-photo media-frame--wide"><img src="../assets/img/mcp-rhino-agent-geometry.jpg" alt="The same kind of model simplified into clean, watertight geometry for downstream analysis, not just decoration" /></div>
   </div>
 
   <div class="project-block">
     <h2>Code</h2>
-    <p>Public on GitHub: the MCP server, the RhinoCommon bridge, and the scenario/rule definitions are all in the open, not a private demo.</p>
+    <p>Public on GitHub (<a href="https://github.com/DariyXYZ/ai-geometry-workflows" target="_blank" rel="noopener">ai-geometry-workflows</a>): the MCP server, the RhinoCommon bridge, and the full scenario, pattern, and error library are all in the open, not a private demo.</p>
   </div>
 
   <div class="project-block">
     <h2>Validation</h2>
-    <p>Tested against real modeling sessions, not toy prompts: placing geometry, running solvers, and reading back state through the same protocol used in this project's own working sessions.</p>
+    <p>Scored against a real municipal design-review checklist (ДГП), not an internal guess: a generated massing is checked section by section, silhouette, volumetric uniqueness, street frontage, permeability, so the result cites what the model was actually run against.</p>
   </div>
 
   <div class="project-block">
     <h2>Result</h2>
-    <p>A working bridge between an LLM and Rhino that other people can install and extend, not a one-off script tied to a single task.</p>
+    <p>12+ real building types worked through end to end, Karlatornet, Aqua Tower, Grove at Grand Bay, and Absolute World among them, backed by an 8-code error library so the agent stops repeating the same architectural mistakes session to session.</p>
   </div>
 
   <div class="project-nav-footer">

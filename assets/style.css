@@ -678,6 +678,12 @@ footer .eyebrow {
   color: rgba(255, 255, 255, 0.78);
   font-size: 16.5px;
 }
+.project-block p a {
+  color: var(--accent-light);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.project-block p a:hover { color: #ffffff; }
 .project-block + .media-row,
 .project-block + .media-frame--video { max-width: 900px; }
 .project-block + .media-row.media-row--wide { max-width: none; }

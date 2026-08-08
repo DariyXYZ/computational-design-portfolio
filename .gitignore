@@ -1,2 +1,6 @@
 .DS_Store
 Thumbs.db
+
+# Full-resolution originals, kept locally as a backup — not needed to serve
+# the site and too heavy to publish in the public repo.
+/source-assets/
