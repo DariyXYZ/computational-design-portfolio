@@ -1,5 +1,7 @@
 .DS_Store
 Thumbs.db
+__pycache__/
+*.py[cod]
 
 # Full-resolution originals, kept locally as a backup — not needed to serve
 # the site and too heavy to publish in the public repo.

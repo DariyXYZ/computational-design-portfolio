@@ -41,7 +41,10 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 body {
@@ -74,7 +77,30 @@ body::before {
 
 h1, h2, h3, p { margin: 0; }
 a { color: inherit; }
+a, button { touch-action: manipulation; }
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent-light);
+  outline-offset: 3px;
+}
 strong { font-variation-settings: "wght" 700; }
+
+.skip-link {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 100;
+  padding: 8px 12px;
+  color: var(--ink);
+  background: #ffffff;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  text-decoration: none;
+  transform: translateY(-160%);
+}
+.skip-link:focus { transform: translateY(0); }
+
+h1[id], h2[id], h3[id], h4[id] { scroll-margin-top: calc(var(--nav-h) + 16px); }
 
 .container {
   max-width: 1160px;
@@ -109,6 +135,11 @@ strong { font-variation-settings: "wght" 700; }
   /* The plus is the cursor on precise pointers, not a decoration next to it. */
   body { cursor: none; }
   a, button { cursor: none; }
+}
+
+@media (forced-colors: active) {
+  body, a, button { cursor: auto; }
+  .cursor-plus { display: none; }
 }
 
 #field {
@@ -358,6 +389,10 @@ section, footer { scroll-margin-top: var(--nav-h); }
 .about__contacts a:hover { color: var(--accent-light); }
 .about__contacts svg { flex: none; }
 .about__contacts-row { display: flex; gap: 20px; }
+
+@media (max-width: 560px) {
+  .about__contacts-row { flex-wrap: wrap; gap: 10px 20px; }
+}
 
 .about__facts-row {
   grid-column: 2;
@@ -1044,6 +1079,15 @@ footer .eyebrow {
 .blueprint__stamp-label { text-transform: uppercase; color: #888; }
 .blueprint__stamp-value { font-weight: 600; }
 
+@media (max-width: 420px) {
+  .blueprint { padding-left: 28px; }
+  .blueprint__stamp {
+    position: static;
+    grid-template-columns: 1fr 1.5fr;
+    grid-auto-rows: 18px;
+  }
+}
+
 /* ---------- experience page ---------- */
 
 .exp-hero__grid {
@@ -1078,7 +1122,9 @@ footer .eyebrow {
   padding-top: 2px;
 }
 
+.exp-entry__body h2,
 .exp-entry__body h3 {
+  margin: 0;
   font-variation-settings: "wght" 700;
   font-size: clamp(20px, 2.2vw, 26px);
   letter-spacing: -0.005em;
@@ -1105,6 +1151,7 @@ footer .eyebrow {
   border-radius: 14px;
   padding: var(--space-sm) var(--space-md);
 }
+.exp-entry--pending h2,
 .exp-entry--pending h3 { color: var(--text-muted); }
 .exp-entry--pending p.desc { color: var(--text-faint); font-style: italic; }
 
@@ -1116,6 +1163,7 @@ footer .eyebrow {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: var(--space-md);
   padding-top: var(--space-lg);
   border-top: 1px solid var(--border);
   margin-top: var(--space-lg);
@@ -1128,9 +1176,15 @@ footer .eyebrow {
   font-size: 13px;
   color: var(--text-muted);
   text-decoration: none;
+  max-width: 46%;
 }
 .project-nav-footer a svg { flex: none; }
 .project-nav-footer a:hover { color: var(--accent-light); }
+
+@media (max-width: 640px) {
+  .project-nav-footer { align-items: flex-start; flex-direction: column; }
+  .project-nav-footer a { max-width: none; }
+}
 
 /* ---------- media frames that hold a real placeholder photo ---------- */
 

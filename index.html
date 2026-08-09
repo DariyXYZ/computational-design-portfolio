@@ -1,47 +1,58 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="utf-8" >
+<meta name="viewport" content="width=device-width, initial-scale=1" >
 <title>Computational Design — Systems, not renders</title>
-<link rel="stylesheet" href="assets/style.css" />
+<!-- site-meta:start -->
+<meta name="description" content="Dariy Nazarov&#x27;s computational-design portfolio: Rhino and Grasshopper tools, fabrication systems, simulation, BIM interoperability, and AI-assisted geometry workflows." >
+<meta name="theme-color" content="#0a0a0a" >
+<link rel="canonical" href="https://dariyxyz.github.io/computational-design-portfolio/" >
+<link rel="icon" href="favicon.svg" type="image/svg+xml" >
+<meta property="og:type" content="website" >
+<meta property="og:title" content="Computational Design — Systems, not renders" >
+<meta property="og:description" content="Dariy Nazarov&#x27;s computational-design portfolio: Rhino and Grasshopper tools, fabrication systems, simulation, BIM interoperability, and AI-assisted geometry workflows." >
+<meta property="og:url" content="https://dariyxyz.github.io/computational-design-portfolio/" >
+<meta property="og:image" content="https://dariyxyz.github.io/computational-design-portfolio/assets/img/mcp-rhino-agent-cover-poster.jpg" >
+<meta name="twitter:card" content="summary_large_image" >
+<meta name="twitter:title" content="Computational Design — Systems, not renders" >
+<meta name="twitter:description" content="Dariy Nazarov&#x27;s computational-design portfolio: Rhino and Grasshopper tools, fabrication systems, simulation, BIM interoperability, and AI-assisted geometry workflows." >
+<meta name="twitter:image" content="https://dariyxyz.github.io/computational-design-portfolio/assets/img/mcp-rhino-agent-cover-poster.jpg" >
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Dariy Nazarov","jobTitle":"Computational Designer","url":"https://dariyxyz.github.io/computational-design-portfolio/","email":"mailto:dariy.nazarov@gmail.com","sameAs":["https://github.com/DariyXYZ","https://t.me/dariy_nazarov","https://dariy.framer.website/"]}</script>
+<!-- site-meta:end -->
+<link rel="stylesheet" href="assets/style.css" >
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to content</a>
 
 <canvas id="field" aria-hidden="true"></canvas>
 <div class="cursor-plus" id="cursorPlus"></div>
 
-<nav class="nav">
+<nav class="nav" aria-label="Primary">
   <a class="nav__mark" href="index.html"><svg class="nav__mark-icon" width="26" height="26" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true"><path d="m176-120-56-56 301-302-181-45 198-123-17-234 179 151 216-88-87 217 151 178-234-16-124 198-45-181-301 301Zm24-520-80-80 80-80 80 80-80 80Zm355 197 48-79 93 7-60-71 35-86-86 35-71-59 7 92-79 49 90 22 23 90Zm165 323-80-80 80-80 80 80-80 80ZM569-570Z"/></svg>Computational&nbsp;Design</a>
   <div class="nav__links">
-    <a href="#focus">Focus</a>
     <a href="#about">About</a>
     <a href="#systems">Systems</a>
     <a href="#contact">Contact</a>
-    <a class="nav__cta" href="https://github.com/" target="_blank" rel="noopener">
-      <svg width="13" height="13" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+    <a class="nav__cta" href="https://github.com/DariyXYZ" target="_blank" rel="noopener">
+      <svg aria-hidden="true" focusable="false" width="13" height="13" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
       GitHub
     </a>
   </div>
 </nav>
 
+<main id="main-content">
 <section class="hero">
   <div class="container">
     <p class="eyebrow">Computational Design Architect</p>
-    <h1>An AI that <span class="accent">operates Rhino</span>. A packing engine that cut a real roof. Eight other systems in between.</h1>
+    <h1>Systems, not renders. One of them <span class="accent">cut a real roof</span>.</h1>
     <p class="stack">Grasshopper &middot; C# &middot; Python &middot; Rhino.Inside.Revit &middot; MCP</p>
-  </div>
-</section>
-
-<section class="focus" id="focus">
-  <div class="container">
-    <p class="statement" data-reveal>Most computational-design portfolios show renders. This one shows systems: code you can read, tools you can install, one roof that <span class="accent">actually got built</span>.</p>
   </div>
 </section>
 
 <section class="about" id="about">
   <div class="container about__grid">
-    <a class="media-frame has-photo about__portrait" href="experience.html" data-reveal><img src="assets/img/portrait.png" alt="Portrait of Dariy Nazarov" /></a>
+    <a class="media-frame has-photo about__portrait" href="experience.html" data-reveal><img src="assets/img/portrait-600.webp" alt="Portrait of Dariy Nazarov" width="600" height="600" decoding="async" loading="lazy" ></a>
 
     <div class="about__intro" data-reveal style="--i:1">
       <h2>About</h2>
@@ -51,10 +62,14 @@
 
     <ul class="about__contacts" data-reveal style="--i:1">
       <li class="about__contacts-row">
-        <a href="mailto:hello@example.com"><svg width="14" height="14" viewBox="0 -960 960 960"><path fill="currentColor" d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-400L480-440Zm0-80 320-200H160l320 200ZM160-640v-80 480-400Z"/></svg> Email</a>
-        <a href="https://github.com/" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg> GitHub</a>
+        <a href="mailto:dariy.nazarov@gmail.com"><svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 -960 960 960"><path fill="currentColor" d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-400L480-440Zm0-80 320-200H160l320 200Z"/></svg> Email</a>
+        <a href="https://t.me/dariy_nazarov" target="_blank" rel="noopener"><svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24"><path fill="currentColor" d="M21.9 2.6 18.7 20c-.2 1.2-.9 1.5-1.9.9l-4.8-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.9 8.9-8c.4-.3-.1-.5-.6-.2l-11 6.9-4.7-1.5c-1-.3-1-1 .2-1.5L20.2 2c.9-.3 1.9.2 1.7.6Z"/></svg> Telegram</a>
       </li>
-      <li><a href="tel:+79858843727"><svg width="14" height="14" viewBox="0 -960 960 960"><path fill="currentColor" d="M798-120q-125 0-247-54.5T329-329Q229-429 174.5-551T120-798q0-18 12-30t30-12h162q14 0 25 9.5t13 22.5l26 140q2 16-1 27t-11 19l-97 98q20 37 47.5 71.5T387-386q31 31 65 57.5t72 48.5l94-94q9-9 23.5-13.5T670-390l138 28q14 4 23 14.5t9 23.5v162q0 18-12 30t-30 12ZM241-600l66-66-17-94h-89q5 41 14 81t26 79Zm358 358q39 17 79.5 27t81.5 13v-88l-94-19-67 67ZM241-600Zm358 358Z"/></svg> +7 985 884 37 27</a></li>
+      <li class="about__contacts-row">
+        <a href="https://github.com/DariyXYZ" target="_blank" rel="noopener"><svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3Z"/></svg> GitHub</a>
+        <a href="https://dariy.framer.website/" target="_blank" rel="noopener"><svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 -960 960 960"><path fill="currentColor" d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"/></svg> Product design</a>
+      </li>
+      <li><a href="tel:+79858843727" aria-label="Call +7 985 884 37 27"><svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 -960 960 960"><path fill="currentColor" d="M798-120q-125 0-247-54.5T329-329Q229-429 174.5-551T120-798q0-18 12-30t30-12h162q14 0 25 9.5t13 22.5l26 140q2 16-1 27t-11 19l-97 98q20 37 47.5 71.5T387-386q31 31 65 57.5t72 48.5l94-94q9-9 23.5-13.5T670-390l138 28q14 4 23 14.5t9 23.5v162q0 18-12 30t-30 12Z"/></svg> +7&nbsp;985&nbsp;884&nbsp;37&nbsp;27</a></li>
     </ul>
 
     <div class="about__facts-row" data-reveal style="--i:2">
@@ -65,7 +80,7 @@
       <div class="about__cta-block">
         <a class="about__cta" href="experience.html">
           Experience &amp; partners
-          <svg width="12" height="12" viewBox="0 -960 960 960" fill="currentColor"><path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"/></svg>
+          <svg aria-hidden="true" focusable="false" width="12" height="12" viewBox="0 -960 960 960" fill="currentColor"><path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"/></svg>
         </a>
       </div>
     </div>
@@ -75,12 +90,12 @@
 <section class="systems" id="systems">
   <div class="container">
     <h2 data-reveal>Selected Systems</h2>
-    <p class="intro" data-reveal style="--i:1">Nine systems, ranked by how real they are: what shipped, what's built, and what's still a study. Media is real where a system has been documented so far; the rest are still dashed placeholder frames.</p>
+    <p class="intro" data-reveal style="--i:1">Nine systems, ranked by how real they are: what shipped, what's built, and what's still a study. Each page separates shipped work, built outcomes, and studies; unfinished documentation remains explicitly marked.</p>
 
     <a class="project-link" href="projects/mcp-rhino-agent.html">
     <div class="featured" data-reveal>
       <div class="featured__media">
-        <div class="media-frame has-photo"><video src="assets/img/mcp-rhino-agent-cover.mp4" poster="assets/img/mcp-rhino-agent-cover-poster.jpg" autoplay loop muted playsinline aria-label="Cycling through one pipeline: site data, zoning, building envelope, massing"></video></div>
+        <div class="media-frame has-photo"><video src="assets/img/mcp-rhino-agent-cover.mp4" poster="assets/img/mcp-rhino-agent-card.webp" loop muted playsinline title="Cycling through one pipeline: site data, zoning, building envelope, massing" data-autoplay preload="metadata"></video></div>
       </div>
       <div class="featured__text">
         <span class="tag">Open Source</span>
@@ -93,7 +108,7 @@
     <a class="project-link" href="projects/panel-nesting-engine.html">
     <div class="featured featured--reverse" data-reveal>
       <div class="featured__media">
-        <div class="media-frame has-photo"><img src="assets/img/panel-nesting-engine.jpg" alt="Photo of the built roof, plus the nested cut-sheet layout" /></div>
+        <div class="media-frame has-photo"><img src="assets/img/panel-nesting-engine-card.webp" alt="Photo of the built roof, plus the nested cut-sheet layout" width="720" height="482" decoding="async" loading="lazy" ></div>
       </div>
       <div class="featured__text">
         <span class="tag">Built</span>
@@ -106,7 +121,7 @@
     <div class="grid">
 
       <a class="project-link" href="projects/copper-facade-bishkek.html"><article class="card" data-reveal style="--i:0">
-        <div class="media-frame has-photo"><img src="assets/img/copper-facade-bishkek.jpg" alt="Rendered visualization of the Bishkek bus station's copper canopy" /></div>
+        <div class="media-frame has-photo"><img src="assets/img/copper-facade-bishkek-card.webp" alt="Rendered visualization of the Bishkek bus station's copper canopy" width="720" height="402" decoding="async" loading="lazy" ></div>
         <span class="tag">In Progress</span>
         <h3>One script, from form to fabrication</h3>
         <p class="desc">A single Grasshopper definition that takes a triangulated copper-panel canopy from geometry straight to labeled, ready-to-cut sheets, for a bus station under construction in Bishkek.</p>
@@ -114,7 +129,7 @@
       </article></a>
 
       <a class="project-link" href="projects/casting-feasibility.html"><article class="card" data-reveal style="--i:1">
-        <div class="media-frame has-photo"><img src="assets/img/casting-feasibility.jpg" alt="Casting-risk render for two alloys" /></div>
+        <div class="media-frame has-photo"><img src="assets/img/casting-feasibility-card.webp" alt="Casting-risk render for two alloys" width="720" height="482" decoding="async" loading="lazy" ></div>
         <span class="tag">In Use</span>
         <h3>Will it actually pour?</h3>
         <p class="desc">A casting-feasibility checker that flags where a given alloy risks misrun before a mould is ever cut, run alongside the panel-nesting engine so fabricability gets checked at the same stage as geometry, not after.</p>
@@ -122,7 +137,7 @@
       </article></a>
 
       <a class="project-link" href="projects/pedestrian-flow.html"><article class="card" data-reveal style="--i:2">
-        <div class="media-frame has-photo"><video src="assets/img/pedestrian-flow-home.mp4" poster="assets/img/pedestrian-flow-home-poster.jpg" autoplay loop muted playsinline aria-label="CrowdFlow's pedestrian animation running"></video></div>
+        <div class="media-frame has-photo"><video src="assets/img/pedestrian-flow-home.mp4" poster="assets/img/pedestrian-flow-card.webp" loop muted playsinline title="CrowdFlow's pedestrian animation running" data-autoplay preload="metadata"></video></div>
         <span class="tag">Published</span>
         <h3>Crowd flow, published</h3>
         <p class="desc">An agent-based pedestrian-flow plugin for Grasshopper, released on Food4Rhino: anyone can install it and run their own crowd simulation, not just look at a rendered result.</p>
@@ -130,7 +145,7 @@
       </article></a>
 
       <a class="project-link" href="projects/revit-panel-export.html"><article class="card" data-reveal style="--i:3">
-        <div class="media-frame has-photo"><img src="assets/img/revit-panel-export.jpg" alt="Revit family schedule + GH definition" /></div>
+        <div class="media-frame has-photo"><img src="assets/img/revit-panel-export-card.webp" alt="Revit family schedule + GH definition" width="720" height="479" decoding="async" loading="lazy" ></div>
         <span class="tag">In Use</span>
         <h3>Geometry that keeps its parameters</h3>
         <p class="desc">A Grasshopper-to-Revit bridge that exports parametric fa&ccedil;ade panels as scheduled Revit families. Panel count, area and type survive the round trip instead of being redrawn by hand.</p>
@@ -138,7 +153,7 @@
       </article></a>
 
       <a class="project-link" href="projects/daylight-massing.html"><article class="card" data-reveal style="--i:4">
-        <div class="media-frame has-photo"><img src="assets/img/daylight-massing.jpg" alt="Massing study, stepped sun-access diagram" /></div>
+        <div class="media-frame has-photo"><img src="assets/img/daylight-massing-card.webp" alt="Massing study, stepped sun-access diagram" width="720" height="482" decoding="async" loading="lazy" ></div>
         <span class="tag">Built</span>
         <h3>Massing shaped by sunlight</h3>
         <p class="desc">A daylight-driven massing optimizer that generates stepped, terraced forms directly from insolation constraints, not sculpted first and checked after.</p>
@@ -146,7 +161,7 @@
       </article></a>
 
       <a class="project-link" href="projects/wind-comfort.html"><article class="card" data-reveal style="--i:5">
-        <div class="media-frame has-photo"><video src="assets/img/wind-comfort-demo.mp4" poster="assets/img/wind-comfort-demo-poster.jpg" autoplay loop muted playsinline aria-label="Wind-flow calculation running against a building's geometry"></video></div>
+        <div class="media-frame has-photo"><video src="assets/img/wind-comfort-demo.mp4" poster="assets/img/wind-comfort-card.webp" loop muted playsinline title="Wind-flow calculation running against a building's geometry" data-autoplay preload="metadata"></video></div>
         <span class="tag">In Use</span>
         <h3>Wind comfort, without the queue</h3>
         <p class="desc">A wind-comfort analysis tool built so architects can run it themselves, end to end, without waiting on the computational-design department.</p>
@@ -154,7 +169,7 @@
       </article></a>
 
       <a class="project-link" href="projects/tessellation-studies.html"><article class="card" data-reveal style="--i:6">
-        <div class="media-frame has-photo"><img src="assets/img/tessellation-studies.jpg" alt="Tiling pattern renders + GH definition" /></div>
+        <div class="media-frame has-photo"><img src="assets/img/tessellation-studies-card.webp" alt="Tiling pattern renders + GH definition" width="720" height="482" decoding="async" loading="lazy" ></div>
         <span class="tag">Study</span>
         <h3>Tiling patterns as constraint problems</h3>
         <p class="desc">A set of tessellation and paneling algorithms for freeform surfaces, each built around one real constraint (minimum panel count, node repetition, fabrication limits) and treated as an engineering problem, not a decoration.</p>
@@ -167,23 +182,16 @@
   </div>
 </section>
 
+</main>
 <footer id="contact">
   <div class="container">
     <p class="eyebrow">Contact</p>
     <h2>Let's build the next one.</h2>
     <ul class="contact-list">
-      <li><a href="mailto:hello@example.com">
-        <svg width="15" height="15" viewBox="0 -960 960 960"><path fill="currentColor" d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-400L480-440Zm0-80 320-200H160l320 200ZM160-640v-80 480-400Z"/></svg>
-        Email
-      </a></li>
-      <li><a href="https://github.com/" target="_blank" rel="noopener">
-        <svg width="15" height="15" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-        GitHub
-      </a></li>
-      <li><a href="https://linkedin.com/" target="_blank" rel="noopener">
-        <svg width="15" height="15" viewBox="0 0 24 24"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        LinkedIn
-      </a></li>
+      <li><a href="mailto:dariy.nazarov@gmail.com"><svg aria-hidden="true" focusable="false" width="15" height="15" viewBox="0 -960 960 960"><path fill="currentColor" d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-400L480-440Zm0-80 320-200H160l320 200Z"/></svg> Email</a></li>
+      <li><a href="https://t.me/dariy_nazarov" target="_blank" rel="noopener"><svg aria-hidden="true" focusable="false" width="15" height="15" viewBox="0 0 24 24"><path fill="currentColor" d="M21.9 2.6 18.7 20c-.2 1.2-.9 1.5-1.9.9l-4.8-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.9 8.9-8c.4-.3-.1-.5-.6-.2l-11 6.9-4.7-1.5c-1-.3-1-1 .2-1.5L20.2 2c.9-.3 1.9.2 1.7.6Z"/></svg> Telegram</a></li>
+      <li><a href="https://github.com/DariyXYZ" target="_blank" rel="noopener"><svg aria-hidden="true" focusable="false" width="15" height="15" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3Z"/></svg> GitHub</a></li>
+      <li><a href="https://dariy.framer.website/" target="_blank" rel="noopener"><svg aria-hidden="true" focusable="false" width="15" height="15" viewBox="0 -960 960 960"><path fill="currentColor" d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"/></svg> Product design</a></li>
     </ul>
   </div>
 </footer>

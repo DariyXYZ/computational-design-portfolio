@@ -2,7 +2,9 @@
   "use strict";
 
   var canvas = document.getElementById("field");
+  if (!canvas) return;
   var ctx = canvas.getContext("2d");
+  if (!ctx) return;
   var cursorPlus = document.getElementById("cursorPlus");
 
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -118,15 +120,35 @@
 
   var raf = null;
   function tick(now) {
+    // Reduced motion freezes the ambient cloud drift (elapsed pinned to 0),
+    // but the loop keeps running so cursor-reactive rotation below still
+    // redraws live — that's a direct response to real mouse movement, not
+    // autoplaying ambient motion, so it isn't what reduced-motion targets.
     draw(reduceMotion ? 0 : now - startTime);
     raf = requestAnimationFrame(tick);
   }
 
+  function startField() {
+    if (raf !== null || document.hidden) return;
+    startTime = performance.now();
+    raf = requestAnimationFrame(tick);
+  }
+
+  function stopField() {
+    if (raf === null) return;
+    cancelAnimationFrame(raf);
+    raf = null;
+  }
+
   layout();
   draw(0);
-  raf = requestAnimationFrame(tick);
+  startField();
 
   window.addEventListener("resize", layout);
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) stopField();
+    else startField();
+  });
 
   // Cell tracking is never gated behind pointer-type detection: some hybrid
   // touch+mouse laptops mis-report (hover:none)/(pointer:coarse) for a real
@@ -137,7 +159,7 @@
     mouse.y = e.clientY;
   });
 
-  if (!coarsePointer) {
+  if (!coarsePointer && cursorPlus) {
     window.addEventListener("mousemove", function (e) {
       cursorPlus.style.transform = "translate3d(" + (e.clientX - 8) + "px," + (e.clientY - 8) + "px,0)";
       cursorPlus.style.opacity = "1";
@@ -146,6 +168,23 @@
       cursorPlus.style.opacity = "0";
     });
   }
+
+  // Keep the portfolio loops running as part of the cases' visual content.
+  // Paused only when the tab itself is hidden, not for reduced motion — these
+  // are user-approved signature previews (hero + homepage cards), not
+  // autoplaying effects meant to be gated behind that preference.
+  var autoplayVideos = document.querySelectorAll("video[data-autoplay]");
+  var playVideo = function (video) {
+    var promise = video.play();
+    if (promise && promise.catch) promise.catch(function () {});
+  };
+  autoplayVideos.forEach(playVideo);
+  document.addEventListener("visibilitychange", function () {
+    autoplayVideos.forEach(function (video) {
+      if (document.hidden) video.pause();
+      else playVideo(video);
+    });
+  });
 
   // Scroll reveal: content is visible by default in CSS (no-JS / reduced-motion safe).
   // Only when motion is allowed do we arm the hidden->visible transition via JS.
