@@ -655,6 +655,24 @@ footer .eyebrow {
 .media-frame--video { aspect-ratio: 16 / 9; }
 .media-frame--md { aspect-ratio: 4 / 3; }
 
+/* Split hero: text left, square media right. Only used where the source
+   media is itself square — a 16:8 crop of a square render loses the top
+   and bottom of the geometry, so this keeps it uncropped instead. */
+.project-hero--split .container {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: center;
+  gap: var(--space-xl);
+}
+.project-hero--split .media-frame--hero {
+  aspect-ratio: 1 / 1;
+  margin-top: 0;
+}
+@media (max-width: 860px) {
+  .project-hero--split .container { grid-template-columns: 1fr; }
+  .project-hero--split .media-frame--hero { max-width: 480px; margin-inline: auto; }
+}
+
 .media-row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
