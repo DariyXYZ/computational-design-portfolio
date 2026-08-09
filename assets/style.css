@@ -838,6 +838,65 @@ footer .eyebrow {
 .direction__flow .chip--orange { color: #ff8a70; background: rgba(255, 107, 74, 0.08); border-color: rgba(255, 107, 74, 0.3); }
 .direction__arrow { color: var(--text-faint); font-size: 13px; }
 
+/* Real screenshots inside a direction breakdown are often square, and at
+   full container width they run far taller than the viewport. Cap them
+   down; the technical drawings elsewhere (e.g. copper-facade-bishkek)
+   stay full width since that rule targets .direction specifically. */
+.direction .media-frame--wide,
+.direction .media-frame--group {
+  max-width: 640px;
+  margin-inline: auto;
+}
+
+/* ---------- overview grid: six-card schematic summary ---------- */
+/* Mirrors the source deck's own "six directions" slide: a small icon,
+   the same badge/chip vocabulary as the detailed breakdown below it,
+   so a reader gets the map before the six long sections. */
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+  margin: var(--space-lg) 0 var(--space-xl);
+}
+.overview-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: var(--space-md);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+.overview-card__title {
+  font-variation-settings: "wght" 700;
+  font-size: 15px;
+  letter-spacing: -0.005em;
+}
+.overview-card__icon {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.overview-card__icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.overview-card .direction__flow { gap: 6px; }
+.overview-card .direction__flow .chip {
+  font-size: 11.5px;
+  padding: 4px 9px;
+}
+@media (max-width: 900px) {
+  .overview-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .overview-grid { grid-template-columns: 1fr; }
+}
+
 /* ---------- blueprint: drawing-sheet frame + title-block stamp ---------- */
 /* GOST-style sheet convention: a thin margin on three sides, a wider margin
    on the left (for binding), a ruled border just inside that margin, and a
