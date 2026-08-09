@@ -794,6 +794,78 @@ footer .eyebrow {
   .media-group { grid-template-columns: 1fr; }
 }
 
+/* ---------- compare: real reference photos beside a generated output ---------- */
+/* Shows the real buildings a generated style draws on, for scale and honesty —
+   these are real photographs, credited below, not literal inputs the agent
+   processed (the output itself was generated from a text brief alone). */
+.media-frame--compare {
+  grid-column: 1 / -1;
+  background: var(--panel);
+  border-style: solid;
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+.compare__refs {
+  flex: none;
+  width: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.blueprint--ref {
+  margin: 0;
+  padding: 8px 8px 8px 20px;
+}
+.blueprint--ref .blueprint__frame {
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+}
+.blueprint--ref .blueprint__frame img {
+  height: 100%;
+  object-fit: cover;
+}
+.blueprint--ref figcaption {
+  margin-top: 6px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.02em;
+  color: #666;
+  text-align: center;
+}
+.compare__arrow { flex: none; color: var(--text-faint); font-size: 22px; }
+.compare__result {
+  flex: 1;
+  min-width: 260px;
+  aspect-ratio: 4 / 3;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--ink);
+}
+.compare__result img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.compare__credit {
+  grid-column: 1 / -1;
+  margin-top: -6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-faint);
+}
+@media (max-width: 700px) {
+  .media-frame--compare { flex-direction: column; }
+  .compare__refs { flex-direction: row; flex-wrap: wrap; width: 100%; }
+  .blueprint--ref { flex: 1; min-width: 130px; }
+  .compare__arrow { transform: rotate(90deg); }
+  .compare__result { width: 100%; }
+}
+
 /* ---------- directions: numbered, color-coded application modes ---------- */
 /* Each real capability gets its own color (matching the source deck), a
    plain-language input -> output line, then its own media directly below —
@@ -862,6 +934,10 @@ footer .eyebrow {
    stay full width since that rule targets .direction specifically. */
 .direction .media-frame--wide,
 .direction .media-frame--group {
+  max-width: 640px;
+  margin-inline: auto;
+}
+.direction .compare__credit {
   max-width: 640px;
   margin-inline: auto;
 }
