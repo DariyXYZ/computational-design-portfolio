@@ -43,6 +43,7 @@
 </header>
 
 <section class="project-content container">
+
   <div class="project-block">
     <h2>Problem</h2>
     <p>Checking pedestrian wind comfort around a building normally means sending the geometry to the computational-design department and waiting for a result, which turns a quick design question into a multi-day queue.</p>
@@ -53,7 +54,6 @@
     <p>A Grasshopper definition that runs a wind-flow calculation against the building's geometry and its surroundings, scored against the Lawson wind-comfort criteria, then previewed either in Grasshopper or as a full flow field in ParaView. The real work here wasn't the solver, it was the interface around it: numbered setup steps, a sequential three-step run button so a multi-stage calculation can't be triggered out of order, inline file-naming rules to stop the file system from breaking a run, and a settings panel written for an architect, not a script.</p>
 
   </div>
-
 
   <div class="media-row media-row--wide">
     <div class="media-frame has-photo media-frame--wide"><img src="../assets/img/wind-comfort-nodes.png" alt="The full wind-comfort definition: setup, geometry check, staged calculation, result display, and export" /></div>
