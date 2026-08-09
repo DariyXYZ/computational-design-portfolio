@@ -776,6 +776,68 @@ footer .eyebrow {
   .media-group { grid-template-columns: 1fr; }
 }
 
+/* ---------- directions: numbered, color-coded application modes ---------- */
+/* Each real capability gets its own color (matching the source deck), a
+   plain-language input -> output line, then its own media directly below —
+   so a page with many screenshots still reads as "six distinct things",
+   not one undifferentiated pile of images. */
+.directions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+.direction {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+.direction__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.direction__badge {
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+.direction__badge--blue   { background: rgba(91, 155, 255, 0.15); color: #7fa8ff; }
+.direction__badge--green  { background: rgba(0, 212, 170, 0.15); color: #34d9b4; }
+.direction__badge--yellow { background: rgba(240, 180, 41, 0.15); color: #f0c96a; }
+.direction__badge--purple { background: rgba(167, 139, 250, 0.15); color: #c4b0fd; }
+.direction__badge--orange { background: rgba(255, 107, 74, 0.15); color: #ff8a70; }
+.direction__title {
+  font-variation-settings: "wght" 700;
+  font-size: clamp(18px, 2vw, 22px);
+  letter-spacing: -0.005em;
+}
+.direction__flow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.direction__flow .chip {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 5px 11px;
+}
+.direction__flow .chip--blue   { color: #7fa8ff; background: rgba(91, 155, 255, 0.08); border-color: rgba(91, 155, 255, 0.35); }
+.direction__flow .chip--green  { color: #34d9b4; background: rgba(0, 212, 170, 0.08); border-color: rgba(0, 212, 170, 0.3); }
+.direction__flow .chip--yellow { color: #f0c96a; background: rgba(240, 180, 41, 0.08); border-color: rgba(240, 180, 41, 0.3); }
+.direction__flow .chip--purple { color: #c4b0fd; background: rgba(167, 139, 250, 0.08); border-color: rgba(167, 139, 250, 0.3); }
+.direction__flow .chip--orange { color: #ff8a70; background: rgba(255, 107, 74, 0.08); border-color: rgba(255, 107, 74, 0.3); }
+.direction__arrow { color: var(--text-faint); font-size: 13px; }
+
 /* ---------- blueprint: drawing-sheet frame + title-block stamp ---------- */
 /* GOST-style sheet convention: a thin margin on three sides, a wider margin
    on the left (for binding), a ruled border just inside that margin, and a
