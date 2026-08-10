@@ -853,9 +853,8 @@ footer .eyebrow {
 }
 .compare__refs {
   flex: none;
-  width: 160px;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, 150px);
   gap: 10px;
 }
 .blueprint--ref {
@@ -881,8 +880,9 @@ footer .eyebrow {
 .compare__arrow { flex: none; color: var(--text-faint); font-size: 22px; }
 .compare__result {
   flex: 1;
-  min-width: 260px;
-  aspect-ratio: 4 / 3;
+  min-width: 320px;
+  max-width: 640px;
+  aspect-ratio: 1 / 1;
   border-radius: 8px;
   overflow: hidden;
   background: var(--ink);
@@ -902,10 +902,9 @@ footer .eyebrow {
 }
 @media (max-width: 700px) {
   .media-frame--compare { flex-direction: column; }
-  .compare__refs { flex-direction: row; flex-wrap: wrap; width: 100%; }
-  .blueprint--ref { flex: 1; min-width: 130px; }
+  .compare__refs { grid-template-columns: repeat(2, 1fr); width: 100%; }
   .compare__arrow { transform: rotate(90deg); }
-  .compare__result { width: 100%; }
+  .compare__result { width: 100%; max-width: none; }
 }
 
 /* ---------- directions: numbered, color-coded application modes ---------- */
@@ -979,9 +978,13 @@ footer .eyebrow {
   max-width: 640px;
   margin-inline: auto;
 }
-.direction .compare__credit {
-  max-width: 640px;
-  margin-inline: auto;
+/* The compare block (reference photos + result) is meant to run wide --
+   it carries its own internal sizing (a fixed refs grid, a capped square
+   result), so it doesn't need the square-screenshot cap above it applies to. */
+.direction .media-frame--compare,
+.direction .media-frame--compare + .compare__credit {
+  max-width: none;
+  margin-inline: 0;
 }
 
 /* ---------- overview grid: six-card schematic summary ---------- */
