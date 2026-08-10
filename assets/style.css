@@ -774,6 +774,14 @@ footer .eyebrow {
   object-fit: contain;
 }
 
+/* ---------- code-media: a transparent GH canvas, floating on the page itself ---------- */
+/* Deliberately no card, no border, no backdrop: the canvas is already fully
+   processed (inverted, keyed transparent) to sit directly on the page's own
+   dark texture, arrow field showing through on purpose, not walled off in a
+   frame like the other, still-opaque screenshots. */
+.code-media { margin-top: var(--space-md); }
+.code-media img { display: block; width: 100%; height: auto; }
+
 /* ---------- grouped media: a labeled set of related shots in one frame ---------- */
 /* For a project with several real screenshots that only make sense read
    together (stages of one pipeline, before/after). Each cell keeps its
