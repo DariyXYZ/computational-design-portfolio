@@ -3,21 +3,19 @@
 <head>
 <meta charset="utf-8" >
 <meta name="viewport" content="width=device-width, initial-scale=1" >
-<title>Tiling patterns as constraint problems — Computational Design</title>
+<title>Finding the darkest window — Computational Design</title>
 <!-- site-meta:start -->
-<meta name="description" content="Constraint-based tessellation studies balancing minimum panel count and node-type repetition." >
+<meta name="description" content="A Grasshopper plugin that turns a building's own windows into a pixel-by-pixel insolation map, automatically flagging the ones that get the least sun." >
 <meta name="theme-color" content="#0a0a0a" >
-<link rel="canonical" href="https://dariyxyz.github.io/computational-design-portfolio/projects/tessellation-studies.html" >
+<link rel="canonical" href="https://dariyxyz.github.io/computational-design-portfolio/projects/insolation-mound.html" >
 <link rel="icon" href="../favicon.svg" type="image/svg+xml" >
 <meta property="og:type" content="website" >
-<meta property="og:title" content="Tiling patterns as constraint problems — Computational Design" >
-<meta property="og:description" content="Constraint-based tessellation studies balancing minimum panel count and node-type repetition." >
-<meta property="og:url" content="https://dariyxyz.github.io/computational-design-portfolio/projects/tessellation-studies.html" >
-<meta property="og:image" content="https://dariyxyz.github.io/computational-design-portfolio/assets/img/tessellation-studies.jpg" >
+<meta property="og:title" content="Finding the darkest window — Computational Design" >
+<meta property="og:description" content="A Grasshopper plugin that turns a building's own windows into a pixel-by-pixel insolation map, automatically flagging the ones that get the least sun." >
+<meta property="og:url" content="https://dariyxyz.github.io/computational-design-portfolio/projects/insolation-mound.html" >
 <meta name="twitter:card" content="summary_large_image" >
-<meta name="twitter:title" content="Tiling patterns as constraint problems — Computational Design" >
-<meta name="twitter:description" content="Constraint-based tessellation studies balancing minimum panel count and node-type repetition." >
-<meta name="twitter:image" content="https://dariyxyz.github.io/computational-design-portfolio/assets/img/tessellation-studies.jpg" >
+<meta name="twitter:title" content="Finding the darkest window — Computational Design" >
+<meta name="twitter:description" content="A Grasshopper plugin that turns a building's own windows into a pixel-by-pixel insolation map, automatically flagging the ones that get the least sun." >
 <!-- site-meta:end -->
 <link rel="stylesheet" href="../assets/style.css" >
 </head>
@@ -47,15 +45,12 @@
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <a href="../index.html">Computational Design</a>
         <span aria-hidden="true">/</span>
-        <span class="current">Tiling patterns as constraint problems</span>
+        <span class="current">Finding the darkest window</span>
       </nav>
-      <span class="tag">Study</span>
-      <h1>Tiling patterns as constraint problems</h1>
-      <p class="project-summary">A set of tessellation and paneling algorithms for freeform surfaces, each built around one real constraint and treated as an engineering problem, not a decoration.</p>
-      <p class="meta">Grasshopper &middot; C# &middot; Computational geometry</p>
-    </div>
-    <div class="media-frame media-frame--hero has-photo">
-      <img src="../assets/img/tessellation-studies.jpg" alt="Tiling pattern renders + GH definition" width="900" height="603" decoding="async" loading="eager" fetchpriority="high" >
+      <span class="tag">In Use</span>
+      <h1>Finding the darkest window</h1>
+      <p class="project-summary">A Grasshopper plugin, built by the team, that turns a building's own windows into a pixel-by-pixel insolation map, automatically flagging the ones that get the least sun.</p>
+      <p class="meta">Grasshopper &middot; Insolation analysis</p>
     </div>
   </div>
 </header>
@@ -64,38 +59,37 @@
 
   <div class="project-block">
     <h2>Problem</h2>
-    <p>Freeform-surface tiling and paneling is often shown as a rendered pattern with no explanation of what problem it's actually solving.</p>
+    <p>Checking whether a building's own windows actually get enough daylight usually means spot-checking a handful of units by hand, so the single worst-lit window in the whole building often isn't the one anyone happened to check.</p>
   </div>
 
   <div class="project-block">
     <h2>Method</h2>
-    <p>A set of tessellation and paneling algorithms for freeform surfaces, each built around one explicit constraint (minimum panel count, node-type repetition, or a fabrication limit), so the pattern is the answer to a stated problem, not a decoration.</p>
-
+    <p>A Grasshopper plugin that scores every window on a fa&ccedil;ade for insolation and renders the whole building as a pixel mound: one column per window, its height set by how much sun that window actually gets, with the darkest windows picked out automatically instead of by eye.</p>
   </div>
 
   <div class="media-row">
-    <div class="media-frame media-frame--md"><svg aria-hidden="true" focusable="false" width="30" height="30" viewBox="0 -960 960 960" fill="currentColor"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm40-80h480L570-480 450-320l-90-120-120 160Zm-40 80v-560 560Z"/></svg><span>Pattern study, panel-count variant</span></div>
-    <div class="media-frame media-frame--md"><svg aria-hidden="true" focusable="false" width="30" height="30" viewBox="0 -960 960 960" fill="currentColor"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm40-80h480L570-480 450-320l-90-120-120 160Zm-40 80v-560 560Z"/></svg><span>Pattern study, node-repetition variant</span></div>
+    <div class="media-frame media-frame--md"><svg aria-hidden="true" focusable="false" width="30" height="30" viewBox="0 -960 960 960" fill="currentColor"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm40-80h480L570-480 450-320l-90-120-120 160Zm-40 80v-560 560Z"/></svg><span>The insolation mound, one column per window</span></div>
+    <div class="media-frame media-frame--md"><svg aria-hidden="true" focusable="false" width="30" height="30" viewBox="0 -960 960 960" fill="currentColor"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm40-80h480L570-480 450-320l-90-120-120 160Zm-40 80v-560 560Z"/></svg><span>Darkest windows, flagged automatically</span></div>
   </div>
 
   <div class="project-block">
     <h2>Code</h2>
-    <p>Grasshopper definitions, C#, not yet published.</p>
+    <p>Internal tool, built by the team. Not yet published.</p>
   </div>
 
   <div class="project-block">
     <h2>Validation</h2>
-    <p>Each pattern checked against its stated constraint (panel count, node repetition, or fabrication limit) rather than judged by appearance alone.</p>
+    <p>Still being written up.</p>
   </div>
 
   <div class="project-block">
     <h2>Result</h2>
-    <p>A set of documented studies, ready to apply to a real project once one calls for this kind of surface.</p>
+    <p>Still being written up &mdash; real project renders and numbers go here.</p>
   </div>
 
   <div class="project-nav-footer">
-    <a href="wind-comfort.html"><svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 -960 960 960" fill="currentColor"><path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/></svg> Wind comfort, without the queue</a>
-    <a href="insolation-mound.html">Finding the darkest window →</a>
+    <a href="tessellation-studies.html"><svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 -960 960 960" fill="currentColor"><path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/></svg> Tiling patterns as constraint problems</a>
+    <a href="mcp-rhino-agent.html">An LLM that operates Rhino →</a>
   </div>
 </section>
 
