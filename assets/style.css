@@ -779,7 +779,6 @@ footer .eyebrow {
    processed (inverted, keyed transparent) to sit directly on the page's own
    dark texture, arrow field showing through on purpose, not walled off in a
    frame like the other, still-opaque screenshots. */
-.code-media { margin-top: var(--space-md); }
 .code-media img { display: block; width: 100%; height: auto; }
 
 /* ---------- grouped media: a labeled set of related shots in one frame ---------- */
