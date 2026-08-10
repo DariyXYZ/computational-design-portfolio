@@ -3,19 +3,19 @@
 <head>
 <meta charset="utf-8" >
 <meta name="viewport" content="width=device-width, initial-scale=1" >
-<title>Finding the darkest window — Computational Design</title>
+<title>The insolation toolkit — Computational Design</title>
 <!-- site-meta:start -->
-<meta name="description" content="A Grasshopper plugin that turns a building's own windows into a pixel-by-pixel insolation map, automatically flagging the ones that get the least sun." >
+<meta name="description" content="A Grasshopper plugin, built from scratch: a site-wide solar heatmap, a per-window insolation check, and a voxel mound that flags the darkest windows automatically." >
 <meta name="theme-color" content="#0a0a0a" >
 <link rel="canonical" href="https://dariyxyz.github.io/computational-design-portfolio/projects/insolation-mound.html" >
 <link rel="icon" href="../favicon.svg" type="image/svg+xml" >
 <meta property="og:type" content="website" >
-<meta property="og:title" content="Finding the darkest window — Computational Design" >
-<meta property="og:description" content="A Grasshopper plugin that turns a building's own windows into a pixel-by-pixel insolation map, automatically flagging the ones that get the least sun." >
+<meta property="og:title" content="The insolation toolkit — Computational Design" >
+<meta property="og:description" content="A Grasshopper plugin, built from scratch: a site-wide solar heatmap, a per-window insolation check, and a voxel mound that flags the darkest windows automatically." >
 <meta property="og:url" content="https://dariyxyz.github.io/computational-design-portfolio/projects/insolation-mound.html" >
 <meta name="twitter:card" content="summary_large_image" >
-<meta name="twitter:title" content="Finding the darkest window — Computational Design" >
-<meta name="twitter:description" content="A Grasshopper plugin that turns a building's own windows into a pixel-by-pixel insolation map, automatically flagging the ones that get the least sun." >
+<meta name="twitter:title" content="The insolation toolkit — Computational Design" >
+<meta name="twitter:description" content="A Grasshopper plugin, built from scratch: a site-wide solar heatmap, a per-window insolation check, and a voxel mound that flags the darkest windows automatically." >
 <!-- site-meta:end -->
 <link rel="stylesheet" href="../assets/style.css" >
 </head>
@@ -45,11 +45,11 @@
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <a href="../index.html">Computational Design</a>
         <span aria-hidden="true">/</span>
-        <span class="current">Finding the darkest window</span>
+        <span class="current">The insolation toolkit</span>
       </nav>
       <span class="tag">In Use</span>
-      <h1>Finding the darkest window</h1>
-      <p class="project-summary">A Grasshopper plugin, built by the team, that turns a building's own windows into a pixel-by-pixel insolation map, automatically flagging the ones that get the least sun.</p>
+      <h1>The insolation toolkit</h1>
+      <p class="project-summary">A Grasshopper plugin built from scratch: a site-wide solar heatmap, a per-window insolation check, and a voxel mound that turns those results into a form, flagging the darkest windows automatically instead of by eye.</p>
       <p class="meta">Grasshopper &middot; Insolation analysis</p>
     </div>
   </div>
@@ -59,32 +59,90 @@
 
   <div class="project-block">
     <h2>Problem</h2>
-    <p>Checking whether a building's own windows actually get enough daylight usually means spot-checking a handful of units by hand, so the single worst-lit window in the whole building often isn't the one anyone happened to check.</p>
+    <p>Insolation gets checked in three disconnected passes: a site heatmap in one file, a manual ray-trace for a suspect window in another, a mound or write-up assembled by hand from both &mdash; three workflows that don't share geometry, and nothing a new team member can run without being walked through each one from an empty canvas.</p>
   </div>
 
   <div class="project-block">
     <h2>Method</h2>
-    <p>A Grasshopper plugin that scores every window on a fa&ccedil;ade for insolation and renders the whole building as a pixel mound: one column per window, its height set by how much sun that window actually gets, with the darkest windows picked out automatically instead of by eye.</p>
-  </div>
-
-  <div class="media-row">
-    <div class="media-frame media-frame--md"><svg aria-hidden="true" focusable="false" width="30" height="30" viewBox="0 -960 960 960" fill="currentColor"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm40-80h480L570-480 450-320l-90-120-120 160Zm-40 80v-560 560Z"/></svg><span>The insolation mound, one column per window</span></div>
-    <div class="media-frame media-frame--md"><svg aria-hidden="true" focusable="false" width="30" height="30" viewBox="0 -960 960 960" fill="currentColor"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm40-80h480L570-480 450-320l-90-120-120 160Zm-40 80v-560 560Z"/></svg><span>Darkest windows, flagged automatically</span></div>
+    <p>One Grasshopper plugin, written from scratch, covering three connected tools instead of three separate files: a site-wide solar heatmap scoring every ground cell in hours of light; a per-window check that traces real sun rays against the surrounding massing and returns Ok / NotOk / PartialOk per window; and a voxel mound built directly from those per-window results, so the worst-lit windows in the whole building show up as low points in a form, not a row in a spreadsheet. Every tool ships with template presets, so a new user opens a preconfigured file instead of wiring the definition themselves.</p>
   </div>
 
   <div class="project-block">
+    <h2>Site heatmap</h2>
+    <p>Every cell of the site gets scored in hours of direct light across the massing, read straight off the ground plane rather than estimated from a section cut.</p>
+  </div>
+  <div class="media-row media-row--wide">
+    <div class="media-frame has-photo media-frame--wide media-frame--blueprint">
+      <div class="blueprint">
+        <div class="blueprint__frame">
+          <img src="../assets/img/insolation-mound-heatmap.jpg" alt="Site-wide solar heatmap, hours of light per ground cell across the massing" width="1800" height="1012" decoding="async" loading="lazy" >
+          <div class="blueprint__stamp">
+            <div class="blueprint__stamp-label">Project</div>
+            <div class="blueprint__stamp-value">Insolation Toolkit</div>
+            <div class="blueprint__stamp-label">Sheet</div>
+            <div class="blueprint__stamp-value">Site Heatmap</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="code-media"><img src="../assets/img/insolation-mound-heatmap-nodes.png" alt="Solar heatmap Grasshopper definition" decoding="async" loading="lazy" ></div>
+
+  <div class="project-block">
+    <h2>Per-window check</h2>
+    <p>Real sun rays traced from each window against the surrounding buildings, returned as a plain Ok / NotOk / PartialOk per window instead of a raw number to interpret.</p>
+  </div>
+  <div class="media-row media-row--wide">
+    <div class="media-frame has-photo media-frame--wide media-frame--blueprint">
+      <div class="blueprint">
+        <div class="blueprint__frame">
+          <img src="../assets/img/insolation-mound-windows.jpg" alt="Per-window insolation rays traced against the surrounding massing" width="1800" height="1012" decoding="async" loading="lazy" >
+          <div class="blueprint__stamp">
+            <div class="blueprint__stamp-label">Project</div>
+            <div class="blueprint__stamp-value">Insolation Toolkit</div>
+            <div class="blueprint__stamp-label">Sheet</div>
+            <div class="blueprint__stamp-value">Window Rays</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="code-media"><img src="../assets/img/insolation-mound-windows-nodes.png" alt="Per-window insolation-check Grasshopper definition" decoding="async" loading="lazy" ></div>
+
+  <div class="project-block">
+    <h2>Insolation mound</h2>
+    <p>The same per-window results, rebuilt as a voxel form: each window becomes part of the mound, and the darkest ones are wherever the form dips lowest, flagged by the geometry instead of a lookup.</p>
+  </div>
+  <div class="media-row media-row--wide">
+    <div class="media-frame has-photo media-frame--wide media-frame--blueprint">
+      <div class="blueprint">
+        <div class="blueprint__frame">
+          <img src="../assets/img/insolation-mound-voxels.jpg" alt="Voxel insolation mound built from per-window results, against the surrounding massing" width="1800" height="1012" decoding="async" loading="lazy" >
+          <div class="blueprint__stamp">
+            <div class="blueprint__stamp-label">Project</div>
+            <div class="blueprint__stamp-value">Insolation Toolkit</div>
+            <div class="blueprint__stamp-label">Sheet</div>
+            <div class="blueprint__stamp-value">Insolation Mound</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="code-media"><img src="../assets/img/insolation-mound-mound-nodes.png" alt="Insolation-mound Grasshopper definition" decoding="async" loading="lazy" ></div>
+
+  <div class="project-block">
     <h2>Code</h2>
-    <p>Internal tool, built by the team. Not yet published.</p>
+    <p>Internal plugin, built by the team from scratch, with template presets for new users. Not yet published.</p>
   </div>
 
   <div class="project-block">
     <h2>Validation</h2>
-    <p>Still being written up.</p>
+    <p>Each window's result traced back to real sun rays against the actual surrounding massing, not a simplified stand-in, so an Ok / NotOk / PartialOk call can be checked geometrically, not just trusted.</p>
   </div>
 
   <div class="project-block">
     <h2>Result</h2>
-    <p>Still being written up &mdash; real project renders and numbers go here.</p>
+    <p>Three insolation workflows that used to be three separate files now share one plugin and one set of template presets &mdash; a new user opens a preset instead of rebuilding the definition, and the darkest window in a building shows up as a dip in a form, not a line a reviewer has to go looking for.</p>
   </div>
 
   <div class="project-nav-footer">
