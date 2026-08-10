@@ -17,7 +17,6 @@ JOBS = {
     "mcp-rhino-agent-cover-poster.jpg": ("mcp-rhino-agent-card.webp", (720, 720), 82),
     "panel-nesting-engine.jpg": ("panel-nesting-engine-card.webp", (720, 720), 82),
     "copper-facade-bishkek.jpg": ("copper-facade-bishkek-card.webp", (720, 720), 82),
-    "casting-feasibility.jpg": ("casting-feasibility-card.webp", (720, 720), 82),
     "pedestrian-flow-home-poster.jpg": ("pedestrian-flow-card.webp", (720, 720), 82),
     "revit-panel-export.jpg": ("revit-panel-export-card.webp", (720, 720), 82),
     "daylight-massing.jpg": ("daylight-massing-card.webp", (720, 720), 82),
