@@ -22,7 +22,7 @@ JOBS = {
     "daylight-massing.jpg": ("daylight-massing-card.webp", (720, 720), 82),
     "wind-comfort-demo-poster.jpg": ("wind-comfort-card.webp", (720, 720), 82),
     "tessellation-studies.jpg": ("tessellation-studies-card.webp", (720, 720), 82),
-    "jewelry-casting-risk-stone-ring.png": ("jewelry-casting-risk-card.webp", (720, 720), 82),
+    "jewelry-casting-risk-cover.webp": ("jewelry-casting-risk-card.webp", (720, 720), 82),
 }
 
 

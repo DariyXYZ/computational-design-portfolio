@@ -53,7 +53,7 @@ OG_IMAGES = {
     "projects/wind-comfort.html": "assets/img/wind-comfort-demo-poster.jpg",
     "projects/tessellation-studies.html": "assets/img/tessellation-studies.jpg",
     "projects/insolation-mound.html": "assets/img/insolation-mound-heatmap.jpg",
-    "projects/jewelry-casting-risk.html": "assets/img/jewelry-casting-risk-stone-ring.png",
+    "projects/jewelry-casting-risk.html": "assets/img/jewelry-casting-risk-cover.webp",
 }
 
 INDEX_MEDIA = {
@@ -66,7 +66,7 @@ INDEX_MEDIA = {
     "assets/img/daylight-massing.jpg": "assets/img/daylight-massing-card.webp",
     "assets/img/wind-comfort-demo-poster.jpg": "assets/img/wind-comfort-card.webp",
     "assets/img/tessellation-studies.jpg": "assets/img/tessellation-studies-card.webp",
-    "assets/img/jewelry-casting-risk-stone-ring.png": "assets/img/jewelry-casting-risk-card.webp",
+    "assets/img/jewelry-casting-risk-cover.webp": "assets/img/jewelry-casting-risk-card.webp",
 }
 
 META_START = "<!-- site-meta:start -->"

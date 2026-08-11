@@ -490,6 +490,11 @@ section, footer { scroll-margin-top: var(--nav-h); }
   max-width: 22ch;
 }
 
+.media-frame--photo-slot {
+  aspect-ratio: 16 / 7;
+  min-height: 220px;
+}
+
 /* Featured entries: full-bleed two-column rows, no card chrome — reserved for the
    flagship and the one built, photographed result. Everything else is a lighter grid;
    repeating this treatment across all eight would be the identical-card-grid mistake. */
