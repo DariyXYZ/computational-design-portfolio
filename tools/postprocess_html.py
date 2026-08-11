@@ -37,6 +37,8 @@ DESCRIPTIONS = {
     "projects/daylight-massing.html": "A daylight-driven massing study that compares stepped building forms against solar-access constraints.",
     "projects/wind-comfort.html": "A Grasshopper workflow for rapid wind-comfort checks, staged calculation, result display, and export.",
     "projects/tessellation-studies.html": "Constraint-based tessellation studies balancing minimum panel count and node-type repetition.",
+    "projects/insolation-mound.html": "A Grasshopper plugin, built from scratch: a site-wide solar heatmap, a per-window insolation check, and a voxel mound that flags the darkest windows automatically.",
+    "projects/jewelry-casting-risk.html": "A Grasshopper C# preflight tool that maps jewelry casting risk from wall thickness, sharp detail, local transitions, metal, and process profiles.",
 }
 
 OG_IMAGES = {
@@ -50,6 +52,8 @@ OG_IMAGES = {
     "projects/daylight-massing.html": "assets/img/daylight-massing.jpg",
     "projects/wind-comfort.html": "assets/img/wind-comfort-demo-poster.jpg",
     "projects/tessellation-studies.html": "assets/img/tessellation-studies.jpg",
+    "projects/insolation-mound.html": "assets/img/insolation-mound-heatmap.jpg",
+    "projects/jewelry-casting-risk.html": "assets/img/jewelry-casting-risk-stone-ring.png",
 }
 
 INDEX_MEDIA = {
@@ -62,6 +66,7 @@ INDEX_MEDIA = {
     "assets/img/daylight-massing.jpg": "assets/img/daylight-massing-card.webp",
     "assets/img/wind-comfort-demo-poster.jpg": "assets/img/wind-comfort-card.webp",
     "assets/img/tessellation-studies.jpg": "assets/img/tessellation-studies-card.webp",
+    "assets/img/jewelry-casting-risk-stone-ring.png": "assets/img/jewelry-casting-risk-card.webp",
 }
 
 META_START = "<!-- site-meta:start -->"

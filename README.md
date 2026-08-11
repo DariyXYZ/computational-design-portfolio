@@ -4,7 +4,7 @@ Static portfolio for [Dariy Nazarov](https://github.com/DariyXYZ), published at 
 
 ## Build workflow
 
-The 9 files in `projects/` were produced by a Python template generator that currently lives outside this repository. Do not apply repeated edits to those files by hand.
+Most case pages in `projects/` were produced by a Python template generator that currently lives outside this repository. Do not apply repeated edits to generated pages by hand.
 
 After importing freshly generated case pages, run:
 
