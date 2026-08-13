@@ -66,7 +66,7 @@ INDEX_MEDIA = {
     "assets/img/daylight-massing.jpg": "assets/img/daylight-massing-card.webp",
     "assets/img/wind-comfort-demo-poster.jpg": "assets/img/wind-comfort-card.webp",
     "assets/img/tessellation-studies.jpg": "assets/img/tessellation-studies-card.webp",
-    "assets/img/jewelry-casting-risk-cover.webp": "assets/img/jewelry-casting-risk-card.webp",
+    "assets/img/jewelry-casting-risk-cover.webp": "assets/img/jewelry-casting-risk-cover-card.webp",
 }
 
 META_START = "<!-- site-meta:start -->"
