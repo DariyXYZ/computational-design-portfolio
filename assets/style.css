@@ -789,7 +789,7 @@ footer .eyebrow {
 
 .media-frame .media-stat-caption {
   position: absolute;
-  top: 50%;
+  top: 24%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-variation-settings: "wght" 800;
