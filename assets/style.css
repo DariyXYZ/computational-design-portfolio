@@ -787,6 +787,21 @@ footer .eyebrow {
    frame like the other, still-opaque screenshots. */
 .code-media img { display: block; width: 100%; height: auto; }
 
+.media-frame .media-stat-caption {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-variation-settings: "wght" 800;
+  font-size: clamp(40px, 8vw, 96px);
+  letter-spacing: -0.02em;
+  color: #29e62e;
+  text-align: center;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
 /* ---------- grouped media: a labeled set of related shots in one frame ---------- */
 /* For a project with several real screenshots that only make sense read
    together (stages of one pipeline, before/after). Each cell keeps its
