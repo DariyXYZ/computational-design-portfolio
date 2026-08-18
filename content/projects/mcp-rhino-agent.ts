@@ -210,8 +210,8 @@ export const mcpRhinoAgent: Project = {
                   "image": {
                     "src": "/assets/img/mcp-rhino-agent-ref-absolute-world.jpg",
                     "alt": "Absolute World, Mississauga, by MAD Architects",
-                    "width": 900,
-                    "height": 600
+                    "width": 557,
+                    "height": 988
                   },
                   "caption": "Absolute World"
                 },
@@ -252,7 +252,7 @@ export const mcpRhinoAgent: Project = {
               "wide": true
             }
           ],
-          "credit": "Reference photos, not literal inputs — the agent generated these forms from text briefs alone. Karlatornet: ArildV (CC BY-SA 4.0). Aqua Tower: George Showman (CC BY 2.0). Absolute World: Scott Webb (CC0). Turning Torso: Zairon (CC BY-SA 3.0). 30 St Mary Axe: Paste (public domain). Shanghai Tower: Stefan Fussan (CC BY-SA 3.0). Via Wikimedia Commons."
+          "credit": "Reference photos, not literal inputs — the agent generated these forms from text briefs alone. Karlatornet: ArildV (CC BY-SA 4.0). Aqua Tower: George Showman (CC BY 2.0). Turning Torso: Zairon (CC BY-SA 3.0). 30 St Mary Axe: Paste (public domain). Shanghai Tower: Stefan Fussan (CC BY-SA 3.0). All via Wikimedia Commons. Absolute World: Iwan Baan."
         },
         {
           "badge": "02",

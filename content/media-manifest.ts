@@ -271,8 +271,7 @@ export const mediaManifest: Record<string, readonly number[]> = {
   ],
   "/assets/img/mcp-rhino-agent-ref-absolute-world.jpg": [
     400,
-    800,
-    900
+    557
   ],
   "/assets/img/mcp-rhino-agent-ref-aqua-tower.jpg": [
     400,
