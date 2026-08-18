@@ -1,0 +1,27 @@
+{
+  "name": "computational-design-portfolio",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Static portfolio for Dariy Nazarov, built with Next.js App Router and exported for GitHub Pages.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "npx --yes serve@14 out -l 4321",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "media": "python tools/media.py"
+  },
+  "dependencies": {
+    "next": "16.3.1",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "eslint": "^9.39.0",
+    "eslint-config-next": "16.3.1",
+    "typescript": "^5.9.3"
+  }
+}
