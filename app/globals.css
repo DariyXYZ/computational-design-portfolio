@@ -724,6 +724,20 @@ footer .eyebrow {
 .project-hero .meta { margin-top: var(--space-md); }
 
 .media-frame--hero { aspect-ratio: 16 / 8; margin-top: var(--space-lg); }
+/* The opening frame gets the same breakout width as the paired rows below it,
+   so the case does not start narrower than it continues. */
+.project-hero:not(.project-hero--split) .media-frame--hero {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1440px, calc(100vw - 2 * clamp(16px, 2.5vw, 40px)));
+}
+@media (max-width: 700px) {
+  .project-hero:not(.project-hero--split) .media-frame--hero {
+    width: 100vw;
+    border-radius: 0;
+  }
+}
 .media-frame--video { aspect-ratio: 16 / 9; }
 .media-frame--md { aspect-ratio: 4 / 3; }
 
@@ -777,6 +791,26 @@ footer .eyebrow {
 .project-block + .media-row,
 .project-block + .media-frame--video { max-width: 900px; }
 .project-block + .media-row.media-row--wide { max-width: none; }
+
+/* Media outgrows the measure-capped text column: prose wants ~65 characters,
+   a paired drawing wants every pixel it can get. */
+.project-content > .media-row--wide {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1440px, calc(100vw - 2 * clamp(16px, 2.5vw, 40px)));
+  max-width: none;
+  gap: var(--space-sm);
+}
+
+/* Phones: run the stacked pair edge to edge. The container's own gutter is
+   worth more as image than as margin on a 390px screen. */
+@media (max-width: 700px) {
+  .project-content > .media-row--wide {
+    width: 100vw;
+    gap: var(--space-sm);
+  }
+}
 
 /* A small un-cropped side image next to a Method paragraph (e.g. a toolbar
    strip screenshot) — sits in the container's spare width beside the
@@ -1114,7 +1148,9 @@ footer .eyebrow {
 
 .blueprint {
   background: #ffffff;
-  padding: 14px 14px 14px 56px;
+  /* Thin margin, wider on the left for the binding edge — enough to read as a
+     drawing sheet without spending an eighth of a paired frame on paper. */
+  padding: 7px 7px 7px 24px;
 }
 .blueprint__frame {
   position: relative;
@@ -1160,7 +1196,7 @@ footer .eyebrow {
 .blueprint__stamp-value { font-weight: 600; }
 
 @media (max-width: 420px) {
-  .blueprint { padding-left: 28px; }
+  .blueprint { padding: 5px 5px 5px 14px; }
   .blueprint__stamp {
     position: static;
     grid-template-columns: 1fr 1.5fr;
