@@ -128,18 +128,32 @@ export type FrameContext =
   | 'featured'
   | 'aside';
 
+/**
+ * What each context actually paints, measured rather than guessed.
+ *
+ * These must track the CSS. Case media breaks out of the 1160px text container
+ * to `min(1440px, 100vw - 32px)`, and a stale 640px hint here had the browser
+ * picking the 1200px rung for a frame painting 1437 CSS px — an upscale of
+ * nearly two, which read as a soft image no amount of extra quality would fix.
+ *
+ * 1472px is the breakout's own crossover: above it the width is pinned at
+ * 1440, below it the viewport minus its gutter. Written as media queries plus
+ * calc() rather than min(), which every target browser parses in `sizes`.
+ */
+const BREAKOUT = '(max-width: 1472px) calc(100vw - 32px), 1440px';
+
 const SIZES: Record<FrameContext, string> = {
-  // Split hero: full width on mobile, just over half of the 1160 px container above it.
-  hero: '(max-width: 900px) 100vw, 640px',
-  // Single frame spanning the container.
-  wide: '(max-width: 1200px) 100vw, 1160px',
-  // Two frames sharing the full container width.
-  pair: '(max-width: 700px) 100vw, 570px',
-  // Three frames sharing the container width.
-  row: '(max-width: 700px) 100vw, (max-width: 1200px) 50vw, 380px',
-  // Auto-fit grid, minimum 260 px per card, four across at container width.
-  card: '(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 280px',
-  featured: '(max-width: 900px) 100vw, 560px',
+  // Full-width opening frame, and any single frame spanning a wide row.
+  hero: `(max-width: 700px) 100vw, ${BREAKOUT}`,
+  wide: `(max-width: 700px) 100vw, ${BREAKOUT}`,
+  // Two frames abreast: half the breakout, less the 16px gap. 712px at cap.
+  pair: '(max-width: 700px) 100vw, (max-width: 1472px) calc((100vw - 48px) / 2), 712px',
+  // Three abreast: a third of the breakout, less two gaps. 469px at cap.
+  row: '(max-width: 700px) 100vw, (max-width: 1472px) calc((100vw - 64px) / 3), 469px',
+  // Auto-fit grid inside the text container: 312px at four across, 484 at two.
+  card: '(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 484px',
+  // Featured rows stay inside the container; the media column paints ~468px.
+  featured: '(max-width: 900px) 100vw, 480px',
   aside: '240px',
 };
 
