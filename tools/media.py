@@ -48,7 +48,7 @@ AVIF_QUALITY = 62
 # Grasshopper node graphs are line art with small labels; lossy artefacts there
 # read as blur rather than noise, so they get a higher quality setting.
 LINE_ART_QUALITY = 74
-LINE_ART_MARKERS = ("-nodes.", "-toolbar.", "-workflow.")
+LINE_ART_MARKERS = ("-nodes.", "-toolbar.", "-workflow.", "-structure.")
 
 # The animated hero sits in a box of at most 380 CSS px, so 640 covers it at
 # 1.7x DPR. It is a white lattice on pure black, which both codecs handle well:

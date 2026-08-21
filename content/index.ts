@@ -93,8 +93,8 @@ export const cards: readonly ProjectCard[] = [
     frame: {
       kind: 'image',
       image: {
-        src: '/assets/img/copper-facade-bishkek-card.webp',
-        alt: "Rendered visualization of the Bishkek bus station's copper canopy",
+        src: '/assets/img/copper-facade-canopy-structure-card.webp',
+        alt: "The canopy's steel truss shown inside its triangulated panel skin",
         width: 720,
         height: 402,
       },

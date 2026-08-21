@@ -120,6 +120,26 @@ export const copperFacadeBishkek: Project = {
       "wide": true
     },
     {
+      "kind": "mediaRow",
+      "frames": [
+        {
+          "kind": "image",
+          "image": {
+            "src": "/assets/img/copper-facade-canopy-structure.webp",
+            "alt": "The canopy's steel truss shown inside the triangulated panel skin it carries",
+            "width": 1800,
+            "height": 1005
+          },
+          "wide": true,
+          "stamp": {
+            "project": "Copper Façade",
+            "sheet": "Canopy Structure"
+          }
+        }
+      ],
+      "wide": true
+    },
+    {
       "kind": "prose",
       "heading": "Validation",
       "paragraphs": [
@@ -136,6 +156,31 @@ export const copperFacadeBishkek: Project = {
           "A physical mockup is next, followed by real construction. The same script that placed the panels is the one handing the cutter their sheets, with the marking already on them."
         ]
       ]
+    },
+    {
+      "kind": "prose",
+      "heading": "Under construction",
+      "paragraphs": [
+        [
+          "The first bay of the canopy is installed. The steel frame for the next one is up and waiting for its panels."
+        ]
+      ]
+    },
+    {
+      "kind": "mediaRow",
+      "frames": [
+        {
+          "kind": "image",
+          "image": {
+            "src": "/assets/img/copper-facade-construction.jpg",
+            "alt": "The bus station under construction, the first section of copper canopy mounted and the steel truss for the next section still exposed",
+            "width": 1800,
+            "height": 1005
+          },
+          "wide": true
+        }
+      ],
+      "wide": true
     }
   ]
 };

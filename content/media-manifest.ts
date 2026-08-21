@@ -16,6 +16,22 @@ export const mediaManifest: Record<string, readonly number[]> = {
     1200,
     1600
   ],
+  "/assets/img/copper-facade-canopy-structure-card.webp": [
+    400,
+    720
+  ],
+  "/assets/img/copper-facade-canopy-structure.webp": [
+    400,
+    800,
+    1200,
+    1800
+  ],
+  "/assets/img/copper-facade-construction.jpg": [
+    400,
+    800,
+    1200,
+    1800
+  ],
   "/assets/img/copper-facade-cutsheets.jpg": [
     400,
     800,
