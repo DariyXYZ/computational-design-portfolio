@@ -502,7 +502,7 @@ section, footer { scroll-margin-top: var(--nav-h); }
    to be dropped in later. Deliberately marked as a slot, not passed off as content. */
 .media-frame {
   border: 1.5px dashed var(--border);
-  border-radius: 14px;
+  border-radius: 1px;
   background: rgba(255, 255, 255, 0.02);
   display: flex;
   flex-direction: column;
@@ -563,6 +563,9 @@ section, footer { scroll-margin-top: var(--nav-h); }
 
 .tag {
   display: inline-flex;
+  /* Cards and featured rows are stretch-aligned flex columns, which pulled the
+     status chip out to the full card width and read as a banner. */
+  align-self: start;
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.05em;
@@ -735,7 +738,6 @@ footer .eyebrow {
 @media (max-width: 700px) {
   .project-hero:not(.project-hero--split) .media-frame--hero {
     width: 100vw;
-    border-radius: 0;
   }
 }
 .media-frame--video { aspect-ratio: 16 / 9; }
@@ -896,7 +898,7 @@ footer .eyebrow {
   position: relative;
   aspect-ratio: var(--group-ratio, 1 / 1);
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 1px;
   background: var(--ink);
 }
 .media-group__cell img {
@@ -978,7 +980,7 @@ footer .eyebrow {
   width: 100%;
   max-width: none;
   aspect-ratio: 1 / 1;
-  border-radius: 8px;
+  border-radius: 1px;
   overflow: hidden;
   background: var(--ink);
 }
@@ -1109,7 +1111,7 @@ footer .eyebrow {
   padding: var(--space-md);
   background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 1px;
 }
 .overview-card__title {
   font-variation-settings: "wght" 700;
