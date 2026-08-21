@@ -110,7 +110,15 @@ export function ProjectBlock({ block }: { block: Block }) {
           {block.frames.map((frame, index) => (
             <MediaFrame
               frame={frame}
-              context={block.wide ? 'wide' : 'row'}
+              // A frame flagged `wide` spans the whole row; otherwise the row's
+              // frames share the width, and two abreast is the common case.
+              context={
+                'wide' in frame && frame.wide
+                  ? 'wide'
+                  : block.frames.length === 2
+                    ? 'pair'
+                    : 'row'
+              }
               key={index}
             />
           ))}

@@ -119,14 +119,23 @@ function Stamped({
 }
 
 /** Where a frame sits, which decides both its CSS modifier and its `sizes`. */
-export type FrameContext = 'hero' | 'wide' | 'row' | 'card' | 'featured' | 'aside';
+export type FrameContext =
+  | 'hero'
+  | 'wide'
+  | 'pair'
+  | 'row'
+  | 'card'
+  | 'featured'
+  | 'aside';
 
 const SIZES: Record<FrameContext, string> = {
   // Split hero: full width on mobile, just over half of the 1160 px container above it.
   hero: '(max-width: 900px) 100vw, 640px',
   // Single frame spanning the container.
   wide: '(max-width: 1200px) 100vw, 1160px',
-  // Two or three frames sharing the container width.
+  // Two frames sharing the full container width.
+  pair: '(max-width: 700px) 100vw, 570px',
+  // Three frames sharing the container width.
   row: '(max-width: 700px) 100vw, (max-width: 1200px) 50vw, 380px',
   // Auto-fit grid, minimum 260 px per card, four across at container width.
   card: '(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 280px',
@@ -154,6 +163,9 @@ export function MediaFrame({
   switch (frame.kind) {
     case 'image': {
       const picture = <Picture image={frame.image} sizes={sizes} loading={loading} />;
+      // Frameless: the canvas is already keyed transparent and processed to sit
+      // straight on the page, so a card behind it would defeat the point.
+      if (frame.bare) return <div className="code-media">{picture}</div>;
       return (
         <div className={`media-frame has-photo${heroModifier}${wide}${stamped}`}>
           {frame.stamp ? (

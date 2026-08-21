@@ -47,6 +47,12 @@ export type Frame =
       stamp?: Stamp;
       /** Big overlaid figure, e.g. "17% MISRUN". */
       statCaption?: string;
+      /**
+       * Render without frame chrome. For the keyed-transparent Grasshopper
+       * canvases, which are meant to sit on the page's own texture with the
+       * arrow field showing through rather than being walled off in a card.
+       */
+      bare?: boolean;
     }
   | { kind: 'video'; video: VideoAsset; wide?: boolean; stamp?: Stamp }
   | {

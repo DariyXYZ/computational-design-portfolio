@@ -34,13 +34,6 @@ export const mediaManifest: Record<string, readonly number[]> = {
     1200,
     1800
   ],
-  "/assets/img/copper-facade-elevation.jpg": [
-    400,
-    800,
-    1200,
-    1800,
-    1900
-  ],
   "/assets/img/copper-facade-marking.jpg": [
     400,
     800,
