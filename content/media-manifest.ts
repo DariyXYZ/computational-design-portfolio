@@ -6,15 +6,11 @@
  */
 
 export const mediaManifest: Record<string, readonly number[]> = {
-  "/assets/img/copper-facade-bishkek-card.webp": [
-    400,
-    720
-  ],
   "/assets/img/copper-facade-bishkek.jpg": [
     400,
     800,
     1200,
-    1600
+    1800
   ],
   "/assets/img/copper-facade-canopy-structure-card.webp": [
     400,

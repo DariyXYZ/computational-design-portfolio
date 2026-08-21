@@ -10,9 +10,9 @@ export const copperFacadeBishkek: Project = {
     "kind": "image",
     "image": {
       "src": "/assets/img/copper-facade-bishkek.jpg",
-      "alt": "Rendered visualization of the Bishkek bus station's copper canopy",
-      "width": 1600,
-      "height": 893
+      "alt": "Rendered view of the finished bus station, its copper canopy cantilevered over the concourse",
+      "width": 1800,
+      "height": 1005
     }
   },
   "blocks": [
@@ -120,26 +120,6 @@ export const copperFacadeBishkek: Project = {
       "wide": true
     },
     {
-      "kind": "mediaRow",
-      "frames": [
-        {
-          "kind": "image",
-          "image": {
-            "src": "/assets/img/copper-facade-canopy-structure.webp",
-            "alt": "The canopy's steel truss shown inside the triangulated panel skin it carries",
-            "width": 1800,
-            "height": 1005
-          },
-          "wide": true,
-          "stamp": {
-            "project": "Copper Façade",
-            "sheet": "Canopy Structure"
-          }
-        }
-      ],
-      "wide": true
-    },
-    {
       "kind": "prose",
       "heading": "Validation",
       "paragraphs": [
@@ -165,6 +145,26 @@ export const copperFacadeBishkek: Project = {
           "The first bay of the canopy is installed. The steel frame for the next one is up and waiting for its panels."
         ]
       ]
+    },
+    {
+      "kind": "mediaRow",
+      "frames": [
+        {
+          "kind": "image",
+          "image": {
+            "src": "/assets/img/copper-facade-canopy-structure.webp",
+            "alt": "The canopy's steel truss shown inside the triangulated panel skin it carries",
+            "width": 1800,
+            "height": 1005
+          },
+          "wide": true,
+          "stamp": {
+            "project": "Copper Façade",
+            "sheet": "Canopy Structure"
+          }
+        }
+      ],
+      "wide": true
     },
     {
       "kind": "mediaRow",
