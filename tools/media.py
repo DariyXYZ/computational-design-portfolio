@@ -40,14 +40,25 @@ RASTER_SUFFIXES = {".png", ".jpg", ".jpeg", ".webp"}
 # silently flatten it to its first frame.
 ANIMATED = {"hero-bg.webp"}
 
-# Rendered widths across the layout: cards land near 280-560 CSS px, wide media
-# rows and code screenshots cap at the 1160 px container (so ~1800 at 1.5x DPR).
-LADDER = (400, 800, 1200, 1800)
+# Rendered widths across the layout. Case media now breaks out of the text
+# container and paints up to ~1370 CSS px, so a 2x screen wants ~2700 real
+# pixels; the ladder has to reach that or the browser upscales.
+LADDER = (400, 800, 1200, 1800, 2400)
 
-AVIF_QUALITY = 62
-# Grasshopper node graphs are line art with small labels; lossy artefacts there
-# read as blur rather than noise, so they get a higher quality setting.
-LINE_ART_QUALITY = 74
+# Quality by rung, not one number for the whole ladder. A 400px rung is shown
+# small on a phone, where bandwidth costs more than the artefacts cost; an
+# 1800px rung fills a desktop viewport, where compression is plainly visible.
+QUALITY_BY_WIDTH = (
+    (800, 62),
+    (1200, 68),
+    (1800, 76),
+)
+# Anything above the last threshold.
+QUALITY_LARGE = 80
+
+# Grasshopper node graphs and technical drawings are line art with small labels;
+# lossy artefacts there read as blur rather than noise, so they run richer.
+LINE_ART_BONUS = 8
 LINE_ART_MARKERS = ("-nodes.", "-toolbar.", "-workflow.", "-structure.")
 
 # The animated hero sits in a box of at most 380 CSS px, so 640 covers it at
@@ -60,8 +71,17 @@ HERO_WEBP_QUALITY = 62
 HERO_AVIF_QUALITY = 48
 
 
-def quality_for(name: str) -> int:
-    return LINE_ART_QUALITY if any(m in name for m in LINE_ART_MARKERS) else AVIF_QUALITY
+def quality_for(name: str, width: int) -> int:
+    """Higher quality the larger the rung will be painted."""
+    base = QUALITY_LARGE
+    for threshold, quality in QUALITY_BY_WIDTH:
+        if width <= threshold:
+            base = quality
+            break
+    if any(marker in name for marker in LINE_ART_MARKERS):
+        base += LINE_ART_BONUS
+    return min(base, 92)
+
 
 
 def widths_for(source_width: int) -> list[int]:
@@ -78,7 +98,6 @@ def build_still(path: Path) -> tuple[str, list[int]]:
         im = im.convert("RGBA" if "A" in im.getbands() else "RGB")
         source_width, source_height = im.size
         widths = widths_for(source_width)
-        quality = quality_for(path.name)
 
         for width in widths:
             height = max(1, round(source_height * width / source_width))
@@ -88,7 +107,9 @@ def build_still(path: Path) -> tuple[str, list[int]]:
                 if width == source_width
                 else im.resize((width, height), Image.Resampling.LANCZOS)
             )
-            frame.save(target, "AVIF", quality=quality, speed=4)
+            frame.save(
+                target, "AVIF", quality=quality_for(path.name, width), speed=4
+            )
 
     return f"/assets/img/{path.name}", widths
 

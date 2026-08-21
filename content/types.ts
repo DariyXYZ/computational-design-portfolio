@@ -130,12 +130,29 @@ export type Project = {
   blocks: ReadonlyArray<Block>;
 };
 
-/** How a project appears in the index: hero slot, featured row, or grid card. */
+/** How a project appears in the index: featured row, or grid card. */
 export type IndexPlacement = 'featured' | 'grid';
+
+/**
+ * A band on the index, grouping systems by how real they are.
+ *
+ * The index copy has always promised work "ranked by how real they are"; the
+ * bands are what makes that ranking visible instead of leaving it to seven
+ * different status tags.
+ */
+export type Band = {
+  id: string;
+  /** Divider label, e.g. `Built & shipped`. */
+  label: string;
+  /** One clause on what earns a place in this band. */
+  note: string;
+};
 
 export type ProjectCard = {
   slug: string;
   placement: IndexPlacement;
+  /** Which band on the index this sits under. Must match a `bands` entry. */
+  band: string;
   /** Card media, which is often a lighter derivative than the hero. */
   frame: Frame;
   /** Card copy, shorter than the case page's summary. */

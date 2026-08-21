@@ -78,7 +78,6 @@ site without editing config.
 
 - `casting-feasibility`: misrun-risk heatmap on a node.
 - `daylight-massing`: insolation map across massing options.
-- `panel-nesting-engine`: nested cut sheet and packing-algorithm structure.
 - `revit-panel-export`: Revit schedule and Grasshopper export step.
 - `tessellation-studies`: panel-count and node-repetition pattern variants.
 - `mcp-rhino-agent`: 4 explanatory diagram slots remain; the page already has

@@ -10,23 +10,25 @@ export const mediaManifest: Record<string, readonly number[]> = {
     400,
     800,
     1200,
-    1800
-  ],
-  "/assets/img/copper-facade-canopy-structure-card.webp": [
-    400,
-    720
+    1800,
+    2400,
+    2752
   ],
   "/assets/img/copper-facade-canopy-structure.webp": [
     400,
     800,
     1200,
-    1800
+    1800,
+    2400,
+    2752
   ],
   "/assets/img/copper-facade-construction.jpg": [
     400,
     800,
     1200,
-    1800
+    1800,
+    2400,
+    2752
   ],
   "/assets/img/copper-facade-cutsheets.jpg": [
     400,
@@ -45,6 +47,7 @@ export const mediaManifest: Record<string, readonly number[]> = {
     800,
     1200,
     1800,
+    2400,
     2600
   ],
   "/assets/img/copper-facade-panel-fit-poster.jpg": [
@@ -74,6 +77,7 @@ export const mediaManifest: Record<string, readonly number[]> = {
     800,
     1200,
     1800,
+    2400,
     2600
   ],
   "/assets/img/insolation-mound-heatmap.jpg": [
@@ -87,6 +91,7 @@ export const mediaManifest: Record<string, readonly number[]> = {
     800,
     1200,
     1800,
+    2400,
     2600
   ],
   "/assets/img/insolation-mound-voxels.jpg": [
@@ -100,6 +105,7 @@ export const mediaManifest: Record<string, readonly number[]> = {
     800,
     1200,
     1800,
+    2400,
     2600
   ],
   "/assets/img/insolation-mound-windows.jpg": [
@@ -113,6 +119,7 @@ export const mediaManifest: Record<string, readonly number[]> = {
     800,
     1200,
     1800,
+    2400,
     3840
   ],
   "/assets/img/jewelry-casting-risk-cover-card.webp": [
@@ -142,6 +149,7 @@ export const mediaManifest: Record<string, readonly number[]> = {
     800,
     1200,
     1800,
+    2400,
     3840
   ],
   "/assets/img/jewelry-casting-risk-rejects.jpg": [
@@ -161,6 +169,7 @@ export const mediaManifest: Record<string, readonly number[]> = {
     800,
     1200,
     1800,
+    2400,
     3840
   ],
   "/assets/img/jewelry-casting-risk-stone-ring.png": [
@@ -168,6 +177,7 @@ export const mediaManifest: Record<string, readonly number[]> = {
     800,
     1200,
     1800,
+    2400,
     3840
   ],
   "/assets/img/jewelry-casting-risk-workflow.webp": [
@@ -304,15 +314,6 @@ export const mediaManifest: Record<string, readonly number[]> = {
     800,
     1200,
     1600
-  ],
-  "/assets/img/panel-nesting-engine-card.webp": [
-    400,
-    720
-  ],
-  "/assets/img/panel-nesting-engine.jpg": [
-    400,
-    800,
-    900
   ],
   "/assets/img/pedestrian-flow-card.webp": [
     400,

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { ArrowRightIcon, EmailIcon, GitHubIcon, PhoneIcon, TelegramIcon } from '@/components/icons';
 import { MediaFrame, Picture } from '@/components/media';
 import { RichText } from '@/components/rich-text';
-import { cards, getProject } from '@/content';
+import { bands, cards, getProject } from '@/content';
 import { home, person, site } from '@/content/site';
 import type { ProjectCard } from '@/content/types';
 import { pageMetadata } from '@/lib/seo';
@@ -81,8 +81,18 @@ function Card({ card, index }: { card: ProjectCard; index: number }) {
 }
 
 export default function HomePage() {
-  const featured = cards.filter((card) => card.placement === 'featured');
-  const grid = cards.filter((card) => card.placement === 'grid');
+  // The index groups by band so the "ranked by how real they are" claim is
+  // something the eye can see, not a sentence the reader has to take on trust.
+  const banded = bands
+    .map((band) => {
+      const inBand = cards.filter((card) => card.band === band.id);
+      return {
+        band,
+        featured: inBand.filter((card) => card.placement === 'featured'),
+        grid: inBand.filter((card) => card.placement === 'grid'),
+      };
+    })
+    .filter(({ featured, grid }) => featured.length + grid.length > 0);
 
   return (
     <>
@@ -167,15 +177,28 @@ export default function HomePage() {
             {home.systems.intro}
           </p>
 
-          {featured.map((card) => (
-            <Featured card={card} key={card.slug} />
-          ))}
+          {banded.map(({ band, featured, grid }) => (
+            <section className="band" key={band.id} aria-labelledby={`band-${band.id}`}>
+              <div className="band__head" data-reveal>
+                <h3 className="band__label" id={`band-${band.id}`}>
+                  {band.label}
+                </h3>
+                <p className="band__note">{band.note}</p>
+              </div>
 
-          <div className="grid">
-            {grid.map((card, index) => (
-              <Card card={card} index={index} key={card.slug} />
-            ))}
-          </div>
+              {featured.map((card) => (
+                <Featured card={card} key={card.slug} />
+              ))}
+
+              {grid.length > 0 ? (
+                <div className="grid">
+                  {grid.map((card, index) => (
+                    <Card card={card} index={index} key={card.slug} />
+                  ))}
+                </div>
+              ) : null}
+            </section>
+          ))}
 
           <p className="aside-note" data-reveal>
             <RichText value={home.asideNote} />

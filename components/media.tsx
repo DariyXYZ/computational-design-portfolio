@@ -155,6 +155,17 @@ export function MediaFrame({
   const wide = 'wide' in frame && frame.wide ? ' media-frame--wide' : '';
   const sizes = SIZES[context === 'wide' || wide ? 'wide' : context];
   const heroModifier = context === 'hero' ? ' media-frame--hero' : '';
+  // Never paint a frame wider than its source: four case heroes only exist at
+  // 900px, and the breakout width would otherwise upscale them by half again.
+  const nativeWidth =
+    frame.kind === 'image'
+      ? frame.image.width
+      : frame.kind === 'video'
+        ? undefined
+        : undefined;
+  const cap = nativeWidth
+    ? ({ '--media-cap': `${nativeWidth}px` } as React.CSSProperties)
+    : undefined;
   // A stamp turns the frame into a drafting sheet, which has its own styling.
   const stamped =
     'stamp' in frame && frame.stamp ? ' media-frame--blueprint' : '';
@@ -167,7 +178,10 @@ export function MediaFrame({
       // straight on the page, so a card behind it would defeat the point.
       if (frame.bare) return <div className="code-media">{picture}</div>;
       return (
-        <div className={`media-frame has-photo${heroModifier}${wide}${stamped}`}>
+        <div
+          className={`media-frame has-photo${heroModifier}${wide}${stamped}`}
+          style={cap}
+        >
           {frame.stamp ? (
             <Stamped stamp={frame.stamp}>{picture}</Stamped>
           ) : (

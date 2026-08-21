@@ -592,6 +592,43 @@ section, footer { scroll-margin-top: var(--nav-h); }
   gap: var(--space-lg) var(--gap, 32px);
 }
 
+/* ---------- bands: the ranking, made visible ---------- */
+/* The section copy has always claimed the systems are ranked by how real they
+   are. Three labelled bands carry that claim instead of asking the reader to
+   infer it from seven different status tags. */
+
+.band__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 14px;
+  margin-top: var(--space-xl);
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--border);
+}
+.band__label {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--accent-light);
+}
+.band__note {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.02em;
+  color: var(--text-faint);
+}
+/* The band's own rule already separates it, so the first block inside it does
+   not draw a second one immediately below. */
+.band > .grid {
+  margin-top: var(--space-lg);
+  padding-top: 0;
+  border-top: 0;
+}
+.band .featured { margin-top: var(--space-lg); }
+
 .card {
   display: flex;
   flex-direction: column;
@@ -733,11 +770,17 @@ footer .eyebrow {
   position: relative;
   left: 50%;
   transform: translateX(-50%);
-  width: min(1440px, calc(100vw - 2 * clamp(16px, 2.5vw, 40px)));
+  /* --media-cap is the image's own pixel width, set by the component, so a
+     small source is shown at its real size instead of being stretched soft. */
+  width: min(
+    1440px,
+    calc(100vw - 2 * clamp(16px, 2.5vw, 40px)),
+    var(--media-cap, 1440px)
+  );
 }
 @media (max-width: 700px) {
   .project-hero:not(.project-hero--split) .media-frame--hero {
-    width: 100vw;
+    width: min(100vw, var(--media-cap, 100vw));
   }
 }
 .media-frame--video { aspect-ratio: 16 / 9; }
