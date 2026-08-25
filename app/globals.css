@@ -14,9 +14,60 @@
   --border: rgba(255, 255, 255, 0.12);
   --text: #ffffff;
   --text-muted: rgba(255, 255, 255, 0.62);
-  --text-faint: rgba(255, 255, 255, 0.4);
+  /* 0.4 measured 3.77:1 on the page background — under the 4.5 floor for
+     the tech lines and band notes that use it. */
+  --text-faint: rgba(255, 255, 255, 0.5);
   --accent: #2563eb;
   --accent-light: #5b9bff;
+  /* Text sitting on the saturated accent — white in both themes. */
+  --on-accent: #ffffff;
+
+  /* Body copy sits a touch under full-strength text; headings take --text. */
+  --text-body: rgba(255, 255, 255, 0.8);
+  /* Faintest fill, for a frame that should read as a surface, not a card. */
+  --panel-faint: rgba(255, 255, 255, 0.02);
+  /* Dot grid tiled over the page, and the film-grain overlay's blend mode. */
+  --dot: rgba(255, 255, 255, 0.07);
+  --grain-blend: overlay;
+  --grain-opacity: 0.045;
+  /* Translucent bar behind the fixed nav. */
+  --nav-bg: rgba(10, 10, 10, 0.72);
+  /* Crosshair cursor, and the glare that lifts a clickable frame on hover. */
+  --cursor: #ffffff;
+  --cursor-glow: rgba(255, 255, 255, 0.6);
+  --glare: rgba(255, 255, 255, 0.28);
+  /* The arrow field is painted on canvas, so it reads these from the DOM. */
+  --field: #5b9bff;
+  --field-alpha: 0.42;
+  /* The Grasshopper canvases are keyed transparent for a dark page; on a light
+     one they need their own dark panel or they vanish. */
+  --code-backdrop: transparent;
+  --code-pad: 0px;
+  /* The hero mark is a white lattice on black: it needs no help here. */
+  --hero-blend: lighten;
+  --hero-filter: none;
+  --hero-glow: rgba(37, 99, 235, 0.16);
+
+  --tone-blue-fg: #7fa8ff;
+  --tone-blue-bg: rgba(91, 155, 255, 0.15);
+  --tone-blue-chip: rgba(91, 155, 255, 0.08);
+  --tone-blue-line: rgba(91, 155, 255, 0.35);
+  --tone-green-fg: #34d9b4;
+  --tone-green-bg: rgba(0, 212, 170, 0.15);
+  --tone-green-chip: rgba(0, 212, 170, 0.08);
+  --tone-green-line: rgba(0, 212, 170, 0.3);
+  --tone-yellow-fg: #f0c96a;
+  --tone-yellow-bg: rgba(240, 180, 41, 0.15);
+  --tone-yellow-chip: rgba(240, 180, 41, 0.08);
+  --tone-yellow-line: rgba(240, 180, 41, 0.3);
+  --tone-purple-fg: #c4b0fd;
+  --tone-purple-bg: rgba(167, 139, 250, 0.15);
+  --tone-purple-chip: rgba(167, 139, 250, 0.08);
+  --tone-purple-line: rgba(167, 139, 250, 0.3);
+  --tone-orange-fg: #ff8a70;
+  --tone-orange-bg: rgba(255, 107, 74, 0.15);
+  --tone-orange-chip: rgba(255, 107, 74, 0.08);
+  --tone-orange-line: rgba(255, 107, 74, 0.3);
 
   --font-body: var(--font-nunito), Barlow, Inter, system-ui, sans-serif;
   --font-accent: var(--font-fraunces), Georgia, serif;
@@ -32,11 +83,108 @@
   --space-xl: 96px;
 
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --scheme: dark;
+}
+
+/*
+ * Light theme. Set on <html> by components/theme-toggle.tsx, and before first
+ * paint by the inline script in app/layout.tsx so the page never flashes.
+ *
+ * Not an inversion: white paper wants a different accent, a quieter arrow
+ * field, and a real backdrop behind the Grasshopper canvases, which are keyed
+ * transparent for a dark page and would otherwise disappear.
+ */
+:root[data-theme='light'] {
+  --scheme: light;
+  --ink: #ffffff;
+  --text: #0a0a0a;
+  --text-body: rgba(10, 10, 10, 0.78);
+  --text-muted: rgba(10, 10, 10, 0.6);
+  --text-faint: rgba(10, 10, 10, 0.62);
+  --panel: rgba(10, 10, 10, 0.04);
+  --panel-strong: rgba(10, 10, 10, 0.07);
+  --panel-faint: rgba(10, 10, 10, 0.025);
+  --border: rgba(10, 10, 10, 0.14);
+
+  /* #5b9bff carries 2.2:1 on white. The links, band labels and hovers that use
+     it need a blue that clears 4.5:1; this one reads 6.7:1. */
+  --accent: #2563eb;
+  --accent-light: #1d4ed8;
+
+  --dot: rgba(10, 10, 10, 0.06);
+  --grain-blend: multiply;
+  --grain-opacity: 0.03;
+  --nav-bg: rgba(255, 255, 255, 0.82);
+  --cursor: #0a0a0a;
+  --cursor-glow: rgba(10, 10, 10, 0.35);
+  /* A white glare is invisible on white: the lift becomes a cast shadow. */
+  --glare: rgba(10, 10, 10, 0.22);
+  --field: #2563eb;
+  --field-alpha: 0.26;
+
+  /* Keyed-transparent canvases get their dark page back, as a panel. */
+  --code-backdrop: #101318;
+  --code-pad: clamp(14px, 2vw, 28px);
+
+  /* The hero mark is a white lattice on black. Inverted it becomes a black
+     lattice on white, and multiply drops that white against the page. */
+  --hero-blend: multiply;
+  /* Contrast pushes the inverted reflection to white so multiply drops it,
+     instead of leaving a grey smudge under the object. */
+  --hero-filter: invert(1) contrast(1.25);
+  --hero-glow: rgba(37, 99, 235, 0.05);
+
+  --tone-blue-fg: #1d4ed8;
+  --tone-blue-bg: rgba(37, 99, 235, 0.1);
+  --tone-blue-chip: rgba(37, 99, 235, 0.06);
+  --tone-blue-line: rgba(37, 99, 235, 0.28);
+  --tone-green-fg: #0f766e;
+  --tone-green-bg: rgba(13, 148, 136, 0.11);
+  --tone-green-chip: rgba(13, 148, 136, 0.06);
+  --tone-green-line: rgba(13, 148, 136, 0.28);
+  --tone-yellow-fg: #a16207;
+  --tone-yellow-bg: rgba(202, 138, 4, 0.13);
+  --tone-yellow-chip: rgba(202, 138, 4, 0.08);
+  --tone-yellow-line: rgba(202, 138, 4, 0.3);
+  --tone-purple-fg: #6d28d9;
+  --tone-purple-bg: rgba(124, 58, 237, 0.1);
+  --tone-purple-chip: rgba(124, 58, 237, 0.06);
+  --tone-purple-line: rgba(124, 58, 237, 0.28);
+  --tone-orange-fg: #c2410c;
+  --tone-orange-bg: rgba(234, 88, 12, 0.11);
+  --tone-orange-chip: rgba(234, 88, 12, 0.06);
+  --tone-orange-line: rgba(234, 88, 12, 0.28);
+}
+
+/* Browser chrome carries the theme too: selection, caret and scrollbar ship
+   with defaults that belong to no palette. */
+::selection { background: var(--accent); color: var(--on-accent); }
+html { scrollbar-color: var(--border) transparent; }
+::-webkit-scrollbar { width: 11px; height: 11px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border: 3px solid transparent;
+  background-clip: content-box;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover { background-color: var(--text-faint); background-clip: content-box; }
+
+/* A white paper sheet needs an edge of its own once the page is white too. */
+:root[data-theme='light'] .blueprint { box-shadow: inset 0 0 0 1px var(--border); }
+
+/* The six direction icons are white line art on transparent, drawn for a dark
+   page. Inverting alone would swing every hue to its opposite; the paired
+   hue-rotate puts them back, so the strokes go dark while blue stays blue and
+   amber stays amber. The other transparent schematics are colour-saturated and
+   read on either background, or already sit on the .code-media panel. */
+:root[data-theme='light'] .overview-card__icon img {
+  filter: invert(1) hue-rotate(180deg);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
 html {
-  color-scheme: dark;
+  color-scheme: var(--scheme);
   scroll-behavior: smooth;
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
@@ -53,7 +201,7 @@ body {
   position: relative;
   /* Dot-grid texture tiled across the whole page, on top of the base black. */
   background:
-    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.07) 1px, transparent 0) 0 0 / 6px 6px,
+    radial-gradient(circle at 1px 1px, var(--dot) 1px, transparent 0) 0 0 / 6px 6px,
     var(--ink);
 }
 
@@ -64,8 +212,8 @@ body::before {
   inset: 0;
   z-index: 3;
   pointer-events: none;
-  opacity: 0.045;
-  mix-blend-mode: overlay;
+  opacity: var(--grain-opacity);
+  mix-blend-mode: var(--grain-blend);
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
 }
 
@@ -86,7 +234,7 @@ strong { font-variation-settings: "wght" 700; }
   z-index: 100;
   padding: 8px 12px;
   color: var(--ink);
-  background: #ffffff;
+  background: var(--text);
   font-family: var(--font-mono);
   font-size: 13px;
   text-decoration: none;
@@ -161,8 +309,8 @@ h1[id], h2[id], h3[id], h4[id] { scroll-margin-top: calc(var(--nav-h) + 16px); }
 .cursor-plus::after {
   content: "";
   position: absolute;
-  background: #ffffff;
-  box-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
+  background: var(--cursor);
+  box-shadow: 0 0 4px var(--cursor-glow);
 }
 .cursor-plus::before { top: 50%; left: 0; width: 100%; height: 1.5px; transform: translateY(-50%); }
 .cursor-plus::after { left: 50%; top: 0; height: 100%; width: 1.5px; transform: translateX(-50%); }
@@ -184,7 +332,7 @@ h1[id], h2[id], h3[id], h4[id] { scroll-margin-top: calc(var(--nav-h) + 16px); }
   align-items: center;
   justify-content: space-between;
   padding-inline: clamp(20px, 5vw, 80px);
-  background: rgba(10, 10, 10, 0.72);
+  background: var(--nav-bg);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
 }
@@ -240,6 +388,38 @@ h1[id], h2[id], h3[id], h4[id] { scroll-margin-top: calc(var(--nav-h) + 16px); }
   text-decoration: none;
   transition: background 150ms var(--ease-out-quart), border-color 150ms var(--ease-out-quart);
 }
+
+/* Day/night switch. Sized to the GitHub pill beside it so the nav keeps one
+   optical line, but quiet: a bordered square, not a second call to action. */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition:
+    color 200ms var(--ease-out-quart),
+    border-color 200ms var(--ease-out-quart),
+    background-color 200ms var(--ease-out-quart);
+}
+.theme-toggle:hover {
+  color: var(--text);
+  border-color: var(--text-faint);
+  background: var(--panel);
+}
+/* Server-rendered placeholder: holds the box so the nav does not jump. */
+.theme-toggle--pending {
+  border-color: transparent;
+  pointer-events: none;
+}
+.theme-toggle__icon { display: block; }
+
 .nav__cta:hover { background: var(--panel-strong); border-color: var(--accent-light); }
 .nav__cta svg { flex: none; }
 
@@ -261,7 +441,7 @@ section, footer { scroll-margin-top: var(--nav-h); }
   flex-direction: column;
   justify-content: center;
   overflow: clip;
-  background: radial-gradient(ellipse 900px 500px at 50% 30%, rgba(37, 99, 235, 0.16), transparent 70%);
+  background: radial-gradient(ellipse 900px 500px at 50% 30%, var(--hero-glow), transparent 70%);
 }
 
 .hero__row {
@@ -278,7 +458,8 @@ section, footer { scroll-margin-top: var(--nav-h); }
   position: relative;
   z-index: 6;
   margin-bottom: 8px;
-  mix-blend-mode: lighten;
+  mix-blend-mode: var(--hero-blend);
+  filter: var(--hero-filter);
 }
 @media (min-width: 900px) {
   .hero__row {
@@ -317,7 +498,7 @@ section, footer { scroll-margin-top: var(--nav-h); }
   letter-spacing: -0.01em;
   text-wrap: balance;
   max-width: 17ch;
-  color: #ffffff;
+  color: var(--text);
 }
 
 .hero .stack {
@@ -390,7 +571,7 @@ section, footer { scroll-margin-top: var(--nav-h); }
 .about__intro p.desc {
   margin-top: var(--space-sm);
   max-width: 58ch;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-body);
   font-size: 17px;
   line-height: 1.6;
 }
@@ -458,7 +639,7 @@ section, footer { scroll-margin-top: var(--nav-h); }
   font-family: var(--font-mono);
   font-size: 12px;
   letter-spacing: 0.03em;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--text-body);
   text-decoration: none;
   background: var(--panel);
   border: 1px solid var(--border);
@@ -466,7 +647,7 @@ section, footer { scroll-margin-top: var(--nav-h); }
   padding: 6px 13px;
   transition: background 150ms var(--ease-out-quart), border-color 150ms var(--ease-out-quart), color 150ms var(--ease-out-quart);
 }
-.about__cta:hover { color: #ffffff; background: var(--panel-strong); border-color: var(--accent-light); }
+.about__cta:hover { color: var(--text); background: var(--panel-strong); border-color: var(--accent-light); }
 .about__cta:focus-visible { outline: 2px solid var(--accent-light); outline-offset: 3px; }
 .about__cta svg { flex: none; }
 
@@ -503,7 +684,7 @@ section, footer { scroll-margin-top: var(--nav-h); }
 .media-frame {
   border: 1.5px dashed var(--border);
   border-radius: 1px;
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--panel-faint);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -550,7 +731,7 @@ section, footer { scroll-margin-top: var(--nav-h); }
 }
 .featured__text p.desc {
   margin-top: 14px;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-body);
   font-size: 17px;
   max-width: 56ch;
 }
@@ -570,7 +751,7 @@ section, footer { scroll-margin-top: var(--nav-h); }
   font-size: 11px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: #ffffff;
+  color: var(--on-accent);
   background: var(--accent);
   padding: 4px 11px;
   border-radius: 999px;
@@ -676,7 +857,7 @@ footer h2 {
   font-variation-settings: "wght" 600;
   font-size: clamp(28px, 4vw, 42px);
   letter-spacing: -0.01em;
-  color: #ffffff;
+  color: var(--text);
 }
 footer .eyebrow {
   font-family: var(--font-mono);
@@ -701,7 +882,7 @@ footer .eyebrow {
   font-family: var(--font-mono);
   font-size: 13px;
   letter-spacing: 0.03em;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--text-body);
   text-decoration: none;
   background: var(--panel);
   border: 1px solid var(--border);
@@ -709,7 +890,7 @@ footer .eyebrow {
   padding: 9px 18px;
   transition: background 150ms var(--ease-out-quart), border-color 150ms var(--ease-out-quart), color 150ms var(--ease-out-quart);
 }
-.contact-list li a:hover { color: #ffffff; background: var(--panel-strong); border-color: var(--accent-light); }
+.contact-list li a:hover { color: var(--text); background: var(--panel-strong); border-color: var(--accent-light); }
 .contact-list li a:focus-visible { outline: 2px solid var(--accent-light); outline-offset: 3px; }
 .contact-list svg { flex: none; }
 
@@ -757,7 +938,7 @@ footer .eyebrow {
 }
 .project-hero .project-summary {
   margin-top: var(--space-sm);
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-body);
   font-size: 18px;
   max-width: 56ch;
 }
@@ -824,7 +1005,7 @@ footer .eyebrow {
   margin-bottom: var(--space-sm);
 }
 .project-block p {
-  color: rgba(255, 255, 255, 0.78);
+  color: var(--text-body);
   font-size: 16.5px;
 }
 /* The global reset zeroes paragraph margins, which ran consecutive paragraphs
@@ -835,7 +1016,7 @@ footer .eyebrow {
   text-decoration: underline;
   text-underline-offset: 2px;
 }
-.project-block p a:hover { color: #ffffff; }
+.project-block p a:hover { color: var(--text); }
 .project-block + .media-row,
 .project-block + .media-frame--video { max-width: 900px; }
 .project-block + .media-row.media-row--wide { max-width: none; }
@@ -918,6 +1099,10 @@ footer .eyebrow {
    processed (inverted, keyed transparent) to sit directly on the page's own
    dark texture, arrow field showing through on purpose, not walled off in a
    frame like the other, still-opaque screenshots. */
+.code-media {
+  background: var(--code-backdrop);
+  padding: var(--code-pad);
+}
 .code-media img { display: block; width: 100%; height: auto; }
 
 .media-frame .media-stat-caption {
@@ -1024,7 +1209,7 @@ footer .eyebrow {
 .blueprint--ref .blueprint__frame {
   min-height: 0;
   overflow: hidden;
-  border-color: rgba(255, 255, 255, 0.18);
+  border-color: var(--border);
 }
 .blueprint--ref .blueprint__frame img {
   height: 100%;
@@ -1108,11 +1293,11 @@ footer .eyebrow {
   padding: 3px 10px;
   border-radius: 999px;
 }
-.direction__badge--blue   { background: rgba(91, 155, 255, 0.15); color: #7fa8ff; }
-.direction__badge--green  { background: rgba(0, 212, 170, 0.15); color: #34d9b4; }
-.direction__badge--yellow { background: rgba(240, 180, 41, 0.15); color: #f0c96a; }
-.direction__badge--purple { background: rgba(167, 139, 250, 0.15); color: #c4b0fd; }
-.direction__badge--orange { background: rgba(255, 107, 74, 0.15); color: #ff8a70; }
+.direction__badge--blue   { background: var(--tone-blue-bg); color: var(--tone-blue-fg); }
+.direction__badge--green  { background: var(--tone-green-bg); color: var(--tone-green-fg); }
+.direction__badge--yellow { background: var(--tone-yellow-bg); color: var(--tone-yellow-fg); }
+.direction__badge--purple { background: var(--tone-purple-bg); color: var(--tone-purple-fg); }
+.direction__badge--orange { background: var(--tone-orange-bg); color: var(--tone-orange-fg); }
 .direction__title {
   font-variation-settings: "wght" 700;
   font-size: clamp(18px, 2vw, 22px);
@@ -1134,11 +1319,11 @@ footer .eyebrow {
   border-radius: 6px;
   padding: 5px 11px;
 }
-.direction__flow .chip--blue   { color: #7fa8ff; background: rgba(91, 155, 255, 0.08); border-color: rgba(91, 155, 255, 0.35); }
-.direction__flow .chip--green  { color: #34d9b4; background: rgba(0, 212, 170, 0.08); border-color: rgba(0, 212, 170, 0.3); }
-.direction__flow .chip--yellow { color: #f0c96a; background: rgba(240, 180, 41, 0.08); border-color: rgba(240, 180, 41, 0.3); }
-.direction__flow .chip--purple { color: #c4b0fd; background: rgba(167, 139, 250, 0.08); border-color: rgba(167, 139, 250, 0.3); }
-.direction__flow .chip--orange { color: #ff8a70; background: rgba(255, 107, 74, 0.08); border-color: rgba(255, 107, 74, 0.3); }
+.direction__flow .chip--blue   { color: var(--tone-blue-fg); background: var(--tone-blue-chip); border-color: var(--tone-blue-line); }
+.direction__flow .chip--green  { color: var(--tone-green-fg); background: var(--tone-green-chip); border-color: var(--tone-green-line); }
+.direction__flow .chip--yellow { color: var(--tone-yellow-fg); background: var(--tone-yellow-chip); border-color: var(--tone-yellow-line); }
+.direction__flow .chip--purple { color: var(--tone-purple-fg); background: var(--tone-purple-chip); border-color: var(--tone-purple-line); }
+.direction__flow .chip--orange { color: var(--tone-orange-fg); background: var(--tone-orange-chip); border-color: var(--tone-orange-line); }
 .direction__arrow { color: var(--text-faint); font-size: 13px; }
 
 /* Real screenshots inside a direction breakdown are often square, and at
@@ -1324,14 +1509,14 @@ footer .eyebrow {
 .exp-entry__body p.desc {
   margin-top: 10px;
   max-width: 62ch;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-body);
   font-size: 16px;
   line-height: 1.6;
 }
 .exp-entry__list {
   margin-top: 10px;
   max-width: 62ch;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-body);
   font-size: 16px;
   line-height: 1.5;
   display: flex;
@@ -1409,5 +1594,5 @@ footer .eyebrow {
 }
 .project-link:hover .media-frame.has-photo,
 .about__portrait:hover {
-  box-shadow: 0 -10px 26px -10px rgba(255, 255, 255, 0.28);
+  box-shadow: 0 -10px 26px -10px var(--glare);
 }

@@ -6,6 +6,7 @@ import { SiteFooter } from '@/components/site-footer';
 import { SiteNav } from '@/components/site-nav';
 import { site } from '@/content/site';
 import { personJsonLd } from '@/lib/seo';
+import { themeInitScript } from '@/lib/theme';
 import { fraunces, nunito } from './fonts';
 import './globals.css';
 
@@ -20,7 +21,11 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: site.themeColor,
+  // The browser chrome follows the theme the visitor actually picked.
+  themeColor: [
+    { media: '(prefers-color-scheme: dark)', color: site.themeColor },
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+  ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -31,7 +36,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       // implicitly; this opts back in to the `scroll-behavior` the CSS sets.
       data-scroll-behavior="smooth"
       className={`${nunito.variable} ${fraunces.variable}`}
+      // The inline script below overwrites this before paint; it is here so the
+      // served HTML is never themeless for a reader with scripting off.
+      data-theme="dark"
     >
+      <head>
+        {/* Blocking and inline on purpose: a stored light theme applied after
+            hydration would flash a dark page first. */}
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body>
         <script
           type="application/ld+json"

@@ -2,6 +2,7 @@ import Link from 'next/link';
 
 import { nav, person, site } from '@/content/site';
 import { GitHubIcon, MarkIcon } from './icons';
+import { ThemeToggle } from './theme-toggle';
 
 /**
  * Primary navigation, rendered once in the root layout.
@@ -22,6 +23,7 @@ export function SiteNav() {
             {item.label}
           </Link>
         ))}
+        <ThemeToggle />
         <a className="nav__cta" href={person.github} target="_blank" rel="noopener">
           <GitHubIcon size={13} />
           GitHub

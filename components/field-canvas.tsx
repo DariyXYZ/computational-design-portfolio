@@ -10,10 +10,23 @@ import { useEffect, useRef } from 'react';
  * logic — everything else prerenders to HTML and ships no JavaScript of its own.
  */
 
-const ARROW_COLOR = '#5b9bff';
 const CELL = 30;
 const ARROW_LEN = 11;
-const ALPHA = 0.42;
+
+/* The field is painted, not styled, so it reads its own colour out of the
+   stylesheet rather than hardcoding one: on white the dark-theme blue at 0.42
+   is far too loud, and the light theme sets a deeper hue and a lower alpha. */
+const FALLBACK = { color: '#5b9bff', alpha: 0.42 };
+
+function readFieldPalette() {
+  const style = getComputedStyle(document.documentElement);
+  const color = style.getPropertyValue('--field').trim();
+  const alpha = Number.parseFloat(style.getPropertyValue('--field-alpha'));
+  return {
+    color: color || FALLBACK.color,
+    alpha: Number.isFinite(alpha) ? alpha : FALLBACK.alpha,
+  };
+}
 
 // Cloud-like coverage: two octaves of value noise sampled per cell, slowly
 // translated over time. A cell is either drawn or it isn't — no per-cell alpha
@@ -46,6 +59,7 @@ export function FieldCanvas() {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const coarsePointer = window.matchMedia('(hover: none), (pointer: coarse)').matches;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let palette = readFieldPalette();
     const noiseSeed = Math.random() * 10000;
 
     let width = 0;
@@ -98,10 +112,10 @@ export function FieldCanvas() {
 
     const draw = (elapsed: number) => {
       ctx.clearRect(0, 0, width, height);
-      ctx.strokeStyle = ARROW_COLOR;
+      ctx.strokeStyle = palette.color;
       ctx.lineCap = 'round';
       ctx.lineWidth = 1.4;
-      ctx.globalAlpha = ALPHA;
+      ctx.globalAlpha = palette.alpha;
 
       const half = ARROW_LEN / 2;
       const driftX = elapsed * DRIFT_SPEED_X;
@@ -167,6 +181,17 @@ export function FieldCanvas() {
 
     const onVisibility = () => (document.hidden ? stop() : start());
 
+    // The toggle flips data-theme on <html>; the field has to repaint in the
+    // new palette, and a paused tab needs a fresh frame rather than a stale one.
+    const themeWatcher = new MutationObserver(() => {
+      palette = readFieldPalette();
+      if (raf === null) draw(0);
+    });
+    themeWatcher.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    });
+
     // Cell tracking is never gated behind pointer-type detection: some hybrid
     // touch+mouse laptops mis-report (hover:none)/(pointer:coarse) for a real
     // mouse, which would silently kill all reactivity. mousemove simply never
@@ -194,6 +219,7 @@ export function FieldCanvas() {
 
     return () => {
       stop();
+      themeWatcher.disconnect();
       window.removeEventListener('resize', layout);
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('mouseleave', onMouseLeave);
