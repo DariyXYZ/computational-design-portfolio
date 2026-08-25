@@ -109,8 +109,8 @@ export const copperFacadeBishkek: Project = {
           image: {
             src: '/assets/img/copper-facade-canopy-structure.webp',
             alt: "The canopy's steel truss shown inside the triangulated panel skin it carries",
-            width: 1800,
-            height: 1005,
+            width: 2752,
+            height: 1536,
           },
           stamp: { project: 'Copper Façade', sheet: 'Canopy Structure' },
         },

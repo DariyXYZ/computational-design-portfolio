@@ -107,8 +107,8 @@ export const cards: readonly ProjectCard[] = [
       image: {
         src: '/assets/img/copper-facade-canopy-structure.webp',
         alt: "The canopy's steel truss shown inside its triangulated panel skin",
-        width: 1800,
-        height: 1005,
+        width: 2752,
+        height: 1536,
       },
     },
   },
