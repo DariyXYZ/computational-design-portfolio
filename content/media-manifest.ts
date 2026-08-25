@@ -322,11 +322,16 @@ export const mediaManifest: Record<string, readonly number[]> = {
   "/assets/img/pedestrian-flow-heatmap-poster.jpg": [
     400,
     800,
-    900
+    1152
   ],
   "/assets/img/pedestrian-flow-home-poster.jpg": [
     400,
-    800
+    720
+  ],
+  "/assets/img/pedestrian-flow-install-poster.jpg": [
+    400,
+    800,
+    1152
   ],
   "/assets/img/pedestrian-flow-nodes.png": [
     400,
@@ -335,8 +340,19 @@ export const mediaManifest: Record<string, readonly number[]> = {
     1800,
     2400
   ],
+  "/assets/img/pedestrian-flow-people-poster.jpg": [
+    400,
+    800,
+    1152
+  ],
+  "/assets/img/pedestrian-flow-template-poster.jpg": [
+    400,
+    800,
+    1152
+  ],
   "/assets/img/pedestrian-flow-toolbar.png": [
-    232
+    400,
+    536
   ],
   "/assets/img/pedestrian-flow.jpg": [
     400,

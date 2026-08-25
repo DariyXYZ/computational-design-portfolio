@@ -118,15 +118,15 @@ export const cards: readonly ProjectCard[] = [
     slug: 'pedestrian-flow',
     band: 'built',
     placement: 'grid',
-    meta: 'Grasshopper · Agent-based sim',
+    meta: 'Grasshopper · C# · Agent-based sim',
     blurb:
-      'An agent-based pedestrian-flow plugin for Grasshopper, released on Food4Rhino: anyone can install it and run their own crowd simulation, not just look at a rendered result.',
+      "An agent-based pedestrian-flow plugin for Grasshopper, published to Rhino's package registry: anyone can install CrowdFlow from the Package Manager and run their own simulation, not just look at a rendered result.",
     frame: {
       kind: 'video',
       video: {
         src: '/assets/img/pedestrian-flow-home.mp4',
-        poster: '/assets/img/pedestrian-flow-card.webp',
-        title: "CrowdFlow's pedestrian animation running",
+        poster: '/assets/img/pedestrian-flow-home-poster.jpg',
+        title: "CrowdFlow's pedestrian animation running over a live heatmap",
       },
     },
   },

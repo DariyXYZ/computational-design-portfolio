@@ -848,6 +848,15 @@ footer .eyebrow {
   gap: var(--space-sm);
 }
 
+/* An image smaller than the breakout is centred at its own size rather than
+   stretched to fill it: the Grasshopper ribbon strip is 536px and nothing is
+   gained by painting it at 1440. --media-cap is the source's own pixel width,
+   set by components/media.tsx. */
+.project-content > .media-row--wide .media-frame {
+  max-width: var(--media-cap, none);
+  margin-inline: auto;
+}
+
 /* Phones: run the stacked pair edge to edge. The container's own gutter is
    worth more as image than as margin on a 390px screen. */
 @media (max-width: 700px) {

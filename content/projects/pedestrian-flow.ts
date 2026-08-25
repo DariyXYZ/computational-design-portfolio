@@ -1,82 +1,133 @@
 import type { Project } from '../types';
 
 export const pedestrianFlow: Project = {
-  "slug": "pedestrian-flow",
-  "title": "Crowd flow, published",
-  "tag": "Published",
-  "summary": "An agent-based pedestrian-flow plugin for Grasshopper, released on Food4Rhino, with a full pipeline from agent behavior to a heatmap export and an automatic client report.",
-  "meta": "Grasshopper · C# · Agent-based sim",
-  "hero": {
-    "kind": "video",
-    "video": {
-      "src": "/assets/img/pedestrian-flow-heatmap.mp4",
-      "poster": "/assets/img/pedestrian-flow-heatmap-poster.jpg",
-      "title": "CrowdFlow computing a density heatmap in real time"
-    }
+  slug: 'pedestrian-flow',
+  title: 'Crowd flow, published',
+  tag: 'Published',
+  summary:
+    "An agent-based pedestrian-flow plugin for Grasshopper, published to Rhino's package registry: anyone can install CrowdFlow from the Package Manager and run their own simulation.",
+  meta: 'Grasshopper · C# · Agent-based sim',
+  hero: {
+    kind: 'video',
+    video: {
+      src: '/assets/img/pedestrian-flow-people.mp4',
+      poster: '/assets/img/pedestrian-flow-people-poster.jpg',
+      title: 'Agents walking the floor plan over a live throughput heatmap',
+    },
   },
-  "blocks": [
+  // Three text blocks with media between each, same rhythm as the copper case.
+  blocks: [
     {
-      "kind": "prose",
-      "heading": "Problem",
-      "paragraphs": [
+      kind: 'prose',
+      heading: 'Method',
+      paragraphs: [
         [
-          "Most crowd-simulation tools for architecture are either locked inside expensive specialist software or exist only as one-off scripts nobody else can run, and the ones that do run rarely hand back anything a client can read."
-        ]
-      ]
-    },
-    {
-      "kind": "prose",
-      "heading": "Method",
-      "paragraphs": [
+          'Comparing two circulation layouts usually means arguing from intuition, or waiting on a specialist with dedicated simulation software. Neither fits the week where the plan is still moving.',
+        ],
         [
-          "An agent-based pedestrian-flow plugin for Grasshopper, published on Food4Rhino and Rhino's Yak package manager: define the site boundary, obstacles, entries and exits, then tune a real agent-behavior profile, preferred speed, reaction time, neighbor repulsion, wall avoidance, and about twenty other parameters, before running the simulation. The same definition displays both a density heatmap and the raw pedestrian animation, so a result can be watched moving, not just read as a static map."
-        ]
+          'CrowdFlow puts the simulation inside Grasshopper. Define the floor, obstacles, sources and exits, set an agent profile, and the solver runs until every agent has left rather than stopping at a shared clock. Trajectories, heatmaps and a report come back as Grasshopper geometry, so the whole thing stays in the file the plan already lives in.',
+        ],
       ],
-      "aside": {
-        "kind": "image",
-        "image": {
-          "src": "/assets/img/pedestrian-flow-toolbar.png",
-          "alt": "CrowdFlow's own tab in Grasshopper's ribbon, installed like any other plugin",
-          "width": 232,
-          "height": 150
-        }
-      }
     },
     {
-      "kind": "prose",
-      "heading": "Code",
-      "paragraphs": [
+      kind: 'mediaRow',
+      wide: true,
+      frames: [
+        {
+          kind: 'video',
+          video: {
+            src: '/assets/img/pedestrian-flow-install.mp4',
+            poster: '/assets/img/pedestrian-flow-install-poster.jpg',
+            title: "Installing CrowdFlow from Rhino's Package Manager",
+          },
+        },
+        {
+          kind: 'video',
+          video: {
+            src: '/assets/img/pedestrian-flow-template.mp4',
+            poster: '/assets/img/pedestrian-flow-template-poster.jpg',
+            title: 'The bundled template definition: import, assemble, solve, display',
+          },
+        },
+      ],
+    },
+    {
+      kind: 'prose',
+      heading: 'Published',
+      paragraphs: [
         [
-          "Published on Food4Rhino and Rhino's Yak package manager: publicly downloadable and installable by any Rhino user, not a private demo."
-        ]
-      ]
-    },
-    {
-      "kind": "codeMedia",
-      "image": {
-        "src": "/assets/img/pedestrian-flow-nodes.png",
-        "alt": "The full CrowdFlow definition: assembly, calculation, heatmap and pedestrian-animation display, PNG export, and automatic Word/PDF report generation",
-        "width": 2400,
-        "height": 906
-      }
-    },
-    {
-      "kind": "prose",
-      "heading": "Validation",
-      "paragraphs": [
+          'Version 0.1.3.2 is live on ',
+          { text: "Rhino's package registry", href: 'https://yak.rhino3d.com/packages/crowdflow' },
+          ': search for ',
+          { emphasis: 'crowdflow' },
+          ' in the Package Manager, install, restart. The package carries builds for both Rhino 7 and Rhino 8, and ships a ready template so the first run needs no setup. Source is on ',
+          { text: 'GitHub', href: 'https://github.com/DariyXYZ/grasshopper-crowd-flow' },
+          '.',
+        ],
         [
-          "Checked against a real floorplan scenario, not a synthetic grid, for plausible crowd behavior: queueing, lane formation, and bottleneck avoidance. Validated at scale, too: a 600-agent run completes in roughly 13–22 seconds."
-        ]
-      ]
+          'Thirteen components under one Crowd tab: floor, obstacle, source, exit and agent profile to build the scene, one node to solve it, then heatmap, legend, people preview, image export, report export and the template opener.',
+        ],
+      ],
     },
     {
-      "kind": "prose",
-      "heading": "Result",
-      "paragraphs": [
+      kind: 'mediaRow',
+      wide: true,
+      frames: [
+        {
+          kind: 'image',
+          image: {
+            src: '/assets/img/pedestrian-flow-toolbar.png',
+            alt: "CrowdFlow's Crowd tab in the Grasshopper ribbon, all thirteen components",
+            width: 536,
+            height: 178,
+          },
+          wide: true,
+        },
+      ],
+    },
+    {
+      kind: 'prose',
+      heading: 'Result',
+      paragraphs: [
         [
-          "A tool other people have actually installed and run, not just a video of it running once. The same definition also exports the heatmap as an image and generates a Word/PDF report with the project and site details filled in automatically, so a result becomes a deliverable, not just a screenshot."
-        ]
-      ]
-    }
-  ]
+          'Five heatmaps read the same run from different angles — density, speed, occupancy, throughput and congestion — and rebuild the moment an input moves, so a layout can be pushed around and judged in the same breath.',
+        ],
+        [
+          'Four numbers come out with them: clearance time, mean travel time, peak density, and how the crowd split between exits. They land in the component outputs and in the exported DOCX and PDF report, which is what actually goes to the client.',
+        ],
+      ],
+    },
+    {
+      kind: 'mediaRow',
+      wide: true,
+      frames: [
+        {
+          kind: 'video',
+          video: {
+            src: '/assets/img/pedestrian-flow-heatmap.mp4',
+            poster: '/assets/img/pedestrian-flow-heatmap-poster.jpg',
+            title: 'Moving a volume rebuilds the throughput heatmap immediately',
+          },
+          wide: true,
+        },
+      ],
+    },
+    {
+      kind: 'mediaRow',
+      wide: true,
+      frames: [
+        {
+          kind: 'image',
+          image: {
+            src: '/assets/img/pedestrian-flow-nodes.png',
+            alt: 'The full CrowdFlow definition: assembly, calculation, heatmap and pedestrian-animation display, PNG export, and automatic Word/PDF report generation',
+            width: 2400,
+            height: 906,
+          },
+          bare: true,
+          wide: true,
+        },
+      ],
+    },
+  ],
 };
