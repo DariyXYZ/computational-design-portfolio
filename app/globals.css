@@ -827,6 +827,9 @@ footer .eyebrow {
   color: rgba(255, 255, 255, 0.78);
   font-size: 16.5px;
 }
+/* The global reset zeroes paragraph margins, which ran consecutive paragraphs
+   together into one slab wherever a block has more than one. */
+.project-block p + p { margin-top: var(--space-sm); }
 .project-block p a {
   color: var(--accent-light);
   text-decoration: underline;
@@ -867,9 +870,9 @@ footer .eyebrow {
 }
 
 /* Prose with a figure beside it: text keeps its reading measure on the left,
-   the figure takes the spare width on the right. Breaks out to the same width
-   as the wide media rows, because 62ch of text plus a 536px screenshot does not
-   fit inside the 1160px text container. */
+   the figure takes the spare width on the right, the two sit level. Breaks out
+   to the same width as the wide media rows, because 62ch of text plus a 536px
+   screenshot does not fit inside the 1160px text container. */
 .project-content > .project-block--with-aside {
   position: relative;
   left: 50%;
@@ -878,19 +881,11 @@ footer .eyebrow {
   max-width: none;
   display: grid;
   grid-template-columns: minmax(0, var(--measure)) minmax(0, 1fr);
-  gap: clamp(32px, 5vw, 96px);
-  align-items: start;
+  /* Column gap only: a shared `gap` would push the paragraphs apart too. */
+  column-gap: clamp(32px, 5vw, 96px);
+  align-items: center;
 }
-.project-block--with-aside > h2,
-.project-block--with-aside > p {
-  grid-column: 1;
-  max-width: var(--measure);
-}
-.project-block__aside {
-  grid-column: 2;
-  grid-row: 1 / -1;
-  align-self: center;
-}
+.project-block__body { max-width: var(--measure); }
 /* Never painted wider than the source: --media-cap is the image's own pixel
    width, set by components/media.tsx. */
 .project-block__aside .media-frame {
@@ -903,11 +898,7 @@ footer .eyebrow {
 @media (max-width: 900px) {
   .project-content > .project-block--with-aside {
     grid-template-columns: minmax(0, 1fr);
-    gap: var(--space-md);
-  }
-  .project-block__aside {
-    grid-column: 1;
-    grid-row: auto;
+    row-gap: var(--space-md);
   }
   .project-block__aside .media-frame { margin-inline: 0; }
 }

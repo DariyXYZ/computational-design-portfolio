@@ -83,26 +83,31 @@ function Directions({ items }: { items: ReadonlyArray<Direction> }) {
 
 export function ProjectBlock({ block }: { block: Block }) {
   switch (block.kind) {
-    case 'prose':
-      return (
-        <div
-          className={
-            block.aside ? 'project-block project-block--with-aside' : 'project-block'
-          }
-        >
+    case 'prose': {
+      const body = (
+        <>
           <h2>{block.heading}</h2>
           {block.paragraphs.map((paragraph, index) => (
             <p key={index}>
               <RichText value={paragraph} />
             </p>
           ))}
-          {block.aside ? (
-            <div className="project-block__aside">
-              <MediaFrame frame={block.aside} context="aside" />
-            </div>
-          ) : null}
+        </>
+      );
+
+      // With a figure beside it the text needs to be one grid cell, not three
+      // auto-placed rows, or the column gap doubles as a gap between paragraphs.
+      if (!block.aside) return <div className="project-block">{body}</div>;
+
+      return (
+        <div className="project-block project-block--with-aside">
+          <div className="project-block__body">{body}</div>
+          <div className="project-block__aside">
+            <MediaFrame frame={block.aside} context="aside" />
+          </div>
         </div>
       );
+    }
 
     case 'mediaRow':
       return (
