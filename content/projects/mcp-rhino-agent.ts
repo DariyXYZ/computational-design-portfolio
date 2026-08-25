@@ -160,6 +160,22 @@ export const mcpRhinoAgent: Project = {
       ]
     },
     {
+      "kind": "mediaRow",
+      "wide": true,
+      "frames": [
+        {
+          "kind": "image",
+          "image": {
+            "src": "/assets/img/mcp-rhino-agent-workflow.png",
+            "alt": "The scene the agent reads back, open in VS Code as JSON with every object's id, layer, bounding box and face count, beside the live Rhino file holding the massing it generated on the site",
+            "width": 2560,
+            "height": 1526
+          },
+          "wide": true
+        }
+      ]
+    },
+    {
       "kind": "prose",
       "heading": "Method",
       "paragraphs": [

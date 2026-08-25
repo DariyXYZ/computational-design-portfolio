@@ -309,6 +309,14 @@ export const mediaManifest: Record<string, readonly number[]> = {
     400,
     677
   ],
+  "/assets/img/mcp-rhino-agent-workflow.png": [
+    400,
+    800,
+    1200,
+    1800,
+    2400,
+    2560
+  ],
   "/assets/img/mcp-rhino-agent.jpg": [
     400,
     800,
