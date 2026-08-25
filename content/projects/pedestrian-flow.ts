@@ -68,22 +68,15 @@ export const pedestrianFlow: Project = {
           'Thirteen components under one Crowd tab: floor, obstacle, source, exit and agent profile to build the scene, one node to solve it, then heatmap, legend, people preview, image export, report export and the template opener.',
         ],
       ],
-    },
-    {
-      kind: 'mediaRow',
-      wide: true,
-      frames: [
-        {
-          kind: 'image',
-          image: {
-            src: '/assets/img/pedestrian-flow-toolbar.png',
-            alt: "CrowdFlow's Crowd tab in the Grasshopper ribbon, all thirteen components",
-            width: 536,
-            height: 178,
-          },
-          wide: true,
+      aside: {
+        kind: 'image',
+        image: {
+          src: '/assets/img/pedestrian-flow-toolbar.png',
+          alt: "CrowdFlow's Crowd tab in the Grasshopper ribbon, all thirteen components",
+          width: 536,
+          height: 178,
         },
-      ],
+      },
     },
     {
       kind: 'prose',

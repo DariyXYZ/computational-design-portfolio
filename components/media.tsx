@@ -154,7 +154,8 @@ const SIZES: Record<FrameContext, string> = {
   card: '(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 484px',
   // Featured rows stay inside the container; the media column paints ~468px.
   featured: '(max-width: 900px) 100vw, 480px',
-  aside: '240px',
+  // Figure beside prose: its own column, capped at the source's 536px.
+  aside: '(max-width: 900px) 100vw, 536px',
 };
 
 export function MediaFrame({

@@ -866,24 +866,50 @@ footer .eyebrow {
   }
 }
 
-/* A small un-cropped side image next to a Method paragraph (e.g. a toolbar
-   strip screenshot) — sits in the container's spare width beside the
-   measure-capped text, never forced into a cropped aspect-ratio box. */
-.project-block--with-aside {
-  max-width: none;
+/* Prose with a figure beside it: text keeps its reading measure on the left,
+   the figure takes the spare width on the right. Breaks out to the same width
+   as the wide media rows, because 62ch of text plus a 536px screenshot does not
+   fit inside the 1160px text container. */
+.project-content > .project-block--with-aside {
   position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1440px, calc(100vw - 2 * clamp(16px, 2.5vw, 40px)));
+  max-width: none;
+  display: grid;
+  grid-template-columns: minmax(0, var(--measure)) minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 96px);
+  align-items: start;
 }
-.project-block--with-aside > p { max-width: var(--measure); }
+.project-block--with-aside > h2,
+.project-block--with-aside > p {
+  grid-column: 1;
+  max-width: var(--measure);
+}
 .project-block__aside {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 232px;
+  grid-column: 2;
+  grid-row: 1 / -1;
+  align-self: center;
 }
-.project-block__aside .media-frame { padding: 0; }
+/* Never painted wider than the source: --media-cap is the image's own pixel
+   width, set by components/media.tsx. */
+.project-block__aside .media-frame {
+  padding: 0;
+  max-width: var(--media-cap, none);
+  margin-inline: auto;
+}
 .project-block__aside img { width: 100%; height: auto; display: block; }
+
 @media (max-width: 900px) {
-  .project-block__aside { position: static; width: 200px; margin-top: var(--space-md); }
+  .project-content > .project-block--with-aside {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-md);
+  }
+  .project-block__aside {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .project-block__aside .media-frame { margin-inline: 0; }
 }
 
 .media-frame--wide { grid-column: 1 / -1; }
