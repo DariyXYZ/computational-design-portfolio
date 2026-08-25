@@ -48,7 +48,7 @@ export const mediaManifest: Record<string, readonly number[]> = {
     1200,
     1800,
     2400,
-    2600
+    3600
   ],
   "/assets/img/copper-facade-panel-fit-poster.jpg": [
     400,
@@ -338,7 +338,8 @@ export const mediaManifest: Record<string, readonly number[]> = {
     800,
     1200,
     1800,
-    2400
+    2400,
+    3600
   ],
   "/assets/img/pedestrian-flow-people-poster.jpg": [
     400,
@@ -399,6 +400,7 @@ export const mediaManifest: Record<string, readonly number[]> = {
     800,
     1200,
     1800,
-    2400
+    2400,
+    3600
   ]
 };

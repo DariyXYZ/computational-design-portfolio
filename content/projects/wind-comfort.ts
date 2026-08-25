@@ -47,8 +47,8 @@ export const windComfort: Project = {
       "image": {
         "src": "/assets/img/wind-comfort-nodes.png",
         "alt": "The full wind-comfort definition: setup, geometry check, staged calculation, result display, and export",
-        "width": 2400,
-        "height": 471
+        "width": 3600,
+        "height": 708
       }
     },
     {

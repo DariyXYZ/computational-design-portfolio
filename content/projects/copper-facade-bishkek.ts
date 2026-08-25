@@ -72,8 +72,8 @@ export const copperFacadeBishkek: Project = {
           image: {
             src: '/assets/img/copper-facade-nodes.png',
             alt: 'The full Grasshopper definition: geometry, nesting, marking, and export in one script',
-            width: 2600,
-            height: 1001,
+            width: 3600,
+            height: 1386,
           },
           bare: true,
         },

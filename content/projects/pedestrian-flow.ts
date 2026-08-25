@@ -105,8 +105,8 @@ export const pedestrianFlow: Project = {
           image: {
             src: '/assets/img/pedestrian-flow-nodes.png',
             alt: 'The full CrowdFlow definition: assembly, calculation, heatmap and pedestrian-animation display, PNG export, and automatic Word/PDF report generation',
-            width: 2400,
-            height: 906,
+            width: 3600,
+            height: 1360,
           },
           bare: true,
           wide: true,
