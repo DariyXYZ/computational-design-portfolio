@@ -869,15 +869,12 @@ footer .eyebrow {
   }
 }
 
-/* Prose with a figure beside it: text keeps its reading measure on the left,
-   the figure takes the spare width on the right, the two sit level. Breaks out
-   to the same width as the wide media rows, because 62ch of text plus a 536px
-   screenshot does not fit inside the 1160px text container. */
+/* Prose with a figure beside it. The text column keeps the same left edge and
+   the same reading measure as every other block on the page — this block stays
+   inside the text container rather than breaking out like the media rows, so
+   the two never disagree about where a paragraph starts. The figure takes
+   whatever width is left. */
 .project-content > .project-block--with-aside {
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(1440px, calc(100vw - 2 * clamp(16px, 2.5vw, 40px)));
   max-width: none;
   display: grid;
   grid-template-columns: minmax(0, var(--measure)) minmax(0, 1fr);

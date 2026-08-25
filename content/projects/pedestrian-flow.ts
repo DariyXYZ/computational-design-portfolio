@@ -15,7 +15,7 @@ export const pedestrianFlow: Project = {
       title: 'Agents walking the floor plan over a live throughput heatmap',
     },
   },
-  // Three text blocks with media between each, same rhythm as the copper case.
+  // Method, then how it ships, then what comes out of it. Media between each.
   blocks: [
     {
       kind: 'prose',
@@ -25,7 +25,10 @@ export const pedestrianFlow: Project = {
           'Comparing two circulation layouts usually means arguing from intuition, or waiting on a specialist with dedicated simulation software. Neither fits the week where the plan is still moving.',
         ],
         [
-          'CrowdFlow puts the simulation inside Grasshopper. Define the floor, obstacles, sources and exits, set an agent profile, and the solver runs until every agent has left rather than stopping at a shared clock. Trajectories, heatmaps and a report come back as Grasshopper geometry, so the whole thing stays in the file the plan already lives in.',
+          'CrowdFlow puts the simulation inside Grasshopper. Define the floor, obstacles, sources and exits, set an agent profile, and the solver runs until every agent has left rather than stopping at a shared clock.',
+        ],
+        [
+          'What comes back is Grasshopper geometry, so it stays in the file the plan already lives in: agent trajectories, and five heatmaps reading the same run from different angles — density, speed, occupancy, throughput and congestion. Move a wall and they rebuild, which is what makes a layout arguable in the same sitting.',
         ],
       ],
     },
@@ -79,18 +82,6 @@ export const pedestrianFlow: Project = {
       },
     },
     {
-      kind: 'prose',
-      heading: 'Result',
-      paragraphs: [
-        [
-          'Five heatmaps read the same run from different angles — density, speed, occupancy, throughput and congestion — and rebuild the moment an input moves, so a layout can be pushed around and judged in the same breath.',
-        ],
-        [
-          'Four numbers come out with them: clearance time, mean travel time, peak density, and how the crowd split between exits. They land in the component outputs and in the exported DOCX and PDF report, which is what actually goes to the client.',
-        ],
-      ],
-    },
-    {
       kind: 'mediaRow',
       wide: true,
       frames: [
@@ -120,6 +111,18 @@ export const pedestrianFlow: Project = {
           bare: true,
           wide: true,
         },
+      ],
+    },
+    {
+      kind: 'prose',
+      heading: 'Result',
+      paragraphs: [
+        [
+          'Every run returns four numbers, not just a picture: clearance time, mean travel time, peak density, and how the crowd split between exits. They come out of the solver node and into an exported DOCX and PDF report — the thing that actually reaches a client meeting, instead of a screenshot pasted into a deck.',
+        ],
+        [
+          'It ships as a package rather than a file passed around the studio. Five releases between 27 April and 14 May 2026 took it from a first working solver to something an architect installs, opens on the bundled demo scene, and points at their own plan the same afternoon.',
+        ],
       ],
     },
   ],
