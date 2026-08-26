@@ -412,7 +412,8 @@ export const mediaManifest: Record<string, readonly number[]> = {
     800,
     1200,
     1800,
-    2304
+    2400,
+    2627
   ],
   "/assets/img/voxel-architecture-catalogue.jpg": [
     400,

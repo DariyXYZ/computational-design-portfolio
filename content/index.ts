@@ -214,12 +214,13 @@ export const cards: readonly ProjectCard[] = [
     frame: {
       kind: 'image',
       image: {
-        // The card crops the first column off the catalogue; the case page
-        // still opens on the full twenty-four.
+        // Twenty of the twenty-four; the case page still opens on the full
+        // catalogue. Padded left and right with its own background so the
+        // 16/10 card frame shows it whole rather than cropping the outer rows.
         src: '/assets/img/voxel-architecture-card.jpg',
         alt: 'Twenty voxelised forms from the same definition: towers, arches, terraced mounds, courtyard blocks and cantilevers',
-        width: 2304,
-        height: 1500,
+        width: 2627,
+        height: 1642,
       },
     },
   },
