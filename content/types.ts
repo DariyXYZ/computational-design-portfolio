@@ -86,6 +86,25 @@ export type Direction = {
   credit?: string;
 };
 
+/**
+ * One headline figure with what it actually counts.
+ *
+ * A case that says "faster" or "fewer files" in a paragraph is asking to be
+ * skimmed past; the same claim set in 56px is read. `note` exists so a big
+ * number is never left to be guessed at — every figure states what it is
+ * measured against, in the case's own terms.
+ */
+export type Metric = {
+  /** The figure itself, set large. Free text so `3 -> 1` and `100%` both work. */
+  value: string;
+  /** What the figure counts, e.g. `Verdicts per window`. */
+  label: string;
+  /** One clause of context under the label. */
+  note: string;
+  /** Optional accent; left unset the row stays monochrome. */
+  tone?: Tone;
+};
+
 export type OverviewCard = {
   badge: string;
   tone: Tone;
@@ -110,6 +129,8 @@ export type Block =
     }
   /** Full-bleed screenshot of a definition or source listing. */
   | { kind: 'codeMedia'; image: ImageAsset }
+  /** Headline figures, set large, ahead of the prose that explains them. */
+  | { kind: 'metrics'; items: ReadonlyArray<Metric> }
   | { kind: 'overviewGrid'; cards: ReadonlyArray<OverviewCard> }
   | { kind: 'directions'; items: ReadonlyArray<Direction> };
 

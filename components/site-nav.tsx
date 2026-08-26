@@ -13,9 +13,11 @@ import { ThemeToggle } from './theme-toggle';
 export function SiteNav() {
   return (
     <nav className="nav" aria-label="Primary">
-      <Link className="nav__mark" href="/">
+      {/* The label is a span so narrow screens can drop it and keep the mark;
+          aria-label then carries the name the hidden text used to give. */}
+      <Link className="nav__mark" href="/" aria-label={site.wordmark}>
         <MarkIcon className="nav__mark-icon" />
-        {site.wordmark}
+        <span className="nav__mark-text">{site.wordmark}</span>
       </Link>
       <div className="nav__links">
         {nav.map((item) => (

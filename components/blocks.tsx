@@ -1,6 +1,12 @@
 import { Fragment } from 'react';
 
-import type { Block, Chip as ChipValue, Direction, OverviewCard } from '@/content/types';
+import type {
+  Block,
+  Chip as ChipValue,
+  Direction,
+  Metric,
+  OverviewCard,
+} from '@/content/types';
 import { MediaFrame, Picture } from './media';
 import { RichText } from './rich-text';
 
@@ -50,6 +56,26 @@ function OverviewCards({ cards }: { cards: ReadonlyArray<OverviewCard> }) {
         </div>
       ))}
     </div>
+  );
+}
+
+function Metrics({ items }: { items: ReadonlyArray<Metric> }) {
+  return (
+    <dl className="metrics">
+      {items.map((metric) => (
+        <div
+          className={metric.tone ? `metric metric--${metric.tone}` : 'metric'}
+          key={metric.label}
+        >
+          {/* Term before description, as a <dl> requires. The figure is
+              visually on top via `order`, so a screen reader still hears
+              "Verdicts per window — three" rather than the reverse. */}
+          <dt className="metric__label">{metric.label}</dt>
+          <dd className="metric__value">{metric.value}</dd>
+          <dd className="metric__note">{metric.note}</dd>
+        </div>
+      ))}
+    </dl>
   );
 }
 
@@ -141,6 +167,9 @@ export function ProjectBlock({ block }: { block: Block }) {
           />
         </div>
       );
+
+    case 'metrics':
+      return <Metrics items={block.items} />;
 
     case 'overviewGrid':
       return <OverviewCards cards={block.cards} />;

@@ -178,8 +178,18 @@ export function MediaFrame({
       : frame.kind === 'video'
         ? undefined
         : undefined;
+  // The hero frame used to be pinned at 16/8 regardless of what it held, so a
+  // 1.49 render lost a quarter of its height to a crop nobody chose. Handing
+  // CSS the source's own ratio lets each hero show the frame it was composed in.
+  const natural =
+    frame.kind === 'image'
+      ? `${frame.image.width} / ${frame.image.height}`
+      : undefined;
   const cap = nativeWidth
-    ? ({ '--media-cap': `${nativeWidth}px` } as React.CSSProperties)
+    ? ({
+        '--media-cap': `${nativeWidth}px`,
+        ...(natural ? { '--media-ratio': natural } : {}),
+      } as React.CSSProperties)
     : undefined;
   // A stamp turns the frame into a drafting sheet, which has its own styling.
   const stamped =

@@ -59,7 +59,16 @@ QUALITY_LARGE = 80
 # Grasshopper node graphs and technical drawings are line art with small labels;
 # lossy artefacts there read as blur rather than noise, so they run richer.
 LINE_ART_BONUS = 8
-LINE_ART_MARKERS = ("-nodes.", "-toolbar.", "-workflow.", "-structure.")
+LINE_ART_MARKERS = (
+    "-nodes.",
+    "-toolbar.",
+    "-workflow.",
+    "-structure.",
+    # Hairline sun rays and a dashed sun-path dome on white: the same failure
+    # mode as a node graph, where lossy artefacts read as smear, not noise.
+    "-sunpath.",
+    "-rays.",
+)
 
 # The animated hero sits in a box of at most 380 CSS px, so 640 covers it at
 # 1.7x DPR. It is a white lattice on pure black, which both codecs handle well:

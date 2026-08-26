@@ -94,11 +94,29 @@ export const mediaManifest: Record<string, readonly number[]> = {
     2400,
     2600
   ],
+  "/assets/img/insolation-mound-rays.jpg": [
+    400,
+    800,
+    1200,
+    1800,
+    2400,
+    3840
+  ],
+  "/assets/img/insolation-mound-sunpath.jpg": [
+    400,
+    800,
+    1200,
+    1800,
+    2400,
+    2752
+  ],
   "/assets/img/insolation-mound-voxels.jpg": [
     400,
     800,
     1200,
-    1800
+    1800,
+    2400,
+    3840
   ],
   "/assets/img/insolation-mound-windows-nodes.png": [
     400,
@@ -107,12 +125,6 @@ export const mediaManifest: Record<string, readonly number[]> = {
     1800,
     2400,
     2600
-  ],
-  "/assets/img/insolation-mound-windows.jpg": [
-    400,
-    800,
-    1200,
-    1800
   ],
   "/assets/img/jewelry-casting-risk-cluster-ring.png": [
     400,

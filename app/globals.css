@@ -422,6 +422,10 @@ h1[id], h2[id], h3[id], h4[id] { scroll-margin-top: calc(var(--nav-h) + 16px); }
   /* Section jump-links crowd the bar once About joined Focus/Systems/Contact;
      they're one scroll away anyway, so keep only the brand mark and GitHub cta. */
   .nav__links a:not(.nav__cta) { display: none; }
+  /* At 390px the 191px wordmark ran flush into the theme toggle with no gap
+     at all. The mark alone still reads as home, and the site name is in the
+     page title and breadcrumb either way. */
+  .nav__mark-text { display: none; }
 }
 
 section, footer { scroll-margin-top: var(--nav-h); }
@@ -939,7 +943,12 @@ footer .eyebrow {
 }
 .project-hero .meta { margin-top: var(--space-md); }
 
-.media-frame--hero { aspect-ratio: 16 / 8; margin-top: var(--space-lg); }
+.media-frame--hero {
+  /* Falls back to the old fixed crop for a hero with no intrinsic size,
+     which is every video hero. */
+  aspect-ratio: var(--media-ratio, 16 / 8);
+  margin-top: var(--space-lg);
+}
 /* The opening frame gets the same breakout width as the paired rows below it,
    so the case does not start narrower than it continues. */
 .project-hero:not(.project-hero--split) .media-frame--hero {
@@ -972,7 +981,7 @@ footer .eyebrow {
   gap: var(--space-xl);
 }
 .project-hero--split .media-frame--hero {
-  aspect-ratio: 1 / 1;
+  aspect-ratio: var(--media-ratio, 1 / 1);
   margin-top: 0;
 }
 @media (max-width: 860px) {
@@ -1339,6 +1348,76 @@ footer .eyebrow {
 /* Mirrors the source deck's own "six directions" slide: a small icon,
    the same badge/chip vocabulary as the detailed breakdown below it,
    so a reader gets the map before the six long sections. */
+/* Headline figures.
+   Four columns of number, not four cards: the case's claims were buried in
+   paragraphs nobody reads to the end of, and a figure at 58px is read whether
+   or not the prose under it is. A hairline over each tile carries the structure,
+   so the row stays part of the page rather than becoming a widget on top of it.
+   Spans the text container, not the 1440 media breakout, so the figures line up
+   with the prose they summarise. */
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-md);
+  /* `.project-content` is a flex column with its own --space-xl gap; a margin
+     here stacked on top of it and pushed the first heading 192px down. */
+  margin: 0;
+}
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 14px;
+  /* Full-strength text, not --border: a hairline at 0.12 alpha disappeared
+     under the arrow field and the row lost the structure it depends on. */
+  border-top: 1px solid var(--text);
+}
+/* The UA stylesheet indents every <dd> by 40px, which pushed the figure and
+   its note off the label they belong to. */
+.metric dd { margin: 0; }
+.metric__value {
+  /* Above the label in the layout; below it in the DOM, where a <dl> needs
+     the term first. */
+  order: -1;
+  font-variation-settings: "wght" 800;
+  font-size: clamp(38px, 4.6vw, 58px);
+  line-height: 0.94;
+  letter-spacing: -0.035em;
+  /* The arrow in `3 -> 1` and the % sign have to sit on the digits' own
+     advance grid, or the row reads as four different type sizes. */
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.metric__label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.metric__note {
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--text-faint);
+}
+/* A toned metric colours the figure and its own rule, nothing else. */
+.metric--blue { border-top-color: var(--tone-blue-line); }
+.metric--blue .metric__value { color: var(--tone-blue-fg); }
+.metric--green { border-top-color: var(--tone-green-line); }
+.metric--green .metric__value { color: var(--tone-green-fg); }
+.metric--yellow { border-top-color: var(--tone-yellow-line); }
+.metric--yellow .metric__value { color: var(--tone-yellow-fg); }
+.metric--purple { border-top-color: var(--tone-purple-line); }
+.metric--purple .metric__value { color: var(--tone-purple-fg); }
+.metric--orange { border-top-color: var(--tone-orange-line); }
+.metric--orange .metric__value { color: var(--tone-orange-fg); }
+
+/* Two-up before the figures start wrapping mid-number. */
+@media (max-width: 900px) {
+  .metrics { grid-template-columns: repeat(2, 1fr); }
+}
+
 .overview-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
