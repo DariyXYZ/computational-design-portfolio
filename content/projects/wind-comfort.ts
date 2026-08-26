@@ -68,6 +68,26 @@ export const windComfort: Project = {
           "Architects run their own wind-comfort checks end to end now, PNG export and Word/PDF report included, without opening a ticket with the computational-design team first."
         ]
       ]
-    }
-  ]
+    },
+    {
+      kind: 'metrics',
+      items: [
+        {
+          value: '0',
+          label: 'Tickets filed',
+          note: 'The same question used to mean a multi-day queue with the computational-design department',
+        },
+        {
+          value: '3',
+          label: 'Steps to a full run',
+          note: 'A multi-stage calculation behind one sequential button',
+        },
+        {
+          value: 'Lawson',
+          label: 'Criteria scored against',
+          note: 'The published comfort criteria, checked in ParaView against real project geometry',
+        },
+      ],
+    },
+  ],
 };

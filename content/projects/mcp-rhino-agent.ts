@@ -496,9 +496,34 @@ export const mcpRhinoAgent: Project = {
       "heading": "Result",
       "paragraphs": [
         [
-          "12+ real building types worked through end to end, Karlatornet, Aqua Tower, Grove at Grand Bay, and Absolute World among them, backed by an 8-code error library so the agent stops repeating the same architectural mistakes session to session."
+          "Real building types worked through end to end, Karlatornet, Aqua Tower, Grove at Grand Bay and Absolute World among them, with a documented error library behind them so the agent stops repeating the same architectural mistakes session to session."
         ]
       ]
-    }
-  ]
+    },
+    {
+      kind: 'metrics',
+      items: [
+        {
+          value: '6',
+          label: 'Directions of use',
+          note: 'Each with its own input, process and result, sharing one scenario repository',
+        },
+        {
+          value: '12+',
+          label: 'Building types end to end',
+          note: 'Real towers, not a synthetic case built to make the demo work',
+        },
+        {
+          value: '8',
+          label: 'Documented error codes',
+          note: 'Read before the agent writes a line, not consulted after something breaks',
+        },
+        {
+          value: 'Public',
+          label: 'Full source',
+          note: 'MCP server, RhinoCommon bridge and the whole scenario library on GitHub, not a private demo',
+        },
+      ],
+    },
+  ],
 };

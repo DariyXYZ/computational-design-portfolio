@@ -75,6 +75,26 @@ export const revitPanelExport: Project = {
           "In active use: panels move from Grasshopper to a real Revit schedule without a manual redraw step."
         ]
       ]
-    }
-  ]
+    },
+    {
+      kind: 'metrics',
+      items: [
+        {
+          value: '0',
+          label: 'Manual redraws',
+          note: 'Geometry lands as a schedulable family, not as imported shapes to re-type',
+        },
+        {
+          value: '3',
+          label: 'Parameters preserved',
+          note: 'Panel count, area and type survive the round trip instead of being retyped',
+        },
+        {
+          value: 'Verified',
+          label: 'Round trip',
+          note: 'The resulting Revit schedule compared back against the source definition',
+        },
+      ],
+    },
+  ],
 };

@@ -1357,7 +1357,9 @@ footer .eyebrow {
    with the prose they summarise. */
 .metrics {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  /* auto-fit, not a fixed four: two cases carry three figures rather than
+     four, and a fixed grid left them hanging in three of four columns. */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: var(--space-md);
   /* `.project-content` is a flex column with its own --space-xl gap; a margin
      here stacked on top of it and pushed the first heading 192px down. */

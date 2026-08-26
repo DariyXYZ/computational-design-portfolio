@@ -184,6 +184,31 @@ export const jewelryCastingRisk: Project = {
         "width": 1800,
         "height": 974
       }
-    }
-  ]
+    },
+    {
+      kind: 'metrics',
+      items: [
+        {
+          value: '1',
+          label: 'Script component',
+          note: 'One Rhino 8 C# Script carries the whole review engine',
+        },
+        {
+          value: '6',
+          label: 'Metal profiles',
+          note: 'Silver, gold alloys, platinum, palladium, bronze and brass',
+        },
+        {
+          value: '4',
+          label: 'Casting processes',
+          note: 'Vacuum, centrifugal, gravity, and unknown',
+        },
+        {
+          value: '3',
+          label: 'Review modes',
+          note: 'Review, strict audit, and thickness-only',
+        },
+      ],
+    },
+  ],
 };

@@ -22,31 +22,6 @@ export const insolationMound: Project = {
   // per-tool headings used to, so the renders can sit two abreast.
   blocks: [
     {
-      kind: 'metrics',
-      items: [
-        {
-          value: '3 → 1',
-          label: 'Definitions merged',
-          note: 'Heatmap, window check and mound used to be three files that shared no geometry',
-        },
-        {
-          value: '100%',
-          label: 'Windows ray-traced',
-          note: 'Every window against the real surrounding massing, not a sampled few',
-        },
-        {
-          value: '3',
-          label: 'Verdicts per window',
-          note: 'Ok, NotOk, PartialOk — not a raw number left to interpret',
-        },
-        {
-          value: '0',
-          label: 'Definitions to wire',
-          note: 'Every tool opens on a template preset instead of an empty canvas',
-        },
-      ],
-    },
-    {
       kind: 'prose',
       heading: 'Problem',
       paragraphs: [
@@ -156,6 +131,31 @@ export const insolationMound: Project = {
         [
           'Three workflows that were three files now share one install and one set of presets, and the worst-lit window in a building shows up as a dip in a form instead of a line a reviewer has to go looking for.',
         ],
+      ],
+    },
+    {
+      kind: 'metrics',
+      items: [
+        {
+          value: '3 → 1',
+          label: 'Definitions merged',
+          note: 'Nothing was shared between them — not geometry, not settings, not a starting file',
+        },
+        {
+          value: '100%',
+          label: 'Windows ray-traced',
+          note: 'Every window against the real surrounding massing, not a sampled few',
+        },
+        {
+          value: '3',
+          label: 'Verdicts per window',
+          note: 'Ok, NotOk, PartialOk — not a raw number left to interpret',
+        },
+        {
+          value: '0',
+          label: 'Definitions to wire',
+          note: 'Every tool opens on a template preset instead of an empty canvas',
+        },
       ],
     },
   ],

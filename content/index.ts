@@ -214,10 +214,12 @@ export const cards: readonly ProjectCard[] = [
     frame: {
       kind: 'image',
       image: {
-        src: '/assets/img/voxel-architecture-catalogue.jpg',
-        alt: 'Twenty-four voxelised forms from the same definition: towers, arches, terraced mounds, courtyard blocks and cantilevers',
-        width: 2752,
-        height: 1536,
+        // The card crops the first column off the catalogue; the case page
+        // still opens on the full twenty-four.
+        src: '/assets/img/voxel-architecture-card.jpg',
+        alt: 'Twenty voxelised forms from the same definition: towers, arches, terraced mounds, courtyard blocks and cantilevers',
+        width: 2304,
+        height: 1500,
       },
     },
   },

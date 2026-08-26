@@ -118,11 +118,36 @@ export const pedestrianFlow: Project = {
       heading: 'Result',
       paragraphs: [
         [
-          'Every run returns four numbers, not just a picture: clearance time, mean travel time, peak density, and how the crowd split between exits. They come out of the solver node and into an exported DOCX and PDF report — the thing that actually reaches a client meeting, instead of a screenshot pasted into a deck.',
+          'Every run answers with numbers, not just a picture, and they come out of the solver node into an exported DOCX and PDF report — the thing that actually reaches a client meeting, instead of a screenshot pasted into a deck.',
         ],
         [
           'It ships as a package rather than a file passed around the studio. Five releases between 27 April and 14 May 2026 took it from a first working solver to something an architect installs, opens on the bundled demo scene, and points at their own plan the same afternoon.',
         ],
+      ],
+    },
+    {
+      kind: 'metrics',
+      items: [
+        {
+          value: '0.1.3.2',
+          label: 'Published version',
+          note: 'Live on the Rhino package registry — search, install, restart',
+        },
+        {
+          value: '13',
+          label: 'Components, one tab',
+          note: 'Floor, obstacle, source, exit and agent profile, the solver, heatmaps, exports and the template opener',
+        },
+        {
+          value: '5',
+          label: 'Heatmaps per run',
+          note: 'Density, speed, occupancy, throughput and congestion, all read off the same solve',
+        },
+        {
+          value: '4',
+          label: 'Numbers in the report',
+          note: 'Clearance time, mean travel time, peak density and the exit split, exported to DOCX and PDF',
+        },
       ],
     },
   ],

@@ -18,31 +18,6 @@ export const voxelArchitecture: Project = {
   },
   blocks: [
     {
-      kind: 'metrics',
-      items: [
-        {
-          value: '24',
-          label: 'Forms, one definition',
-          note: 'Towers, arches, terraces, courtyards and cantilevers — every shape above came out of the same script',
-        },
-        {
-          value: '2',
-          label: 'Layers, no wiring',
-          note: 'The model layer builds, the cutter layer subtracts — that is the entire interface',
-        },
-        {
-          value: '3',
-          label: 'Floor kinds',
-          note: 'Ground, typical and top each carry their own height instead of one repeated slab',
-        },
-        {
-          value: '1',
-          label: 'Shared floor grid',
-          note: 'Every block lands on the same levels, so nothing drifts half a storey',
-        },
-      ],
-    },
-    {
       kind: 'prose',
       heading: 'Problem',
       paragraphs: [
@@ -73,6 +48,31 @@ export const voxelArchitecture: Project = {
         [
           'Internally it builds vertical rods on the grid rather than one cube at a time, then merges them into a single mesh. Three things come back: the merged model, the floor outlines as polylines, and the raw rods — so the result can be rendered, dimensioned, or taken apart again.',
         ],
+      ],
+    },
+    {
+      kind: 'metrics',
+      items: [
+        {
+          value: '24',
+          label: 'Forms, one definition',
+          note: 'Towers, arches, terraces, courtyards and cantilevers — every shape above came out of the same script',
+        },
+        {
+          value: '2',
+          label: 'Layers, no wiring',
+          note: 'The model layer builds, the cutter layer subtracts — that is the entire interface',
+        },
+        {
+          value: '3',
+          label: 'Floor kinds',
+          note: 'Ground, typical and top each carry their own height instead of one repeated slab',
+        },
+        {
+          value: '1',
+          label: 'Shared floor grid',
+          note: 'Every block lands on the same levels, so nothing drifts half a storey',
+        },
       ],
     },
   ],

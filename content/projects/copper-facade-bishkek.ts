@@ -125,5 +125,30 @@ export const copperFacadeBishkek: Project = {
         },
       ],
     },
+    {
+      kind: 'metrics',
+      items: [
+        {
+          value: '3 → 1',
+          label: 'Handoffs merged',
+          note: 'The form model, the nesting pass and the hand labelling became one definition',
+        },
+        {
+          value: '4',
+          label: 'Codes per panel',
+          note: 'Roof zone, row, column, and left or right of the pair',
+        },
+        {
+          value: '0',
+          label: 'Panels redrawn to cut',
+          note: 'Per-layer lines export straight to the cutter',
+        },
+        {
+          value: '1',
+          label: 'Bay installed',
+          note: 'Panels cut from these layouts are on the building, not only in the model',
+        },
+      ],
+    },
   ],
 };
