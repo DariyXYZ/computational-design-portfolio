@@ -210,7 +210,7 @@ export const cards: readonly ProjectCard[] = [
     band: 'studies',
     placement: 'grid',
     blurb:
-      'A study of rock-cut architecture, where building means removing: twenty-four forms cut from solid mass by one rule, with a Rhino layer standing in for the chisel.',
+      'Rock-cut architecture is made by excavating living rock — the building is whatever mass is left. Twenty-four studies that put that constraint into one Grasshopper rule.',
     frame: {
       kind: 'image',
       image: {

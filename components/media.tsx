@@ -172,23 +172,23 @@ export function MediaFrame({
   const heroModifier = context === 'hero' ? ' media-frame--hero' : '';
   // Never paint a frame wider than its source: four case heroes only exist at
   // 900px, and the breakout width would otherwise upscale them by half again.
-  const nativeWidth =
-    frame.kind === 'image'
-      ? frame.image.width
-      : frame.kind === 'video'
-        ? undefined
-        : undefined;
+  //
   // The hero frame used to be pinned at 16/8 regardless of what it held, so a
   // 1.49 render lost a quarter of its height to a crop nobody chose. Handing
-  // CSS the source's own ratio lets each hero show the frame it was composed in.
-  const natural =
+  // CSS the source's own ratio lets each hero show the frame it was composed
+  // in. Clips carry their size too where it is declared, so a split hero
+  // holding a landscape clip is not squeezed into the square that layout was
+  // originally written for.
+  const intrinsic =
     frame.kind === 'image'
-      ? `${frame.image.width} / ${frame.image.height}`
-      : undefined;
-  const cap = nativeWidth
+      ? frame.image
+      : frame.kind === 'video' && frame.video.width && frame.video.height
+        ? { width: frame.video.width, height: frame.video.height }
+        : undefined;
+  const cap = intrinsic
     ? ({
-        '--media-cap': `${nativeWidth}px`,
-        ...(natural ? { '--media-ratio': natural } : {}),
+        '--media-cap': `${intrinsic.width}px`,
+        '--media-ratio': `${intrinsic.width} / ${intrinsic.height}`,
       } as React.CSSProperties)
     : undefined;
   // A stamp turns the frame into a drafting sheet, which has its own styling.
@@ -224,7 +224,10 @@ export function MediaFrame({
     case 'video': {
       const clip = <Clip video={frame.video} eager={eager} />;
       return (
-        <div className={`media-frame has-photo${heroModifier}${wide}${stamped}`}>
+        <div
+          className={`media-frame has-photo${heroModifier}${wide}${stamped}`}
+          style={cap}
+        >
           {frame.stamp ? <Stamped stamp={frame.stamp}>{clip}</Stamped> : clip}
         </div>
       );

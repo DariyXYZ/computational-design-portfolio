@@ -24,6 +24,13 @@ export type VideoAsset = {
   poster: string;
   /** Doubles as the accessible description; these clips carry no audio. */
   title: string;
+  /**
+   * Intrinsic size, so a frame takes its aspect from the clip rather than a
+   * hardcoded one. Optional: the split hero was written for square media and
+   * still falls back to 1/1 without it.
+   */
+  width?: number;
+  height?: number;
 };
 
 /**
