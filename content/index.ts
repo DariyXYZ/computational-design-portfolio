@@ -8,6 +8,7 @@ import { mcpRhinoAgent } from './projects/mcp-rhino-agent';
 import { pedestrianFlow } from './projects/pedestrian-flow';
 import { revitPanelExport } from './projects/revit-panel-export';
 import { tessellationStudies } from './projects/tessellation-studies';
+import { voxelArchitecture } from './projects/voxel-architecture';
 import { windComfort } from './projects/wind-comfort';
 
 /**
@@ -27,6 +28,7 @@ export const projects: readonly Project[] = [
   revitPanelExport,
   windComfort,
   insolationMound,
+  voxelArchitecture,
   // Studies
   jewelryCastingRisk,
   tessellationStudies,
@@ -203,6 +205,24 @@ export const cards: readonly ProjectCard[] = [
   },
   
   
+  {
+    slug: 'voxel-architecture',
+    band: 'in-use',
+    placement: 'grid',
+    blurb:
+      'A Grasshopper definition that voxelises any massing on a shared floor grid — the Rhino layer an object sits on decides whether it builds blocks or carves them away.',
+    frame: {
+      kind: 'image',
+      image: {
+        // A crop of the catalogue: all twenty-four forms at card size read as
+        // noise, six read as a catalogue.
+        src: '/assets/img/voxel-architecture-card.jpg',
+        alt: 'Six voxelised forms from the catalogue: an amphitheatre, a cross-shaped block, an arch, a slotted tower, a ramp and a twisted tower',
+        width: 1376,
+        height: 768,
+      },
+    },
+  },
   {
     slug: 'jewelry-casting-risk',
     band: 'studies',

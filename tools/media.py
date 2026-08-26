@@ -68,6 +68,9 @@ LINE_ART_MARKERS = (
     # mode as a node graph, where lossy artefacts read as smear, not noise.
     "-sunpath.",
     "-rays.",
+    # Every asset on the voxel case is hairline cube edges on white, so it
+    # matches by slug rather than by three separate suffixes.
+    "voxel-architecture",
 )
 
 # The animated hero sits in a box of at most 380 CSS px, so 640 covers it at
