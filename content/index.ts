@@ -28,8 +28,8 @@ export const projects: readonly Project[] = [
   revitPanelExport,
   windComfort,
   insolationMound,
-  voxelArchitecture,
   // Studies
+  voxelArchitecture,
   jewelryCastingRisk,
   tessellationStudies,
 ];
@@ -207,10 +207,10 @@ export const cards: readonly ProjectCard[] = [
   
   {
     slug: 'voxel-architecture',
-    band: 'in-use',
+    band: 'studies',
     placement: 'grid',
     blurb:
-      'A Grasshopper definition that voxelises any massing on a shared floor grid — the Rhino layer an object sits on decides whether it builds blocks or carves them away.',
+      'A study of rock-cut architecture, where building means removing: twenty-four forms cut from solid mass by one rule, with a Rhino layer standing in for the chisel.',
     frame: {
       kind: 'image',
       image: {

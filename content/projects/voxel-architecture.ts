@@ -1,17 +1,19 @@
 import type { Project } from '../types';
 
 export const voxelArchitecture: Project = {
+  // Slug kept from the earlier framing of this case: the page is already live
+  // under it, and the rock-cut reading is a lens on the same work, not new work.
   slug: 'voxel-architecture',
-  title: 'Voxels, by layer',
-  tag: 'In Use',
+  title: 'Carved, not built',
+  tag: 'Study',
   summary:
-    'A Grasshopper definition that turns any massing into voxel blocks on a shared floor grid, with the ground, typical and top floors each at their own height — and geometry that builds or subtracts depending only on the Rhino layer it sits on.',
-  meta: 'Grasshopper · C# · Voxel massing',
+    'A study of rock-cut architecture — the tradition where building means removing rather than adding. Twenty-four forms cut from solid mass by a single Grasshopper rule: geometry on one Rhino layer is stone, geometry on another is the chisel.',
+  meta: 'Grasshopper · C# · Rock-cut studies',
   hero: {
     kind: 'image',
     image: {
       src: '/assets/img/voxel-architecture-catalogue.jpg',
-      alt: 'Twenty-four voxelised forms from the same definition: towers, arches, terraced mounds, courtyard blocks and cantilevers, all built from stacked cubes',
+      alt: 'A catalogue of twenty-four rock-cut studies: arcades, towers, terraced amphitheatres, sunken courtyards and eroded masses, each carved from a solid block on a voxel grid',
       width: 2752,
       height: 1536,
     },
@@ -19,13 +21,13 @@ export const voxelArchitecture: Project = {
   blocks: [
     {
       kind: 'prose',
-      heading: 'Problem',
+      heading: 'Removing, not adding',
       paragraphs: [
         [
-          'Voxelising a massing by hand means rebuilding it: slice the form floor by floor, array cubes inside each slice, then cut the openings back out. Move a wall and all of that is thrown away.',
+          'Rock-cut architecture builds by not building. At Petra, at Ellora, at Lalibela, masons started from solid rock and made everything they made by taking material away. No frame, no assembly, no joint — the architecture is the void, and the structure is whatever mass was left standing around it.',
         ],
         [
-          'This is one Grasshopper definition instead, and the layer an object sits on is the whole interface. Drop geometry on the model layer and it becomes blocks; drop it on the cutter layer and it carves them away. Nothing to rewire, nothing to reselect.',
+          'This is a study of that logic treated as a rule rather than a style. If subtraction is the only operation available, what range of architecture falls out of it? The catalogue above is one answer — arcades, towers, terraced amphitheatres, courtyards sunk into a block — every one of them cut by the same procedure, the one below.',
         ],
       ],
     },
@@ -33,20 +35,20 @@ export const voxelArchitecture: Project = {
       kind: 'codeMedia',
       image: {
         src: '/assets/img/voxel-architecture-nodes.png',
-        alt: 'The voxel definition: layer inputs and cutters on the left, the C# solver that lays out floor levels and cell axes in the middle, then rod construction, floor outlines and the merged model on the right',
+        alt: 'The definition behind the studies: layer inputs and cutters on the left, the C# solver that lays out floor levels and cell axes in the middle, then rod construction, floor outlines and the merged model on the right',
         width: 3575,
         height: 1101,
       },
     },
     {
       kind: 'prose',
-      heading: 'Result',
+      heading: 'The rule',
       paragraphs: [
         [
-          'Floors are not one repeated slab. The ground floor, the typical floors and the top floor each carry their own height, and every block is snapped to a shared set of levels, so blocks line up across the whole model rather than drifting half a storey apart.',
+          'The chisel is a Rhino layer. Geometry on the model layer is stone; geometry on the cutter layer is the cut. Nothing is wired and nothing is reselected — moving an object from one layer to the other changes what it does to the mass.',
         ],
         [
-          'Internally it builds vertical rods on the grid rather than one cube at a time, then merges them into a single mesh. Three things come back: the merged model, the floor outlines as polylines, and the raw rods — so the result can be rendered, dimensioned, or taken apart again.',
+          'What survives the cut resolves to a voxel grid, and that grid has storeys: the ground floor, the typical floors and the top floor each carry their own height, on levels shared across the whole model. The quarry face is measured, not only sculpted — which is what keeps these studies architecture rather than texture.',
         ],
       ],
     },
@@ -55,23 +57,23 @@ export const voxelArchitecture: Project = {
       items: [
         {
           value: '24',
-          label: 'Forms, one definition',
-          note: 'Towers, arches, terraces, courtyards and cantilevers — every shape above came out of the same script',
+          label: 'Forms cut',
+          note: 'Arcades, towers, terraced amphitheatres and sunken courtyards, all out of one procedure',
+        },
+        {
+          value: '1',
+          label: 'Operation',
+          note: 'Subtraction — the tradition’s only move, and this study’s only rule',
         },
         {
           value: '2',
           label: 'Layers, no wiring',
-          note: 'The model layer builds, the cutter layer subtracts — that is the entire interface',
+          note: 'One layer is stone, the other is the chisel; moving an object between them changes what it does',
         },
         {
           value: '3',
           label: 'Floor kinds',
-          note: 'Ground, typical and top each carry their own height instead of one repeated slab',
-        },
-        {
-          value: '1',
-          label: 'Shared floor grid',
-          note: 'Every block lands on the same levels, so nothing drifts half a storey',
+          note: 'Ground, typical and top each at their own height, on levels shared across the model',
         },
       ],
     },
