@@ -1,130 +1,43 @@
 /*
- * Global stylesheet, carried over from the hand-written static site.
+ * Global stylesheet.
  *
- * The two @font-face rules that used to inline both woff2 files as base64
- * are gone: they made this sheet 102 KB of render-blocking CSS. next/font/local
- * now serves the same files as preloaded, separately cached requests and
- * exposes them here as --font-nunito / --font-fraunces.
+ * Restyled 2026-10 to the visual system of the product-design portfolio
+ * (dariy-portfolio): warm neutral paper, light-weight display type with tight
+ * tracking, hairlines instead of shadows, pill controls, bordered cards. The
+ * light theme stays black and white; the warm orange accent, glow and grain
+ * live only in the dark theme. Markup and class names are unchanged.
  */
 
 :root {
-  --ink: #0a0a0a;
-  --panel: rgba(255, 255, 255, 0.05);
-  --panel-strong: rgba(255, 255, 255, 0.08);
-  --border: rgba(255, 255, 255, 0.12);
-  --text: #ffffff;
-  --text-muted: rgba(255, 255, 255, 0.62);
-  /* 0.4 measured 3.77:1 on the page background — under the 4.5 floor for
-     the tech lines and band notes that use it. */
-  --text-faint: rgba(255, 255, 255, 0.5);
-  --accent: #2563eb;
-  --accent-light: #5b9bff;
-  /* Text sitting on the saturated accent — white in both themes. */
-  --on-accent: #ffffff;
+  /* --- Colour ----------------------------------------------------------- */
+  --paper: #ffffff;
+  --sand: #f7f6f3;
+  --sand-2: #f0eee9;
+  --surface: var(--paper); /* cards and pills: a step above the page in dark */
+  --ink: #1b1a18;
+  --ink-2: #605c56; /* 6.4:1 on white — body copy */
+  --ink-3: #78746d; /* 4.6:1 — captions and labels */
+  --ink-4: #a8a39b; /* decoration only: rules, dots, icons */
+  --line: #e4e1da;
+  --line-2: #efede8;
+  /* Accent. In the light theme the site stays black and white: the accent is
+     ink and there is no glow. Orange appears only in the dark theme. */
+  --accent: var(--ink);
+  --accent-text: var(--ink-3);
+  --accent-soft: var(--sand);
+  --accent-glow: transparent;
 
-  /* Body copy sits a touch under full-strength text; headings take --text. */
-  --text-body: rgba(255, 255, 255, 0.8);
-  /* Faintest fill, for a frame that should read as a surface, not a card. */
-  --panel-faint: rgba(255, 255, 255, 0.02);
-  /* Dot grid tiled over the page, and the film-grain overlay's blend mode. */
-  --dot: rgba(255, 255, 255, 0.07);
-  --grain-blend: overlay;
-  --grain-opacity: 0.045;
-  /* Translucent bar behind the fixed nav. */
-  --nav-bg: rgba(10, 10, 10, 0.72);
-  /* Crosshair cursor, and the glare that lifts a clickable frame on hover. */
-  --cursor: #ffffff;
-  --cursor-glow: rgba(255, 255, 255, 0.6);
-  --glare: rgba(255, 255, 255, 0.28);
   /* The arrow field is painted on canvas, so it reads these from the DOM. */
-  --field: #5b9bff;
-  --field-alpha: 0.42;
-  /* The hero mark is a white lattice on black: it needs no help here. */
-  --hero-blend: lighten;
-  --hero-filter: none;
-  --hero-glow: rgba(37, 99, 235, 0.16);
-
-  --tone-blue-fg: #7fa8ff;
-  --tone-blue-bg: rgba(91, 155, 255, 0.15);
-  --tone-blue-chip: rgba(91, 155, 255, 0.08);
-  --tone-blue-line: rgba(91, 155, 255, 0.35);
-  --tone-green-fg: #34d9b4;
-  --tone-green-bg: rgba(0, 212, 170, 0.15);
-  --tone-green-chip: rgba(0, 212, 170, 0.08);
-  --tone-green-line: rgba(0, 212, 170, 0.3);
-  --tone-yellow-fg: #f0c96a;
-  --tone-yellow-bg: rgba(240, 180, 41, 0.15);
-  --tone-yellow-chip: rgba(240, 180, 41, 0.08);
-  --tone-yellow-line: rgba(240, 180, 41, 0.3);
-  --tone-purple-fg: #c4b0fd;
-  --tone-purple-bg: rgba(167, 139, 250, 0.15);
-  --tone-purple-chip: rgba(167, 139, 250, 0.08);
-  --tone-purple-line: rgba(167, 139, 250, 0.3);
-  --tone-orange-fg: #ff8a70;
-  --tone-orange-bg: rgba(255, 107, 74, 0.15);
-  --tone-orange-chip: rgba(255, 107, 74, 0.08);
-  --tone-orange-line: rgba(255, 107, 74, 0.3);
-
-  --font-body: var(--font-nunito), Barlow, Inter, system-ui, sans-serif;
-  --font-accent: var(--font-fraunces), Georgia, serif;
-  --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-
-  --measure: 62ch;
-  --nav-h: 68px;
-
-  --space-xs: 8px;
-  --space-sm: 16px;
-  --space-md: 24px;
-  --space-lg: 48px;
-  --space-xl: 96px;
-
-  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
-  --scheme: dark;
-}
-
-/*
- * Light theme. Set on <html> by components/theme-toggle.tsx, and before first
- * paint by the inline script in app/layout.tsx so the page never flashes.
- *
- * Not an inversion: white paper wants a different accent, a quieter arrow
- * field, and a real backdrop behind the Grasshopper canvases, which are keyed
- * transparent for a dark page and would otherwise disappear.
- */
-:root[data-theme='light'] {
-  --scheme: light;
-  --ink: #ffffff;
-  --text: #0a0a0a;
-  --text-body: rgba(10, 10, 10, 0.78);
-  --text-muted: rgba(10, 10, 10, 0.6);
-  --text-faint: rgba(10, 10, 10, 0.62);
-  --panel: rgba(10, 10, 10, 0.04);
-  --panel-strong: rgba(10, 10, 10, 0.07);
-  --panel-faint: rgba(10, 10, 10, 0.025);
-  --border: rgba(10, 10, 10, 0.14);
-
-  /* #5b9bff carries 2.2:1 on white. The links, band labels and hovers that use
-     it need a blue that clears 4.5:1; this one reads 6.7:1. */
-  --accent: #2563eb;
-  --accent-light: #1d4ed8;
-
-  --dot: rgba(10, 10, 10, 0.06);
-  --grain-blend: multiply;
-  --grain-opacity: 0.03;
-  --nav-bg: rgba(255, 255, 255, 0.82);
-  --cursor: #0a0a0a;
-  --cursor-glow: rgba(10, 10, 10, 0.35);
-  /* A white glare is invisible on white: the lift becomes a cast shadow. */
-  --glare: rgba(10, 10, 10, 0.22);
-  --field: #2563eb;
-  --field-alpha: 0.26;
-
+  --field: #1b1a18;
+  --field-alpha: 0.16;
   /* The hero mark is a white lattice on black. Inverted it becomes a black
-     lattice on white, and multiply drops that white against the page. */
-  --hero-blend: multiply;
-  /* Contrast pushes the inverted reflection to white so multiply drops it,
+     lattice on white, and multiply drops that white against the page.
+     Contrast pushes the inverted reflection to white so multiply drops it,
      instead of leaving a grey smudge under the object. */
+  --hero-blend: multiply;
   --hero-filter: invert(1) contrast(1.25);
-  --hero-glow: rgba(37, 99, 235, 0.05);
+  /* A white glare is invisible on white: the lift becomes a cast shadow. */
+  --glare: rgba(27, 26, 24, 0.22);
 
   --tone-blue-fg: #1d4ed8;
   --tone-blue-bg: rgba(37, 99, 235, 0.1);
@@ -146,130 +59,265 @@
   --tone-orange-bg: rgba(234, 88, 12, 0.11);
   --tone-orange-chip: rgba(234, 88, 12, 0.06);
   --tone-orange-line: rgba(234, 88, 12, 0.28);
+
+  /* --- Type ------------------------------------------------------------- */
+  --font-sans: var(--font-onest), "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-mono: var(--font-mono-face), ui-monospace, Consolas, monospace;
+
+  --fs-display: clamp(2.3rem, 5.4vw, 4.4rem);
+  --fs-h1: clamp(1.9rem, 3.7vw, 2.9rem);
+  --fs-h2: clamp(1.55rem, 2.6vw, 2.2rem);
+  --fs-h3: clamp(1.075rem, 1.4vw, 1.25rem);
+  --fs-lead: clamp(1rem, 1.1vw, 1.175rem);
+  --fs-body: 1rem;
+  --fs-sm: 0.9rem;
+  --fs-xs: 0.8125rem;
+  --fs-label: 0.75rem;
+
+  --ls-display: -0.038em;
+  --ls-head: -0.03em;
+  --ls-label: 0.09em;
+
+  /* --- Rhythm ----------------------------------------------------------- */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 40px;
+  --s-8: 56px;
+  --s-9: 72px;
+  --s-10: 96px;
+
+  --section-y: clamp(72px, 10vw, 152px);
+  --gutter: clamp(20px, 4vw, 48px);
+  --measure: 62ch;
+  --nav-h: 64px;
+
+  /* --- Shape ------------------------------------------------------------ */
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 22px;
+  --r-pill: 999px;
+  --r-screen: 8px; /* screenshots, renders, canvases */
+
+  /* --- Motion ----------------------------------------------------------- */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 180ms;
+  --dur: 420ms;
+  --dur-slow: 720ms;
+
+  --scheme: light;
 }
 
-/* Browser chrome carries the theme too: selection, caret and scrollbar ship
-   with defaults that belong to no palette. */
-::selection { background: var(--accent); color: var(--on-accent); }
-html { scrollbar-color: var(--border) transparent; }
+/*
+ * Dark theme. Pure black, surfaces lifted 4–8 %, hairlines in translucent
+ * white. Only here does the warm orange accent appear (7.4:1 on black) — for
+ * kickers, numbers, rules and hover — plus grain and glow so the black is not
+ * flat. Set on <html> by components/theme-toggle.tsx, and before first paint
+ * by the inline script in app/layout.tsx.
+ */
+:root[data-theme='dark'] {
+  --scheme: dark;
+  --paper: #000000;
+  --sand: #0b0b0b;
+  --sand-2: #141414;
+  --surface: #0a0a0a;
+  --ink: #f5f4f0;
+  --ink-2: #b9b6ae; /* 10.4:1 */
+  --ink-3: #8d8a83; /* 6.1:1 */
+  --ink-4: #6b685f;
+  --line: rgba(255, 255, 255, 0.11);
+  --line-2: rgba(255, 255, 255, 0.07);
+  --accent: #ff6a3d;
+  --accent-text: #ff6a3d;
+  --accent-soft: rgba(255, 106, 61, 0.14);
+  --accent-glow: rgba(255, 106, 61, 0.22);
+
+  --field: #ff6a3d;
+  --field-alpha: 0.3;
+  /* The hero mark is a white lattice on near-black (#0a0a0a). On a pure black
+     page that near-black shows as a box; a touch of contrast crushes it to 0. */
+  --hero-blend: lighten;
+  --hero-filter: contrast(1.12);
+  --glare: rgba(255, 106, 61, 0.35);
+
+  --tone-blue-fg: #7fa8ff;
+  --tone-blue-bg: rgba(91, 155, 255, 0.15);
+  --tone-blue-chip: rgba(91, 155, 255, 0.08);
+  --tone-blue-line: rgba(91, 155, 255, 0.35);
+  --tone-green-fg: #34d9b4;
+  --tone-green-bg: rgba(0, 212, 170, 0.15);
+  --tone-green-chip: rgba(0, 212, 170, 0.08);
+  --tone-green-line: rgba(0, 212, 170, 0.3);
+  --tone-yellow-fg: #f0c96a;
+  --tone-yellow-bg: rgba(240, 180, 41, 0.15);
+  --tone-yellow-chip: rgba(240, 180, 41, 0.08);
+  --tone-yellow-line: rgba(240, 180, 41, 0.3);
+  --tone-purple-fg: #c4b0fd;
+  --tone-purple-bg: rgba(167, 139, 250, 0.15);
+  --tone-purple-chip: rgba(167, 139, 250, 0.08);
+  --tone-purple-line: rgba(167, 139, 250, 0.3);
+  --tone-orange-fg: #ff8a70;
+  --tone-orange-bg: rgba(255, 107, 74, 0.15);
+  --tone-orange-chip: rgba(255, 107, 74, 0.08);
+  --tone-orange-line: rgba(255, 107, 74, 0.3);
+}
+
+/* Browser chrome carries the theme too. */
+::selection { background: var(--accent); color: var(--paper); }
+html { scrollbar-color: var(--line) transparent; }
 ::-webkit-scrollbar { width: 11px; height: 11px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
-  background: var(--border);
+  background: var(--line);
   border: 3px solid transparent;
   background-clip: content-box;
   border-radius: 999px;
 }
-::-webkit-scrollbar-thumb:hover { background-color: var(--text-faint); background-clip: content-box; }
+::-webkit-scrollbar-thumb:hover { background-color: var(--ink-4); background-clip: content-box; }
 
 /* A white paper sheet needs an edge of its own once the page is white too. */
-:root[data-theme='light'] .blueprint { box-shadow: inset 0 0 0 1px var(--border); }
+:root[data-theme='light'] .blueprint { box-shadow: inset 0 0 0 1px var(--line); }
 
 /* The Grasshopper canvases and the six direction icons were exported inverted,
    to sit on a dark page. Inverting them back would swing every hue to its
-   opposite, so the paired hue-rotate puts the colours where they started: group
-   panels go light, node labels go dark, and the green highlights stay green.
-   That is a whole canvas rebuilt for white, rather than a dark panel cut into
-   the page. The remaining transparent artwork is colour-saturated and reads on
-   either background. */
+   opposite, so the paired hue-rotate puts the colours where they started. */
 :root[data-theme='light'] .overview-card__icon img,
 :root[data-theme='light'] .code-media img {
   filter: invert(1) hue-rotate(180deg);
 }
 
+/* =========================================================
+   RESET
+   ========================================================= */
+
 *, *::before, *::after { box-sizing: border-box; }
 html {
   color-scheme: var(--scheme);
+  background: var(--paper);
+  -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 body {
   margin: 0;
-  color: var(--text);
-  font-family: var(--font-body);
-  font-variation-settings: "wght" 400;
-  font-size: 16px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  font-weight: 400;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   position: relative;
-  /* Dot-grid texture tiled across the whole page, on top of the base black. */
-  background:
-    radial-gradient(circle at 1px 1px, var(--dot) 1px, transparent 0) 0 0 / 6px 6px,
-    var(--ink);
 }
 
-/* Film-grain overlay so the black doesn't band under the hero's glow. */
-body::before {
+/* Grain over everything: 3.5 % white noise, dark theme only. */
+[data-theme='dark'] body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: 3;
   pointer-events: none;
-  opacity: var(--grain-opacity);
-  mix-blend-mode: var(--grain-blend);
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
 }
 
 h1, h2, h3, p { margin: 0; }
+h1, h2, h3 {
+  font-weight: 400;
+  letter-spacing: var(--ls-head);
+  line-height: 1.08;
+  text-wrap: balance;
+}
+h3 {
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+}
 a { color: inherit; }
 a, button { touch-action: manipulation; }
-a:focus-visible,
-button:focus-visible {
-  outline: 2px solid var(--accent-light);
+:focus-visible {
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
+  border-radius: 4px;
 }
-strong { font-variation-settings: "wght" 700; }
+strong { font-weight: 600; color: var(--ink); }
 
 .skip-link {
   position: fixed;
-  top: 10px;
-  left: 10px;
+  top: 12px;
+  left: var(--gutter);
   z-index: 100;
-  padding: 8px 12px;
-  color: var(--ink);
-  background: var(--text);
-  font-family: var(--font-mono);
-  font-size: 13px;
+  padding: 10px 16px;
+  color: var(--paper);
+  background: var(--ink);
+  border-radius: var(--r-sm);
+  font-size: var(--fs-sm);
   text-decoration: none;
   transform: translateY(-160%);
+  transition: transform var(--dur-fast) var(--ease);
 }
 .skip-link:focus { transform: translateY(0); }
 
 h1[id], h2[id], h3[id], h4[id] { scroll-margin-top: calc(var(--nav-h) + 16px); }
 
 .container {
-  max-width: 1160px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding-inline: clamp(20px, 5vw, 80px);
+  padding-inline: var(--gutter);
   position: relative;
   z-index: 10;
-}
-
-.accent {
-  font-family: var(--font-accent);
-  font-weight: 700;
-  letter-spacing: -0.01em;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   [data-reveal] {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(14px);
   }
   [data-reveal].is-visible {
     opacity: 1;
     transform: translateY(0);
-    transition: opacity 600ms var(--ease-out-quart), transform 600ms var(--ease-out-quart);
-    transition-delay: calc(var(--i, 0) * 70ms);
+    transition: opacity 760ms var(--ease), transform 760ms var(--ease);
+    transition-delay: calc(var(--i, 0) * 80ms);
   }
 }
 
-/* ---------- reactive field + custom plus cursor (fixed, viewport-wide) ---------- */
+/* Kicker: small uppercase label with a short rule in front — the section
+   marker the product portfolio uses above every heading. */
+.hero .eyebrow,
+footer .eyebrow,
+.band__label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-sans);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--accent-text);
+}
+.hero .eyebrow::before,
+footer .eyebrow::before,
+.band__label::before {
+  content: "";
+  width: 18px;
+  height: 1px;
+  background: currentColor;
+  flex: none;
+}
+
+/* =========================================================
+   REACTIVE FIELD + INVERTED CURSOR
+   ========================================================= */
 
 @media (hover: hover) and (pointer: fine) {
-  /* The plus is the cursor on precise pointers, not a decoration next to it. */
   body { cursor: none; }
   a, button { cursor: none; }
 }
@@ -288,33 +336,31 @@ h1[id], h2[id], h3[id], h4[id] { scroll-margin-top: calc(var(--nav-h) + 16px); }
   pointer-events: none;
 }
 
+/* A white dot in difference mode: black on paper, white on black, and it
+   inverts whatever image it passes over. Same cursor as the product site. */
 .cursor-plus {
   position: fixed;
   top: 0;
   left: 0;
   width: 16px;
   height: 16px;
+  border-radius: 50%;
+  background: #ffffff;
+  mix-blend-mode: difference;
   pointer-events: none;
-  z-index: 90;
+  z-index: 2147483647;
   opacity: 0;
   transition: opacity 0.2s ease;
   will-change: transform, opacity;
 }
-.cursor-plus::before,
-.cursor-plus::after {
-  content: "";
-  position: absolute;
-  background: var(--cursor);
-  box-shadow: 0 0 4px var(--cursor-glow);
-}
-.cursor-plus::before { top: 50%; left: 0; width: 100%; height: 1.5px; transform: translateY(-50%); }
-.cursor-plus::after { left: 50%; top: 0; height: 100%; width: 1.5px; transform: translateX(-50%); }
 
 @media (hover: none) or (pointer: coarse) {
   .cursor-plus { display: none; }
 }
 
-/* ---------- nav ---------- */
+/* =========================================================
+   NAV
+   ========================================================= */
 
 .nav {
   position: fixed;
@@ -326,111 +372,129 @@ h1[id], h2[id], h3[id], h4[id] { scroll-margin-top: calc(var(--nav-h) + 16px); }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-inline: clamp(20px, 5vw, 80px);
-  background: var(--nav-bg);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border);
+  gap: var(--s-6);
+  padding-inline: var(--gutter);
+  background: color-mix(in srgb, var(--paper) 82%, transparent);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line-2);
 }
 .nav__mark {
   display: inline-flex;
   align-items: center;
-  gap: 13px;
-  font-family: var(--font-mono);
-  font-size: 12.5px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text);
+  gap: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
   text-decoration: none;
+  transition: color var(--dur-fast) var(--ease);
 }
-.nav__mark:hover { color: var(--accent-light); }
-.nav__mark-icon { flex: none; }
+.nav__mark:hover { color: var(--accent); }
+.nav__mark-icon { flex: none; width: 22px; height: 22px; }
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: var(--s-5);
+}
+.nav__links a {
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease);
+}
+.nav__links a:hover { color: var(--ink); }
+
+.nav__links .nav__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding-inline: 18px;
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--paper);
+  background: var(--ink);
+  border: 1px solid transparent;
+  border-radius: var(--r-pill);
+  text-decoration: none;
+  transition: background-color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+}
+.nav__links .nav__cta:hover {
+  color: var(--paper);
+  background: color-mix(in srgb, var(--accent) 84%, var(--paper));
+}
+.nav__cta:active { transform: translateY(1px); }
+.nav__cta svg { flex: none; }
+
+/* Day/night switch: a round icon button, no border — as on the product site. */
+.theme-toggle {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.theme-toggle:hover { background: var(--sand-2); color: var(--accent); }
+.theme-toggle--pending { pointer-events: none; }
+.theme-toggle__icon {
+  display: block;
+  width: 19px;
+  height: 19px;
+  transition: transform 250ms ease;
+}
+.theme-toggle:hover .theme-toggle__icon { transform: rotate(-15deg); }
+
+@media (max-width: 640px) {
+  /* Section jump-links are one scroll away; keep the mark, theme and GitHub. */
+  .nav__links { gap: var(--s-2); }
+  .nav__links a:not(.nav__cta) { display: none; }
+  .nav__mark-text { display: none; }
+}
+
+section, footer { scroll-margin-top: var(--nav-h); }
+
+/* =========================================================
+   BREADCRUMB / BACK LINK
+   ========================================================= */
 
 .breadcrumb {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   gap: 8px;
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--text-faint);
-  margin-bottom: var(--space-lg);
+  font-size: var(--fs-sm);
+  color: var(--ink-4);
+  margin-bottom: var(--s-7);
 }
-.breadcrumb a { color: var(--text-muted); text-decoration: none; }
-.breadcrumb a:hover { color: var(--accent-light); }
-.breadcrumb .current { color: var(--text); }
-.nav__links {
+.breadcrumb a { color: var(--ink-3); text-decoration: none; transition: color var(--dur-fast) var(--ease); }
+.breadcrumb a:hover { color: var(--accent); }
+.breadcrumb .current { color: var(--ink); }
+
+.back-link {
   display: flex;
+  width: fit-content;
   align-items: center;
-  gap: clamp(16px, 2.5vw, 32px);
-}
-.nav__links a {
-  font-size: 14px;
-  color: var(--text-muted);
+  gap: 6px;
+  font-size: var(--fs-sm);
+  color: var(--ink-3);
   text-decoration: none;
+  margin-bottom: var(--s-7);
 }
-.nav__links a:hover { color: var(--text); }
-.nav__cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-family: var(--font-mono);
-  font-size: 12.5px;
-  color: var(--text);
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 8px 16px;
-  text-decoration: none;
-  transition: background 150ms var(--ease-out-quart), border-color 150ms var(--ease-out-quart);
-}
+.back-link:hover { color: var(--accent); }
+.back-link svg { flex: none; }
 
-/* Day/night switch. Sized to the GitHub pill beside it so the nav keeps one
-   optical line, but quiet: a bordered square, not a second call to action. */
-.theme-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  padding: 0;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: transparent;
-  color: var(--text-muted);
-  cursor: pointer;
-  transition:
-    color 200ms var(--ease-out-quart),
-    border-color 200ms var(--ease-out-quart),
-    background-color 200ms var(--ease-out-quart);
-}
-.theme-toggle:hover {
-  color: var(--text);
-  border-color: var(--text-faint);
-  background: var(--panel);
-}
-/* Server-rendered placeholder: holds the box so the nav does not jump. */
-.theme-toggle--pending {
-  border-color: transparent;
-  pointer-events: none;
-}
-.theme-toggle__icon { display: block; }
-
-.nav__cta:hover { background: var(--panel-strong); border-color: var(--accent-light); }
-.nav__cta svg { flex: none; }
-
-@media (max-width: 640px) {
-  /* Section jump-links crowd the bar once About joined Focus/Systems/Contact;
-     they're one scroll away anyway, so keep only the brand mark and GitHub cta. */
-  .nav__links a:not(.nav__cta) { display: none; }
-  /* At 390px the 191px wordmark ran flush into the theme toggle with no gap
-     at all. The mark alone still reads as home, and the site name is in the
-     page title and breadcrumb either way. */
-  .nav__mark-text { display: none; }
-}
-
-section, footer { scroll-margin-top: var(--nav-h); }
-
-/* ---------- hero ---------- */
+/* =========================================================
+   HERO
+   ========================================================= */
 
 .hero {
   position: relative;
@@ -440,7 +504,21 @@ section, footer { scroll-margin-top: var(--nav-h); }
   flex-direction: column;
   justify-content: center;
   overflow: clip;
-  background: radial-gradient(ellipse 900px 500px at 50% 30%, var(--hero-glow), transparent 70%);
+}
+
+/* Warm glow behind the mark — dark theme only, on white it reads as dirt. */
+[data-theme='dark'] .hero::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -12%;
+  width: min(1100px, 120vw);
+  aspect-ratio: 1.6;
+  transform: translateX(-50%);
+  background: radial-gradient(closest-side, var(--accent-glow), transparent 72%);
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .hero__row {
@@ -448,7 +526,7 @@ section, footer { scroll-margin-top: var(--nav-h); }
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  padding-inline: clamp(20px, 5vw, 80px);
+  padding-inline: var(--gutter);
 }
 .hero__gif {
   order: -1;
@@ -465,12 +543,12 @@ section, footer { scroll-margin-top: var(--nav-h); }
     flex-direction: row;
     justify-content: center;
     gap: clamp(20px, 3vw, 56px);
-    max-width: 1160px;
+    max-width: 1200px;
     margin-inline: auto;
   }
   .hero .container {
     width: fit-content;
-    max-width: 420px;
+    max-width: 480px;
     padding-inline: 0;
   }
   .hero__gif {
@@ -481,69 +559,53 @@ section, footer { scroll-margin-top: var(--nav-h); }
   }
 }
 
-.hero .eyebrow {
-  font-family: var(--font-mono);
-  font-size: 12.5px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--accent-light);
-  margin-bottom: 22px;
-}
+.hero .eyebrow { margin-bottom: var(--s-5); }
 
 .hero h1 {
-  font-variation-settings: "wght" 600;
-  font-size: clamp(34px, 5vw, 54px);
-  line-height: 1.14;
-  letter-spacing: -0.01em;
-  text-wrap: balance;
+  font-size: clamp(2.1rem, 4.6vw, 3.6rem);
+  letter-spacing: var(--ls-display);
+  line-height: 1.02;
   max-width: 17ch;
-  color: var(--text);
+  color: var(--ink);
 }
 
 .hero .stack {
-  margin-top: 28px;
+  margin-top: var(--s-6);
   font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  color: var(--text-faint);
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .hero .eyebrow, .hero h1, .hero .stack {
     opacity: 0;
-    animation: hero-in 700ms var(--ease-out-quart) forwards;
+    animation: hero-in 760ms var(--ease) forwards;
   }
-  .hero .eyebrow { animation-delay: 80ms; }
-  .hero h1 { animation-delay: 180ms; }
-  .hero .stack { animation-delay: 380ms; }
+  .hero .eyebrow { animation-delay: 60ms; }
+  .hero h1 { animation-delay: 140ms; }
+  .hero .stack { animation-delay: 300ms; }
   @keyframes hero-in {
     from { opacity: 0; transform: translateY(14px); }
     to { opacity: 1; transform: translateY(0); }
   }
 }
 
-/* ---------- focus / positioning ---------- */
-
-.focus {
-  padding-block: clamp(64px, 10vw, 108px);
-  border-top: 1px solid var(--border);
-}
-
-.focus p.statement {
-  font-variation-settings: "wght" 600;
-  font-size: clamp(22px, 2.6vw, 30px);
-  line-height: 1.4;
-  letter-spacing: -0.005em;
-  max-width: 34ch;
-  text-wrap: balance;
-  color: var(--text);
-}
-
-/* ---------- about ---------- */
+/* =========================================================
+   ABOUT — sand band, like the product site's alternating sections
+   ========================================================= */
 
 .about {
-  padding-block: clamp(64px, 10vw, 108px);
-  border-top: 1px solid var(--border);
+  padding-block: var(--section-y);
+  background: var(--sand);
+}
+
+/* On black a flat panel disappears — a dot grid fading downward instead. */
+[data-theme='dark'] .about {
+  background-image:
+    linear-gradient(180deg, transparent 0%, var(--sand) 80%),
+    radial-gradient(var(--line) 1px, transparent 1.4px);
+  background-size: 100% 100%, 26px 26px;
+  border-block: 1px solid var(--line-2);
 }
 
 .about__grid {
@@ -551,30 +613,32 @@ section, footer { scroll-margin-top: var(--nav-h); }
   grid-template-columns: minmax(220px, 300px) 1fr;
   grid-template-rows: auto auto auto;
   column-gap: clamp(32px, 6vw, 72px);
-  row-gap: var(--space-sm);
+  row-gap: var(--s-5);
 }
 
-/* Row 1: portrait / intro copy. Row 2: contacts / education facts — each
-   bottom-anchored to the row (align-self: end) so the last contact line
-   (phone) and the last facts line land on the same edge at any viewport
-   width, without hardcoded offsets. Row 3: language + CTA, right column only. */
-.about__portrait { grid-column: 1; grid-row: 1; aspect-ratio: 1 / 1; }
+/* Row 1: portrait / intro copy. Row 2: contacts / education facts, each
+   bottom-anchored so the last lines land on one edge. */
+.about__portrait {
+  grid-column: 1;
+  grid-row: 1;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--r-lg);
+}
 
 .about__intro { grid-column: 2; grid-row: 1; }
 .about__intro h2 {
-  margin: 0 0 var(--space-sm) 0;
-  font-variation-settings: "wght" 700;
-  font-size: clamp(24px, 3vw, 34px);
-  letter-spacing: -0.005em;
+  margin: 0 0 var(--s-5) 0;
+  font-size: var(--fs-h2);
 }
 .about__intro p.desc {
-  margin-top: var(--space-sm);
+  margin-top: var(--s-4);
   max-width: 58ch;
-  color: var(--text-body);
-  font-size: 17px;
-  line-height: 1.6;
+  color: var(--ink-2);
+  font-size: var(--fs-lead);
+  line-height: 1.55;
+  text-wrap: pretty;
 }
-.about__intro p.desc + p.desc { margin-top: 12px; }
+.about__intro p.desc + p.desc { margin-top: var(--s-3); }
 
 .about__contacts {
   grid-column: 1;
@@ -584,20 +648,20 @@ section, footer { scroll-margin-top: var(--nav-h); }
   flex-direction: column;
   gap: 10px;
   list-style: none;
+  margin: 0;
   padding: 0;
 }
 .about__contacts a {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: var(--fs-sm);
   line-height: 20px;
-  letter-spacing: 0.02em;
-  color: var(--text-muted);
+  color: var(--ink-2);
   text-decoration: none;
+  transition: color var(--dur-fast) var(--ease);
 }
-.about__contacts a:hover { color: var(--accent-light); }
+.about__contacts a:hover { color: var(--accent); }
 .about__contacts svg { flex: none; }
 .about__contacts-row { display: flex; gap: 20px; }
 
@@ -623,31 +687,30 @@ section, footer { scroll-margin-top: var(--nav-h); }
   margin: 0;
   padding: 0;
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: var(--fs-xs);
   line-height: 20px;
-  letter-spacing: 0.02em;
-  color: var(--text-faint);
+  color: var(--ink-3);
 }
 
 .about__cta-block { flex: none; }
 
+/* Secondary pill button. */
 .about__cta {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.03em;
-  color: var(--text-body);
+  gap: 8px;
+  height: 42px;
+  padding-inline: 20px;
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--ink);
   text-decoration: none;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 6px 13px;
-  transition: background 150ms var(--ease-out-quart), border-color 150ms var(--ease-out-quart), color 150ms var(--ease-out-quart);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  transition: background-color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
 }
-.about__cta:hover { color: var(--text); background: var(--panel-strong); border-color: var(--accent-light); }
-.about__cta:focus-visible { outline: 2px solid var(--accent-light); outline-offset: 3px; }
+.about__cta:hover { background: var(--sand-2); border-color: var(--accent); }
 .about__cta svg { flex: none; }
 
 @media (max-width: 780px) {
@@ -659,46 +722,52 @@ section, footer { scroll-margin-top: var(--nav-h); }
   .about__facts-row { order: 4; align-self: start; flex-wrap: wrap; }
 }
 
-/* ---------- systems / cases ---------- */
+/* =========================================================
+   SYSTEMS / CASES
+   ========================================================= */
 
 .systems {
-  padding-bottom: clamp(80px, 10vw, 120px);
+  padding-block: var(--section-y);
 }
 
 .systems > .container > h2 {
-  font-variation-settings: "wght" 700;
-  font-size: clamp(24px, 3vw, 34px);
-  letter-spacing: -0.005em;
+  font-size: var(--fs-h1);
+  letter-spacing: var(--ls-display);
 }
 
 .systems .intro {
-  max-width: var(--measure);
-  margin-top: var(--space-sm);
-  color: var(--text-muted);
-  font-size: 17px;
+  max-width: 56ch;
+  margin-top: var(--s-4);
+  color: var(--ink-2);
+  font-size: var(--fs-lead);
+  line-height: 1.5;
+  text-wrap: pretty;
 }
 
-/* Media placeholder — a frame for a screenshot, GIF, diagram, or GH canvas capture
-   to be dropped in later. Deliberately marked as a slot, not passed off as content. */
+/* Media placeholder — a slot for a capture still to come, marked as a slot. */
 .media-frame {
-  border: 1.5px dashed var(--border);
-  border-radius: 1px;
-  background: var(--panel-faint);
+  border: 1px dashed var(--line);
+  border-radius: var(--r-screen);
+  background-color: var(--sand);
+  background-image:
+    linear-gradient(var(--line-2) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line-2) 1px, transparent 1px);
+  background-size: 40px 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  color: var(--text-faint);
+  color: var(--ink-4);
   text-align: center;
   padding: 20px;
 }
-.media-frame svg { opacity: 0.5; }
+.media-frame svg { opacity: 0.6; }
 .media-frame span {
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  letter-spacing: 0.02em;
-  max-width: 22ch;
+  font-size: var(--fs-xs);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  max-width: 24ch;
 }
 
 .media-frame--photo-slot {
@@ -706,171 +775,204 @@ section, footer { scroll-margin-top: var(--nav-h); }
   min-height: 220px;
 }
 
-/* Featured entries: full-bleed two-column rows, no card chrome — reserved for the
-   flagship and the one built, photographed result. Everything else is a lighter grid;
-   repeating this treatment across all eight would be the identical-card-grid mistake. */
+/* Featured entries: a full-width card, media on one side, copy on the other —
+   the product site's lead case card. */
 .featured {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(28px, 5vw, 64px);
-  align-items: center;
-  padding-block: var(--space-lg);
-  border-top: 1px solid var(--border);
+  align-items: stretch;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  overflow: hidden;
 }
-.featured:first-of-type { border-top: none; padding-top: var(--space-xl); }
 .featured--reverse .featured__media { order: 2; }
-.featured .media-frame { aspect-ratio: 4 / 3; }
-.featured__text .tag { margin-bottom: var(--space-sm); }
+.featured__media { min-width: 0; }
+.featured .media-frame {
+  aspect-ratio: 4 / 3;
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+}
+.featured__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(24px, 4vw, 48px);
+}
+.featured__text .tag { margin-bottom: var(--s-5); }
 .featured__text h3 {
-  font-variation-settings: "wght" 700;
-  font-size: clamp(24px, 2.6vw, 32px);
-  letter-spacing: -0.01em;
-  line-height: 1.22;
+  font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+  font-weight: 400;
+  letter-spacing: var(--ls-head);
+  line-height: 1.12;
   max-width: 18ch;
 }
 .featured__text p.desc {
-  margin-top: 14px;
-  color: var(--text-body);
-  font-size: 17px;
-  max-width: 56ch;
+  margin-top: var(--s-4);
+  color: var(--ink-2);
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  max-width: 52ch;
+  text-wrap: pretty;
 }
-.featured__text .meta { margin-top: var(--space-sm); }
+.featured__text .meta { margin-top: var(--s-5); }
 
 @media (max-width: 780px) {
   .featured, .featured--reverse { grid-template-columns: 1fr; }
   .featured--reverse .featured__media { order: 0; }
+  .featured .media-frame { height: auto; }
 }
 
+/* Status chip: the product site's quiet default pill. */
 .tag {
   display: inline-flex;
-  /* Cards and featured rows are stretch-aligned flex columns, which pulled the
-     status chip out to the full card width and read as a banner. */
   align-self: start;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--on-accent);
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--ink-2);
+  background: var(--sand);
+  border: 1px solid var(--line-2);
+  padding: 6px 13px;
+  border-radius: var(--r-pill);
+  white-space: nowrap;
+}
+.tag::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
   background: var(--accent);
-  padding: 4px 11px;
-  border-radius: 999px;
+  flex: none;
 }
 
 .meta {
   font-family: var(--font-mono);
-  font-size: 11.5px;
-  letter-spacing: 0.03em;
-  color: var(--text-faint);
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
 }
 
 .grid {
-  margin-top: var(--space-lg);
-  padding-top: var(--space-lg);
-  border-top: 1px solid var(--border);
+  margin-top: var(--s-5);
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: var(--space-lg) var(--gap, 32px);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--s-5);
 }
 
 /* ---------- bands: the ranking, made visible ---------- */
-/* The section copy has always claimed the systems are ranked by how real they
-   are. Three labelled bands carry that claim instead of asking the reader to
-   infer it from seven different status tags. */
 
 .band__head {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: 6px 14px;
-  margin-top: var(--space-xl);
-  padding-bottom: 2px;
-  border-bottom: 1px solid var(--border);
-}
-.band__label {
-  font-family: var(--font-mono);
-  font-size: 12.5px;
-  font-weight: 500;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  color: var(--accent-light);
+  gap: 6px 16px;
+  margin-top: var(--s-10);
+  padding-bottom: var(--s-4);
+  border-bottom: 1px solid var(--line);
 }
 .band__note {
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  letter-spacing: 0.02em;
-  color: var(--text-faint);
+  font-size: var(--fs-sm);
+  color: var(--ink-3);
 }
-/* The band's own rule already separates it, so the first block inside it does
-   not draw a second one immediately below. */
-.band > .grid {
-  margin-top: var(--space-lg);
-  padding-top: 0;
-  border-top: 0;
-}
-.band .featured { margin-top: var(--space-lg); }
+.band > .grid { margin-top: var(--s-5); }
+.band .featured { margin-top: var(--s-6); }
 
+/* Grid card: bordered, rounded, media flush on top, copy padded below. */
 .card {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: var(--s-3);
+  height: 100%;
+  padding-bottom: var(--s-6);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  overflow: hidden;
 }
-.card .media-frame { aspect-ratio: 16 / 10; margin-bottom: 4px; }
+.card > :not(.media-frame) { margin-inline: var(--s-6); }
+.card .media-frame {
+  aspect-ratio: 16 / 10;
+  margin-bottom: var(--s-3);
+  border: 0;
+  border-bottom: 1px solid var(--line-2);
+  border-radius: 0;
+}
 .card h3 {
-  font-variation-settings: "wght" 700;
-  font-size: 19px;
-  letter-spacing: -0.005em;
-  line-height: 1.3;
+  font-size: clamp(1.15rem, 1.6vw, 1.35rem);
+  font-weight: 500;
+  letter-spacing: -0.022em;
+  line-height: 1.25;
 }
 .card p.desc {
-  color: var(--text-muted);
-  font-size: 15px;
+  color: var(--ink-2);
+  font-size: var(--fs-sm);
+  line-height: 1.55;
 }
+.card .meta { margin-top: auto; padding-top: var(--s-2); }
 
 @media (prefers-reduced-motion: no-preference) {
-  .featured, .card { transition: transform 300ms var(--ease-out-quart); }
-  .featured:hover { transform: translateY(-2px); }
-  .card:hover { transform: translateY(-3px); }
-  .card:hover .media-frame, .featured:hover .media-frame { border-color: var(--accent-light); }
-  .media-frame { transition: border-color 300ms var(--ease-out-quart); }
+  .featured, .card {
+    transition:
+      border-color var(--dur) var(--ease),
+      transform var(--dur) var(--ease),
+      box-shadow var(--dur) var(--ease);
+  }
+  .media-frame img { transition: transform var(--dur-slow) var(--ease); }
+  .project-link:hover .featured,
+  .project-link:hover .card {
+    border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
+    transform: translateY(-3px);
+    box-shadow:
+      0 24px 50px -38px rgba(27, 26, 24, 0.55),
+      0 30px 80px -40px var(--accent-glow);
+  }
+  .project-link:hover .media-frame img { transform: scale(1.012); }
 }
 
 .aside-note {
-  margin-top: var(--space-lg);
-  padding-top: var(--space-md);
-  border-top: 1px solid var(--border);
-  color: var(--text-faint);
-  font-size: 14px;
+  margin-top: var(--s-8);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--line);
+  color: var(--ink-3);
+  font-size: var(--fs-sm);
   max-width: var(--measure);
 }
-.aside-note strong { color: var(--text-muted); }
+.aside-note strong { color: var(--ink-2); }
 
-/* ---------- footer ---------- */
+/* =========================================================
+   FOOTER — sand band with the contact pills
+   ========================================================= */
 
 footer {
-  border-top: 1px solid var(--border);
-  padding-block: clamp(56px, 8vw, 90px);
+  position: relative;
+  padding-block: var(--section-y);
+  background: var(--sand);
+  border-top: 1px solid var(--line-2);
+}
+[data-theme='dark'] footer {
+  background-image:
+    linear-gradient(180deg, transparent 0%, var(--sand) 80%),
+    radial-gradient(var(--line) 1px, transparent 1.4px);
+  background-size: 100% 100%, 26px 26px;
 }
 
 footer h2 {
-  margin-top: var(--space-sm);
-  font-variation-settings: "wght" 600;
-  font-size: clamp(28px, 4vw, 42px);
-  letter-spacing: -0.01em;
-  color: var(--text);
-}
-footer .eyebrow {
-  font-family: var(--font-mono);
-  font-size: 12.5px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text-faint);
+  margin-top: var(--s-4);
+  font-size: var(--fs-display);
+  letter-spacing: var(--ls-display);
+  line-height: 1.02;
+  max-width: 18ch;
+  color: var(--ink);
 }
 
 .contact-list {
-  margin-top: var(--space-lg);
+  margin-top: var(--s-7);
   display: flex;
   flex-wrap: wrap;
-  gap: 14px;
+  gap: var(--s-3);
   list-style: none;
   padding: 0;
 }
@@ -878,198 +980,196 @@ footer .eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  font-family: var(--font-mono);
-  font-size: 13px;
-  letter-spacing: 0.03em;
-  color: var(--text-body);
+  height: 52px;
+  padding-inline: 26px;
+  font-size: var(--fs-body);
+  font-weight: 500;
+  color: var(--ink);
   text-decoration: none;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 9px 18px;
-  transition: background 150ms var(--ease-out-quart), border-color 150ms var(--ease-out-quart), color 150ms var(--ease-out-quart);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease),
+    transform var(--dur-fast) var(--ease);
 }
-.contact-list li a:hover { color: var(--text); background: var(--panel-strong); border-color: var(--accent-light); }
-.contact-list li a:focus-visible { outline: 2px solid var(--accent-light); outline-offset: 3px; }
+.contact-list li a:hover { background: var(--sand-2); border-color: var(--accent); }
+.contact-list li a:active { transform: translateY(1px); }
+/* The first channel is the primary action, as on the product site. */
+.contact-list li:first-child a {
+  color: var(--paper);
+  background: var(--ink);
+  border-color: transparent;
+}
+.contact-list li:first-child a:hover {
+  background: color-mix(in srgb, var(--accent) 84%, var(--paper));
+}
 .contact-list svg { flex: none; }
 
-/* ---------- project links on the index (cards/featured wrapped in <a>) ---------- */
+/* ---------- project links on the index ---------- */
 
 .project-link {
   display: block;
+  height: 100%;
   color: inherit;
   text-decoration: none;
+  border-radius: var(--r-lg);
 }
-.project-link:focus-visible {
-  outline: 2px solid var(--accent-light);
-  outline-offset: 4px;
-  border-radius: 4px;
-}
+.project-link:focus-visible { outline-offset: 4px; border-radius: var(--r-lg); }
 
-/* ---------- project detail pages ---------- */
-
-.back-link {
-  display: flex;
-  width: fit-content;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--text-muted);
-  text-decoration: none;
-  margin-bottom: var(--space-lg);
-}
-.back-link:hover { color: var(--accent-light); }
-.back-link svg { flex: none; }
+/* =========================================================
+   PROJECT PAGES
+   ========================================================= */
 
 .project-hero {
-  padding-top: calc(var(--nav-h) + var(--space-xl));
-  padding-bottom: var(--space-lg);
+  padding-top: calc(var(--nav-h) + var(--s-9));
+  padding-bottom: var(--s-7);
 }
-.project-hero .tag { margin-bottom: var(--space-sm); }
+.project-hero .tag { margin-bottom: var(--s-5); }
 .project-hero h1 {
-  font-variation-settings: "wght" 700;
-  font-size: clamp(28px, 4.5vw, 46px);
-  letter-spacing: -0.01em;
-  line-height: 1.15;
+  font-size: var(--fs-h1);
+  letter-spacing: var(--ls-display);
+  line-height: 1.06;
   max-width: 20ch;
-  text-wrap: balance;
 }
 .project-hero .project-summary {
-  margin-top: var(--space-sm);
-  color: var(--text-body);
-  font-size: 18px;
+  margin-top: var(--s-5);
+  color: var(--ink-2);
+  font-size: var(--fs-lead);
+  line-height: 1.5;
   max-width: 56ch;
+  text-wrap: pretty;
 }
-.project-hero .meta { margin-top: var(--space-md); }
+.project-hero .meta { margin-top: var(--s-5); }
 
 .media-frame--hero {
-  /* Falls back to the old fixed crop for a hero with no intrinsic size,
-     which is every video hero. */
   aspect-ratio: var(--media-ratio, 16 / 8);
-  margin-top: var(--space-lg);
+  margin-top: var(--s-7);
 }
-/* The opening frame gets the same breakout width as the paired rows below it,
-   so the case does not start narrower than it continues. */
+[data-theme='dark'] .media-frame--hero {
+  box-shadow: 0 40px 120px -40px var(--accent-glow);
+}
+/* The opening frame gets the same breakout width as the paired rows below. */
 .project-hero:not(.project-hero--split) .media-frame--hero {
   position: relative;
   left: 50%;
   transform: translateX(-50%);
-  /* --media-cap is the image's own pixel width, set by the component, so a
-     small source is shown at its real size instead of being stretched soft. */
   width: min(
     1440px,
     calc(100vw - 2 * clamp(16px, 2.5vw, 40px)),
     var(--media-cap, 1440px)
   );
+  border-radius: var(--r-lg);
 }
 @media (max-width: 700px) {
   .project-hero:not(.project-hero--split) .media-frame--hero {
     width: min(100vw, var(--media-cap, 100vw));
+    border-radius: 0;
   }
 }
 .media-frame--video { aspect-ratio: 16 / 9; }
 .media-frame--md { aspect-ratio: 4 / 3; }
 
-/* Split hero: text left, square media right. Only used where the source
-   media is itself square — a 16:8 crop of a square render loses the top
-   and bottom of the geometry, so this keeps it uncropped instead. */
+/* Split hero: text left, square media right. */
 .project-hero--split .container {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
   align-items: center;
-  gap: var(--space-xl);
+  gap: var(--s-10);
 }
 .project-hero--split .media-frame--hero {
   aspect-ratio: var(--media-ratio, 1 / 1);
   margin-top: 0;
+  border-radius: var(--r-lg);
 }
 @media (max-width: 860px) {
-  .project-hero--split .container { grid-template-columns: 1fr; }
+  .project-hero--split .container { grid-template-columns: 1fr; gap: var(--s-7); }
   .project-hero--split .media-frame--hero { max-width: 480px; margin-inline: auto; }
 }
 
 .media-row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: var(--space-md);
+  gap: var(--s-5);
 }
 
 .project-content {
-  padding-block: var(--space-xl) clamp(80px, 10vw, 120px);
+  padding-block: var(--s-10) var(--section-y);
   display: flex;
   flex-direction: column;
-  gap: var(--space-xl);
+  gap: var(--s-10);
+  counter-reset: block;
 }
 .project-block { max-width: var(--measure); }
 .project-block h2 {
-  font-variation-settings: "wght" 700;
-  font-size: clamp(20px, 2.4vw, 26px);
-  letter-spacing: -0.005em;
-  margin-bottom: var(--space-sm);
+  font-size: var(--fs-h2);
+  margin-bottom: var(--s-5);
+}
+/* Section numbers 01 / 02 / 03 over each heading, in the accent. */
+.project-block h2::before {
+  counter-increment: block;
+  content: counter(block, decimal-leading-zero);
+  display: block;
+  margin-bottom: var(--s-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0;
+  color: var(--accent-text);
 }
 .project-block p {
-  color: var(--text-body);
-  font-size: 16.5px;
+  color: var(--ink-2);
+  font-size: var(--fs-body);
+  line-height: 1.65;
+  text-wrap: pretty;
 }
-/* The global reset zeroes paragraph margins, which ran consecutive paragraphs
-   together into one slab wherever a block has more than one. */
-.project-block p + p { margin-top: var(--space-sm); }
+.project-block p + p { margin-top: var(--s-4); }
 .project-block p a {
-  color: var(--accent-light);
+  color: var(--ink);
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-decoration-color: var(--ink-4);
+  text-underline-offset: 3px;
+  transition: color var(--dur-fast) var(--ease), text-decoration-color var(--dur-fast) var(--ease);
 }
-.project-block p a:hover { color: var(--text); }
+.project-block p a:hover { color: var(--accent); text-decoration-color: var(--accent); }
 .project-block + .media-row,
 .project-block + .media-frame--video { max-width: 900px; }
 .project-block + .media-row.media-row--wide { max-width: none; }
 
-/* Media outgrows the measure-capped text column: prose wants ~65 characters,
-   a paired drawing wants every pixel it can get. */
+/* Media outgrows the measure-capped text column. */
 .project-content > .media-row--wide {
   position: relative;
   left: 50%;
   transform: translateX(-50%);
   width: min(1440px, calc(100vw - 2 * clamp(16px, 2.5vw, 40px)));
   max-width: none;
-  gap: var(--space-sm);
+  gap: var(--s-4);
 }
 
-/* An image smaller than the breakout is centred at its own size rather than
-   stretched to fill it: the Grasshopper ribbon strip is 536px and nothing is
-   gained by painting it at 1440. --media-cap is the source's own pixel width,
-   set by components/media.tsx. */
+/* An image smaller than the breakout is centred at its own size. */
 .project-content > .media-row--wide .media-frame {
   max-width: var(--media-cap, none);
   margin-inline: auto;
 }
 
-/* Phones: run the stacked pair edge to edge. The container's own gutter is
-   worth more as image than as margin on a 390px screen. */
 @media (max-width: 700px) {
   .project-content > .media-row--wide {
     width: 100vw;
-    gap: var(--space-sm);
+    gap: var(--s-4);
   }
+  .project-content > .media-row--wide .media-frame { border-radius: 0; }
 }
 
-/* Prose with a figure beside it. The text column keeps the same left edge and
-   the same reading measure as every other block on the page — this block stays
-   inside the text container rather than breaking out like the media rows, so
-   the two never disagree about where a paragraph starts. The figure takes
-   whatever width is left. */
+/* Prose with a figure beside it. */
 .project-content > .project-block--with-aside {
   max-width: none;
   display: grid;
   grid-template-columns: minmax(0, var(--measure)) minmax(0, 1fr);
-  /* Column gap only: a shared `gap` would push the paragraphs apart too. */
   column-gap: clamp(32px, 5vw, 96px);
   align-items: center;
 }
 .project-block__body { max-width: var(--measure); }
-/* Never painted wider than the source: --media-cap is the image's own pixel
-   width, set by components/media.tsx. */
 .project-block__aside .media-frame {
   padding: 0;
   max-width: var(--media-cap, none);
@@ -1080,17 +1180,16 @@ footer .eyebrow {
 @media (max-width: 900px) {
   .project-content > .project-block--with-aside {
     grid-template-columns: minmax(0, 1fr);
-    row-gap: var(--space-md);
+    row-gap: var(--s-5);
   }
   .project-block__aside .media-frame { margin-inline: 0; }
 }
 
 .media-frame--wide { grid-column: 1 / -1; }
 .media-frame.has-photo.media-frame--wide {
-  /* Solid backdrop, not the page's own dark background — some of these are
-     transparent-PNG Grasshopper canvases, and without an opaque fill behind
-     them the fixed arrow field paints straight through. */
-  background: var(--ink);
+  /* Opaque backdrop: some are transparent-PNG Grasshopper canvases, and the
+     fixed arrow field would paint straight through them. */
+  background: var(--paper);
 }
 .media-frame.has-photo.media-frame--wide img,
 .media-frame.has-photo.media-frame--wide video {
@@ -1098,11 +1197,7 @@ footer .eyebrow {
   object-fit: contain;
 }
 
-/* ---------- code-media: a transparent GH canvas, floating on the page itself ---------- */
-/* Deliberately no card, no border, no backdrop: the canvas is already fully
-   processed (inverted, keyed transparent) to sit directly on the page's own
-   dark texture, arrow field showing through on purpose, not walled off in a
-   frame like the other, still-opaque screenshots. */
+/* ---------- code-media: a transparent GH canvas, floating on the page ---------- */
 .code-media img { display: block; width: 100%; height: auto; }
 
 .media-frame .media-stat-caption {
@@ -1110,10 +1205,9 @@ footer .eyebrow {
   top: 24%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-variation-settings: "wght" 900;
-  font-weight: 900;
+  font-weight: 600;
   font-size: clamp(40px, 8vw, 96px);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.04em;
   color: #29e62e;
   text-align: center;
   pointer-events: none;
@@ -1121,36 +1215,48 @@ footer .eyebrow {
 }
 
 /* ---------- grouped media: a labeled set of related shots in one frame ---------- */
-/* For a project with several real screenshots that only make sense read
-   together (stages of one pipeline, before/after). Each cell keeps its
-   source image's own aspect ratio, so nothing gets cropped to fit a grid. */
 .media-frame--group {
   grid-column: 1 / -1;
-  background: var(--panel);
-  border-style: solid;
-  padding: var(--space-md);
+  background: var(--sand);
+  background-image: none;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: var(--s-5);
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  align-items: stretch;
+  gap: var(--s-4);
+  color: inherit;
+  text-align: left;
 }
 .media-group__title {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.03em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--fs-label);
+  font-weight: 500;
+  letter-spacing: var(--ls-label);
   text-transform: uppercase;
-  color: var(--text-faint);
+  color: var(--accent-text);
+}
+.media-group__title::before {
+  content: "";
+  width: 18px;
+  height: 1px;
+  background: currentColor;
+  flex: none;
 }
 .media-group {
   display: grid;
   grid-template-columns: repeat(var(--group-cols, 2), 1fr);
-  gap: 8px;
+  gap: var(--s-2);
 }
 .media-group__cell {
   position: relative;
   aspect-ratio: var(--group-ratio, 1 / 1);
   overflow: hidden;
-  border-radius: 1px;
-  background: var(--ink);
+  border-radius: var(--r-screen);
+  background: #0a0a0a;
 }
 .media-group__cell img {
   width: 100%;
@@ -1162,23 +1268,20 @@ footer .eyebrow {
   position: absolute;
   bottom: 8px;
   left: 8px;
-  background: rgba(10, 10, 10, 0.78);
-  backdrop-filter: blur(6px);
-  padding: 4px 10px;
-  border-radius: 5px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.02em;
-  color: #ffffff;
+  background: color-mix(in srgb, var(--paper) 86%, transparent);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--line);
+  padding: 5px 11px;
+  border-radius: var(--r-pill);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  color: var(--ink);
 }
 @media (max-width: 640px) {
   .media-group { grid-template-columns: 1fr; }
 }
 
 /* ---------- compare: real reference photos beside a generated output ---------- */
-/* Shows the real buildings a generated style draws on, for scale and honesty —
-   these are real photographs, credited below, not literal inputs the agent
-   processed (the output itself was generated from a text brief alone). */
 .media-frame--compare {
   grid-column: 1 / -1;
   grid-template-columns: minmax(380px, 0.9fr) 28px minmax(420px, 1.1fr);
@@ -1189,6 +1292,7 @@ footer .eyebrow {
   border-radius: 0;
   background: transparent;
   display: grid;
+  color: inherit;
 }
 .compare__refs {
   display: grid;
@@ -1205,11 +1309,13 @@ footer .eyebrow {
   display: grid;
   grid-template-rows: minmax(0, 1fr) auto;
   min-height: 0;
+  box-shadow: none;
 }
 .blueprint--ref .blueprint__frame {
   min-height: 0;
   overflow: hidden;
-  border-color: var(--border);
+  border-color: var(--line);
+  border-radius: var(--r-screen);
 }
 .blueprint--ref .blueprint__frame img {
   height: 100%;
@@ -1217,23 +1323,21 @@ footer .eyebrow {
 }
 .blueprint--ref figcaption {
   margin-top: 8px;
-  font-family: var(--font-mono);
-  font-size: 11.5px;
+  font-size: var(--fs-label);
   line-height: 1.35;
-  letter-spacing: 0.02em;
-  color: var(--text-muted);
+  color: var(--ink-3);
   text-align: center;
 }
-.compare__arrow { align-self: center; color: var(--text-faint); font-size: 22px; }
+.compare__arrow { align-self: center; color: var(--ink-4); font-size: 22px; }
 .compare__result {
   align-self: start;
   min-width: 0;
   width: 100%;
   max-width: none;
   aspect-ratio: 1 / 1;
-  border-radius: 1px;
+  border-radius: var(--r-lg);
   overflow: hidden;
-  background: var(--ink);
+  background: #0a0a0a;
 }
 .compare__result img {
   width: 100%;
@@ -1244,9 +1348,8 @@ footer .eyebrow {
 .compare__credit {
   grid-column: 1 / -1;
   margin-top: -6px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--text-faint);
+  font-size: var(--fs-label);
+  color: var(--ink-3);
 }
 @media (max-width: 960px) {
   .media-frame--compare { grid-template-columns: 1fr; align-items: center; }
@@ -1257,27 +1360,24 @@ footer .eyebrow {
   }
   .media-frame--compare .blueprint--ref { display: block; }
   .blueprint--ref .blueprint__frame { aspect-ratio: 3 / 4; }
-  .compare__arrow { transform: rotate(90deg); }
+  .compare__arrow { transform: rotate(90deg); justify-self: center; }
   .compare__result { max-width: 640px; margin-inline: auto; }
 }
 @media (max-width: 560px) {
   .compare__refs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
-/* ---------- directions: numbered, color-coded application modes ---------- */
-/* Each real capability gets its own color (matching the source deck), a
-   plain-language input -> output line, then its own media directly below —
-   so a page with many screenshots still reads as "six distinct things",
-   not one undifferentiated pile of images. */
+/* ---------- directions: numbered, colour-coded application modes ---------- */
+/* The tones match the source deck and stay in both themes. */
 .directions {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xl);
+  gap: var(--s-10);
 }
 .direction {
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: var(--s-4);
 }
 .direction__head {
   display: flex;
@@ -1287,11 +1387,10 @@ footer .eyebrow {
 .direction__badge {
   flex: none;
   font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  padding: 3px 10px;
-  border-radius: 999px;
+  font-size: var(--fs-label);
+  font-weight: 500;
+  padding: 4px 11px;
+  border-radius: var(--r-pill);
 }
 .direction__badge--blue   { background: var(--tone-blue-bg); color: var(--tone-blue-fg); }
 .direction__badge--green  { background: var(--tone-green-bg); color: var(--tone-green-fg); }
@@ -1299,9 +1398,9 @@ footer .eyebrow {
 .direction__badge--purple { background: var(--tone-purple-bg); color: var(--tone-purple-fg); }
 .direction__badge--orange { background: var(--tone-orange-bg); color: var(--tone-orange-fg); }
 .direction__title {
-  font-variation-settings: "wght" 700;
-  font-size: clamp(18px, 2vw, 22px);
-  letter-spacing: -0.005em;
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  font-weight: 400;
+  letter-spacing: var(--ls-head);
 }
 .direction__flow {
   display: flex;
@@ -1310,136 +1409,121 @@ footer .eyebrow {
   flex-wrap: wrap;
 }
 .direction__flow .chip {
-  font-family: var(--font-mono);
-  font-size: 12.5px;
-  letter-spacing: 0.02em;
-  color: var(--text-muted);
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 5px 11px;
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  color: var(--ink-2);
+  background: var(--sand);
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-pill);
+  padding: 5px 12px;
 }
 .direction__flow .chip--blue   { color: var(--tone-blue-fg); background: var(--tone-blue-chip); border-color: var(--tone-blue-line); }
 .direction__flow .chip--green  { color: var(--tone-green-fg); background: var(--tone-green-chip); border-color: var(--tone-green-line); }
 .direction__flow .chip--yellow { color: var(--tone-yellow-fg); background: var(--tone-yellow-chip); border-color: var(--tone-yellow-line); }
 .direction__flow .chip--purple { color: var(--tone-purple-fg); background: var(--tone-purple-chip); border-color: var(--tone-purple-line); }
 .direction__flow .chip--orange { color: var(--tone-orange-fg); background: var(--tone-orange-chip); border-color: var(--tone-orange-line); }
-.direction__arrow { color: var(--text-faint); font-size: 13px; }
+.direction__arrow { color: var(--ink-4); font-size: 13px; }
 
-/* Real screenshots inside a direction breakdown are often square, and at
-   full container width they run far taller than the viewport. Cap them
-   down; the technical drawings elsewhere (e.g. copper-facade-bishkek)
-   stay full width since that rule targets .direction specifically. */
+/* Square screenshots inside a direction breakdown are capped. */
 .direction .media-frame--wide,
 .direction .media-frame--group {
   max-width: 640px;
   margin-inline: auto;
 }
-/* The compare block (reference photos + result) is meant to run wide --
-   it carries its own internal sizing (a fixed refs grid, a capped square
-   result), so it doesn't need the square-screenshot cap above it applies to. */
 .direction .media-frame--compare,
 .direction .media-frame--compare + .compare__credit {
   max-width: none;
   margin-inline: 0;
 }
 
-/* ---------- overview grid: six-card schematic summary ---------- */
-/* Mirrors the source deck's own "six directions" slide: a small icon,
-   the same badge/chip vocabulary as the detailed breakdown below it,
-   so a reader gets the map before the six long sections. */
-/* Headline figures.
-   Four columns of number, not four cards: the case's claims were buried in
-   paragraphs nobody reads to the end of, and a figure at 58px is read whether
-   or not the prose under it is. A hairline over each tile carries the structure,
-   so the row stays part of the page rather than becoming a widget on top of it.
-   Spans the text container, not the 1440 media breakout, so the figures line up
-   with the prose they summarise. */
+/* ---------- headline figures ---------- */
+/* The product site's stat strip: a short accent bar over each figure, the
+   figure itself light and tight, the label quiet underneath. */
 .metrics {
   display: grid;
-  /* auto-fit, not a fixed four: two cases carry three figures rather than
-     four, and a fixed grid left them hanging in three of four columns. */
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--space-md);
-  /* `.project-content` is a flex column with its own --space-xl gap; a margin
-     here stacked on top of it and pushed the first heading 192px down. */
+  gap: var(--s-6) var(--s-5);
   margin: 0;
+  padding-block: var(--s-7);
+  border-block: 1px solid var(--line);
 }
 .metric {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding-top: 14px;
-  /* Full-strength text, not --border: a hairline at 0.12 alpha disappeared
-     under the arrow field and the row lost the structure it depends on. */
-  border-top: 1px solid var(--text);
+  gap: var(--s-2);
+  min-width: 0;
+  padding-top: var(--s-4);
 }
-/* The UA stylesheet indents every <dd> by 40px, which pushed the figure and
-   its note off the label they belong to. */
+.metric::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 28px;
+  height: 2px;
+  background: var(--accent);
+}
 .metric dd { margin: 0; }
 .metric__value {
-  /* Above the label in the layout; below it in the DOM, where a <dl> needs
-     the term first. */
   order: -1;
-  font-variation-settings: "wght" 800;
-  font-size: clamp(38px, 4.6vw, 58px);
-  line-height: 0.94;
-  letter-spacing: -0.035em;
-  /* The arrow in `3 -> 1` and the % sign have to sit on the digits' own
-     advance grid, or the row reads as four different type sizes. */
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.04em;
   font-variant-numeric: tabular-nums;
-  color: var(--text);
-  margin-bottom: 4px;
+  color: var(--ink);
+  margin-bottom: var(--s-2);
 }
 .metric__label {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--ink);
 }
 .metric__note {
-  font-size: 13.5px;
+  font-size: var(--fs-xs);
   line-height: 1.45;
-  color: var(--text-faint);
+  color: var(--ink-3);
+  max-width: 30ch;
+  text-wrap: pretty;
 }
-/* A toned metric colours the figure and its own rule, nothing else. */
-.metric--blue { border-top-color: var(--tone-blue-line); }
+/* A toned metric colours the figure and its own bar, nothing else. */
+.metric--blue::before { background: var(--tone-blue-fg); }
 .metric--blue .metric__value { color: var(--tone-blue-fg); }
-.metric--green { border-top-color: var(--tone-green-line); }
+.metric--green::before { background: var(--tone-green-fg); }
 .metric--green .metric__value { color: var(--tone-green-fg); }
-.metric--yellow { border-top-color: var(--tone-yellow-line); }
+.metric--yellow::before { background: var(--tone-yellow-fg); }
 .metric--yellow .metric__value { color: var(--tone-yellow-fg); }
-.metric--purple { border-top-color: var(--tone-purple-line); }
+.metric--purple::before { background: var(--tone-purple-fg); }
 .metric--purple .metric__value { color: var(--tone-purple-fg); }
-.metric--orange { border-top-color: var(--tone-orange-line); }
+.metric--orange::before { background: var(--tone-orange-fg); }
 .metric--orange .metric__value { color: var(--tone-orange-fg); }
 
-/* Two-up before the figures start wrapping mid-number. */
 @media (max-width: 900px) {
   .metrics { grid-template-columns: repeat(2, 1fr); }
 }
 
+/* ---------- overview grid: six-card schematic summary ---------- */
 .overview-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-md);
-  margin: var(--space-lg) 0 var(--space-xl);
+  gap: var(--s-5);
+  margin: var(--s-7) 0 var(--s-10);
 }
 .overview-card {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
-  padding: var(--space-md);
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 1px;
+  gap: var(--s-3);
+  padding: var(--s-5);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
 }
 .overview-card__title {
-  font-variation-settings: "wght" 700;
-  font-size: 15px;
-  letter-spacing: -0.005em;
+  font-size: var(--fs-body);
+  font-weight: 500;
+  letter-spacing: -0.015em;
 }
 .overview-card__icon {
   width: 100%;
@@ -1447,6 +1531,8 @@ footer .eyebrow {
   display: flex;
   align-items: center;
   justify-content: center;
+  background: var(--sand);
+  border-radius: var(--r-md);
 }
 .overview-card__icon img {
   width: 100%;
@@ -1455,8 +1541,8 @@ footer .eyebrow {
 }
 .overview-card .direction__flow { gap: 6px; }
 .overview-card .direction__flow .chip {
-  font-size: 11.5px;
-  padding: 4px 9px;
+  font-size: var(--fs-label);
+  padding: 4px 10px;
 }
 @media (max-width: 900px) {
   .overview-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1466,15 +1552,12 @@ footer .eyebrow {
 }
 
 /* ---------- blueprint: drawing-sheet frame + title-block stamp ---------- */
-/* GOST-style sheet convention: a thin margin on three sides, a wider margin
-   on the left (for binding), a ruled border just inside that margin, and a
-   small title-block stamp flush with the bottom-right corner of that border.
-   The margin is always white paper, regardless of what's drawn inside. */
+/* GOST-style sheet: thin margin, wider binding margin on the left, a ruled
+   border and a title-block stamp. The paper is always white — it is part of
+   the drawing, not of the page theme. */
 
 .blueprint {
   background: #ffffff;
-  /* Thin margin, wider on the left for the binding edge — enough to read as a
-     drawing sheet without spending an eighth of a paired frame on paper. */
   padding: 7px 7px 7px 24px;
 }
 .blueprint__frame {
@@ -1488,10 +1571,6 @@ footer .eyebrow {
 }
 
 .blueprint__stamp {
-  /* Offset by the frame's own border-width so the stamp's outer edge
-     coincides with the frame line instead of sitting flush beside it —
-     two adjacent 1px lines read as one thick line; overlapping them
-     keeps it a single hairline. */
   position: absolute;
   right: -1px;
   bottom: -1px;
@@ -1518,7 +1597,7 @@ footer .eyebrow {
 }
 .blueprint__stamp-label:first-child { margin-left: 0; }
 .blueprint__stamp-label { text-transform: uppercase; color: #888; }
-.blueprint__stamp-value { font-weight: 600; }
+.blueprint__stamp-value { font-weight: 500; }
 
 @media (max-width: 420px) {
   .blueprint { padding: 5px 5px 5px 14px; }
@@ -1529,121 +1608,129 @@ footer .eyebrow {
   }
 }
 
-/* ---------- experience page ---------- */
+/* =========================================================
+   EXPERIENCE PAGE
+   ========================================================= */
 
 .exp-hero__grid {
   display: grid;
   grid-template-columns: minmax(200px, 300px) 1fr;
   gap: clamp(28px, 5vw, 64px);
   align-items: center;
-  margin-top: var(--space-md);
+  margin-top: var(--s-5);
 }
-.exp-hero__portrait { aspect-ratio: 1 / 1; }
+.exp-hero__portrait { aspect-ratio: 1 / 1; border-radius: var(--r-lg); }
 @media (max-width: 700px) {
   .exp-hero__grid { grid-template-columns: 1fr; }
   .exp-hero__portrait { max-width: 240px; }
 }
 
-.exp-list { margin-top: var(--space-lg); }
+.exp-list { margin-top: 0; display: flex; flex-direction: column; }
 
 .exp-entry {
   display: grid;
-  grid-template-columns: 150px 1fr;
-  gap: clamp(20px, 4vw, 48px);
-  padding-block: var(--space-lg);
-  border-top: 1px solid var(--border);
+  grid-template-columns: 200px 1fr;
+  gap: var(--s-7);
+  align-items: start;
+  padding-block: var(--s-6);
+  border-top: 1px solid var(--line);
 }
-.exp-entry:first-of-type { border-top: none; padding-top: 0; }
 
 .exp-entry__when {
   font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--text-faint);
-  white-space: nowrap;
-  padding-top: 2px;
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+  padding-top: 6px;
 }
 
 .exp-entry__body h2,
 .exp-entry__body h3 {
   margin: 0;
-  font-variation-settings: "wght" 700;
-  font-size: clamp(20px, 2.2vw, 26px);
-  letter-spacing: -0.005em;
+  font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+  font-weight: 500;
+  letter-spacing: -0.022em;
+  line-height: 1.3;
+  transition: color var(--dur-fast) var(--ease);
 }
+.exp-entry:hover .exp-entry__body h2 { color: var(--accent); }
 .exp-entry__role {
   margin-top: 4px;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--accent-light);
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
 }
 .exp-entry__body p.desc {
-  margin-top: 10px;
-  max-width: 62ch;
-  color: var(--text-body);
-  font-size: 16px;
-  line-height: 1.6;
+  margin-top: var(--s-4);
+  max-width: 58ch;
+  color: var(--ink-2);
+  font-size: var(--fs-sm);
+  line-height: 1.55;
 }
 .exp-entry__list {
-  margin-top: 10px;
-  max-width: 62ch;
-  color: var(--text-body);
-  font-size: 16px;
-  line-height: 1.5;
+  margin-top: var(--s-3);
+  max-width: 58ch;
+  color: var(--ink-2);
+  font-size: var(--fs-sm);
+  line-height: 1.55;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   padding-left: 1.15em;
 }
 .exp-entry__list li { padding-left: 4px; }
-.exp-entry__body .meta { margin-top: 10px; }
+.exp-entry__list li::marker { color: var(--ink-4); }
+.exp-entry__body .meta { margin-top: var(--s-3); }
 
 .exp-entry--pending .exp-entry__body {
-  border: 1.5px dashed var(--border);
-  border-radius: 14px;
-  padding: var(--space-sm) var(--space-md);
+  border: 1px dashed var(--line);
+  border-radius: var(--r-md);
+  padding: var(--s-4) var(--s-5);
 }
 .exp-entry--pending h2,
-.exp-entry--pending h3 { color: var(--text-muted); }
-.exp-entry--pending p.desc { color: var(--text-faint); font-style: italic; }
+.exp-entry--pending h3 { color: var(--ink-3); }
+.exp-entry--pending p.desc { color: var(--ink-3); font-style: italic; }
 
-@media (max-width: 640px) {
-  .exp-entry { grid-template-columns: 1fr; gap: 6px; }
+@media (max-width: 800px) {
+  .exp-entry { grid-template-columns: 1fr; gap: var(--s-2); }
 }
+
+/* ---------- previous / next case ---------- */
 
 .project-nav-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: var(--space-md);
-  padding-top: var(--space-lg);
-  border-top: 1px solid var(--border);
-  margin-top: var(--space-lg);
+  gap: var(--s-5);
+  padding-top: var(--s-7);
+  border-top: 1px solid var(--line);
+  margin-top: var(--s-7);
 }
 .project-nav-footer a {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--text-muted);
+  font-size: var(--fs-body);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--ink-2);
   text-decoration: none;
   max-width: 46%;
+  transition: color var(--dur-fast) var(--ease);
 }
 .project-nav-footer a svg { flex: none; }
-.project-nav-footer a:hover { color: var(--accent-light); }
+.project-nav-footer a:hover { color: var(--accent); }
 
 @media (max-width: 640px) {
   .project-nav-footer { align-items: flex-start; flex-direction: column; }
   .project-nav-footer a { max-width: none; }
 }
 
-/* ---------- media frames that hold a real placeholder photo ---------- */
+/* =========================================================
+   MEDIA FRAMES THAT HOLD A REAL IMAGE
+   ========================================================= */
 
 .media-frame.has-photo {
-  border-style: solid;
-  border-color: var(--border);
+  border: 1px solid var(--line);
+  background-image: none;
   padding: 0;
   overflow: hidden;
   display: block;
@@ -1657,14 +1744,24 @@ footer .eyebrow {
   display: block;
 }
 
-/* Clickable-image hover tell: a soft white glare sitting just outside the
-   frame's top edge, against the dark page background — not an inset overlay,
-   so it stays visible regardless of how light the image itself is. */
-.project-link .media-frame.has-photo,
-.about__portrait {
-  transition: box-shadow 400ms var(--ease-out-quart);
-}
-.project-link:hover .media-frame.has-photo,
+/* Clickable portrait: a soft glow just outside the frame on hover. */
+.about__portrait { transition: box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease); }
 .about__portrait:hover {
-  box-shadow: 0 -10px 26px -10px var(--glare);
+  transform: translateY(-3px);
+  box-shadow: 0 24px 50px -30px var(--glare);
+}
+
+/* 404: plain page on the base type, with the kicker and a display heading. */
+.project-block .eyebrow {
+  margin-bottom: var(--s-4);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--accent-text);
+}
+.project-block h1 {
+  margin-bottom: var(--s-5);
+  font-size: var(--fs-h1);
+  letter-spacing: var(--ls-display);
 }

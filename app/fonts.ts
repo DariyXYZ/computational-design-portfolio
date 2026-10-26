@@ -1,37 +1,21 @@
-import localFont from 'next/font/local';
+import { JetBrains_Mono, Onest } from 'next/font/google';
 
 /**
- * Both faces used to be base64-inlined into the stylesheet, which turned the
- * one render-blocking CSS request into 59 KB over the wire and cost ~410 ms of
- * FCP on a throttled connection. Served as real files they are preloaded in
- * parallel with the CSS and cached independently of it.
+ * The same pair as the product-design portfolio, so the two sites read as one
+ * person's work: Onest for everything, JetBrains Mono for figures, dates and
+ * tech lines. next/font self-hosts both at build time — no request to Google
+ * from the visitor's browser.
  */
-
-/** Body copy. Variable weight, so one file covers the whole 100–900 range. */
-export const nunito = localFont({
-  src: './fonts/nunito-sans-var.woff2',
-  weight: '100 900',
-  style: 'normal',
+export const onest = Onest({
+  subsets: ['latin', 'cyrillic'],
+  weight: ['400', '500', '600'],
+  variable: '--font-onest',
   display: 'swap',
-  variable: '--font-nunito',
-  preload: true,
-  fallback: ['Barlow', 'Inter', 'system-ui', 'sans-serif'],
-  // Nunito's metrics differ enough from the sans fallback that swapping in the
-  // real face shifts line boxes; matching the fallback's metrics avoids it.
-  adjustFontFallback: 'Arial',
 });
 
-/**
- * Display accent, used only for a handful of headings — so it stays out of the
- * preload set and loads when something on the page actually needs it.
- */
-export const fraunces = localFont({
-  src: './fonts/fraunces-accent.woff2',
-  weight: '700',
-  style: 'normal',
+export const mono = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  variable: '--font-mono-face',
   display: 'swap',
-  variable: '--font-fraunces',
-  preload: false,
-  fallback: ['Georgia', 'serif'],
-  adjustFontFallback: 'Times New Roman',
 });

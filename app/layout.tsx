@@ -7,7 +7,7 @@ import { SiteNav } from '@/components/site-nav';
 import { site } from '@/content/site';
 import { personJsonLd } from '@/lib/seo';
 import { themeInitScript } from '@/lib/theme';
-import { fraunces, nunito } from './fonts';
+import { mono, onest } from './fonts';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -35,7 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       // Next.js 16 no longer applies smooth scrolling to router navigations
       // implicitly; this opts back in to the `scroll-behavior` the CSS sets.
       data-scroll-behavior="smooth"
-      className={`${nunito.variable} ${fraunces.variable}`}
+      className={`${onest.variable} ${mono.variable}`}
       // The inline script below overwrites this before paint; it is here so the
       // served HTML is never themeless for a reader with scripting off.
       data-theme="dark"
