@@ -36,6 +36,7 @@
      instead of leaving a grey smudge under the object. */
   --hero-blend: multiply;
   --hero-filter: invert(1) contrast(1.25);
+  --hero-mark-alpha: 0.16; /* backdrop behind the hero copy */
   /* A white glare is invisible on white: the lift becomes a cast shadow. */
   --glare: rgba(27, 26, 24, 0.22);
 
@@ -141,6 +142,7 @@
      page that near-black shows as a box; a touch of contrast crushes it to 0. */
   --hero-blend: lighten;
   --hero-filter: contrast(1.12);
+  --hero-mark-alpha: 0.3;
   --glare: rgba(255, 106, 61, 0.35);
 
   --tone-blue-fg: #7fa8ff;
@@ -545,8 +547,8 @@ section, footer { scroll-margin-top: var(--nav-h); }
 
 .hero {
   position: relative;
-  padding-top: calc(var(--nav-h) + clamp(56px, 8vw, 104px));
-  padding-bottom: clamp(48px, 6vw, 88px);
+  padding-top: calc(var(--nav-h) + clamp(28px, 4vw, 56px));
+  padding-bottom: clamp(72px, 9vw, 128px);
   overflow: clip;
 }
 
@@ -651,27 +653,43 @@ section, footer { scroll-margin-top: var(--nav-h); }
   margin-top: var(--s-2);
 }
 
+/* The mark sits inside the half-ring, behind the copy, as a quiet backdrop.
+   The lower third — the mark's reflection — is masked out. */
 .hero__gif {
-  display: block;
-  width: min(64vw, 320px);
+  position: absolute;
+  top: calc(var(--nav-h) + clamp(8px, 2vw, 24px));
+  left: 50%;
+  width: min(88vw, 440px);
   height: auto;
-  margin: var(--s-4) auto 0;
-  position: relative;
-  z-index: 6;
+  transform: translateX(-50%);
+  z-index: 0;
+  pointer-events: none;
   mix-blend-mode: var(--hero-blend);
-  filter: var(--hero-filter);
+  filter: var(--hero-filter) opacity(var(--hero-mark-alpha));
+  -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 78%);
+  mask-image: linear-gradient(to bottom, #000 55%, transparent 78%);
+}
+/* On a phone the copy covers the mark almost entirely: smaller and quieter. */
+@media (max-width: 640px) {
+  .hero__gif { width: 72vw; top: calc(var(--nav-h) + 56px); }
+  :root { --hero-mark-alpha: 0.1; }
+  :root[data-theme='dark'] { --hero-mark-alpha: 0.22; }
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .hero .eyebrow, .hero h1, .hero .stack, .hero__actions, .hero__gif {
+  .hero .eyebrow, .hero h1, .hero .stack, .hero__actions {
     opacity: 0;
     animation: hero-in 760ms var(--ease) forwards;
   }
+  .hero__gif {
+    opacity: 0;
+    animation: hero-fade 1200ms var(--ease) 200ms forwards;
+  }
+  @keyframes hero-fade { to { opacity: 1; } }
   .hero .eyebrow { animation-delay: 60ms; }
   .hero h1 { animation-delay: 140ms; }
   .hero .stack { animation-delay: 220ms; }
   .hero__actions { animation-delay: 300ms; }
-  .hero__gif { animation-delay: 480ms; }
   @keyframes hero-in {
     from { opacity: 0; transform: translateY(14px); }
     to { opacity: 1; transform: translateY(0); }
