@@ -4,7 +4,8 @@ import type { Project } from '../types';
  * The department itself as a product: a Telegram Mini App that shows what the
  * computational-design department already has before it asks for a request.
  * Counts are taken from the app's own catalogue (web/src/features in the
- * comp_design_bot repo, 2026-10-13) and its test suites.
+ * comp_design_bot repo, 2026-10-13) and its test suites; pilot figures from
+ * the app's /my/metrics/ screen, 90 days to 2026-10-27.
  */
 export const solutionsHub: Project = {
   slug: 'solutions-hub',
@@ -162,6 +163,52 @@ export const solutionsHub: Project = {
         ],
         [
           "Request quality comes from the board's own history in Pyrus: how many requests were accepted without a round of clarification, and how long they waited before work started. The summary sits behind an admin screen in the app, so the department reads it where the work happens.",
+        ],
+      ],
+    },
+    {
+      kind: 'prose',
+      heading: 'What the pilot showed',
+      paragraphs: [
+        [
+          'The first 90 days are small, and the numbers say so plainly. The instrumentation works; the audience has not arrived yet.',
+        ],
+      ],
+    },
+    {
+      kind: 'metrics',
+      items: [
+        {
+          value: '4',
+          label: 'People',
+          note: 'Signed in over 90 days, none returned yet',
+        },
+        {
+          value: '39',
+          label: 'Opens',
+          note: '33 of them without signing in',
+        },
+        {
+          value: '8%',
+          label: 'Found a path',
+          note: 'Took a ready solution or sent a request',
+        },
+        {
+          value: '92%',
+          label: 'Left with nothing',
+          note: 'Looked at the cards and closed the app',
+        },
+      ],
+    },
+    {
+      kind: 'prose',
+      heading: 'The bottleneck is the door, not the room',
+      paragraphs: [
+        [
+          'Most opens never got past sign-in, and nobody came back on their own. That points away from the catalogue and towards distribution: the app lives one tap away inside Telegram, but nothing in an architect\'s day sends them there. Requests still arrive the old way, in the department chat.',
+        ],
+        [
+          'So the next step is not another screen. It is a link from the department chat in place of a free-form message, links from the bureau\'s project system to the matching topic, and an easier first sign-in. The same metrics will show whether it worked — the guardrail first.',
         ],
       ],
     },
