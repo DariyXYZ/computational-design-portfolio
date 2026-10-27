@@ -246,16 +246,18 @@ export function MediaFrame({
             }
           >
             {frame.cells.map((cell) => (
-              <div className="media-group__cell" key={cell.image.src}>
-                <Picture
-                  image={cell.image}
-                  // Cells split the container by column count.
-                  sizes={`(max-width: 700px) 100vw, ${Math.round(1160 / frame.cols)}px`}
-                />
+              <figure className="media-group__item" key={cell.image.src}>
+                <div className="media-group__cell">
+                  <Picture
+                    image={cell.image}
+                    // Cells split the container by column count.
+                    sizes={`(max-width: 700px) 100vw, ${Math.round(1160 / frame.cols)}px`}
+                  />
+                </div>
                 {cell.label ? (
-                  <span className="media-group__label">{cell.label}</span>
+                  <figcaption className="media-group__label">{cell.label}</figcaption>
                 ) : null}
-              </div>
+              </figure>
             ))}
           </div>
         </div>
