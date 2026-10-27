@@ -675,6 +675,28 @@ section, footer { scroll-margin-top: var(--nav-h); }
   border-block: 1px solid var(--line-2);
 }
 
+/* In the light theme the About band is a black slab: the dark palette is
+   scoped to the section, so everything inside re-colours from the tokens.
+   Still black and white — the orange accent stays a dark-theme-only thing. */
+[data-theme='light'] .about {
+  color-scheme: dark;
+  --paper: #000000;
+  --sand: #0b0b0b;
+  --sand-2: #141414;
+  --surface: #0a0a0a;
+  --ink: #f5f4f0;
+  --ink-2: #b9b6ae;
+  --ink-3: #8d8a83;
+  --ink-4: #6b685f;
+  --line: rgba(255, 255, 255, 0.11);
+  --line-2: rgba(255, 255, 255, 0.07);
+  --accent: #f5f4f0;
+  --accent-text: #8d8a83;
+  --glare: rgba(255, 255, 255, 0.28);
+  background: #000000;
+  color: var(--ink);
+}
+
 .about__grid {
   display: grid;
   grid-template-columns: minmax(220px, 300px) 1fr;
