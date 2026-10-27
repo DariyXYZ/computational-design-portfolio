@@ -538,7 +538,13 @@ section, footer { scroll-margin-top: var(--nav-h); }
   padding-top: calc(var(--nav-h) + clamp(28px, 4vw, 56px));
   padding-bottom: clamp(72px, 9vw, 128px);
   overflow: clip;
+  /* Fill most of the first screen; the black About band shows as a strip below. */
+  min-height: calc(100svh - clamp(72px, 10svh, 128px));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
+.hero > .container { width: 100%; }
 
 /* Warm glow behind the ring — dark theme only, on white it reads as dirt. */
 [data-theme='dark'] .hero::before {
