@@ -20,17 +20,6 @@ export const metadata: Metadata = {
   title: { absolute: site.title },
 };
 
-/**
- * Animated hero mark. Re-encoded from a 1.9 MB, 1080x1400 GIF down to a 45 KB
- * animated AVIF (88 KB animated WebP fallback) at the size it actually paints.
- */
-const HERO_ANIMATION = {
-  src: '/assets/img/hero-bg.webp',
-  alt: '',
-  width: 640,
-  height: 830,
-};
-
 /** Card copy comes from the index entry; status and tech line from the project. */
 function cardCopy(card: ProjectCard) {
   const project = getProject(card.slug);
@@ -160,14 +149,6 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
-        {/* Outside the container: its z-index would isolate the blend mode,
-            and the mark's near-black backdrop would show as a box. */}
-        <Picture
-          className="hero__gif"
-          image={HERO_ANIMATION}
-          sizes="(max-width: 900px) min(64vw, 300px), 340px"
-          loading="eager"
-        />
       </section>
 
       <section className="about" id="about">
