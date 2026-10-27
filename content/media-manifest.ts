@@ -423,6 +423,12 @@ export const mediaManifest: Record<string, readonly number[]> = {
     2400,
     2752
   ],
+  "/assets/img/voxel-architecture-hero-poster.jpg": [
+    400,
+    800,
+    1200,
+    1576
+  ],
   "/assets/img/voxel-architecture-nodes.png": [
     400,
     800,

@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
+import { HeroArc } from '@/components/hero-arc';
 import { ArrowRightIcon, EmailIcon, GitHubIcon, PhoneIcon, TelegramIcon } from '@/components/icons';
 import { MediaFrame, Picture } from '@/components/media';
 import { RichText } from '@/components/rich-text';
 import { bands, cards, getProject } from '@/content';
-import { home, person, site } from '@/content/site';
+import { home, nav, person, site } from '@/content/site';
 import type { ProjectCard } from '@/content/types';
 import { pageMetadata } from '@/lib/seo';
 
@@ -43,10 +44,41 @@ function cardCopy(card: ProjectCard) {
   };
 }
 
-function Featured({ card }: { card: ProjectCard }) {
+/** Two-digit case number, as on the product site's cards. */
+const pad = (n: number) => String(n).padStart(2, '0');
+
+/** Kicker row, title, blurb, then a footer: "View case" left, tech line right. */
+function CardBody({ card, number }: { card: ProjectCard; number: number }) {
   const copy = cardCopy(card);
   return (
-    <Link className="project-link" href={copy.href}>
+    <>
+      <p className="card__kicker">
+        <span className="card__num">{pad(number)}</span>
+        <span className="card__status">{copy.tag}</span>
+      </p>
+      <h3>{copy.title}</h3>
+      <p className="desc">{copy.blurb}</p>
+      <div className="card__foot">
+        <span className="card__more">
+          View case <ArrowUpRightIcon />
+        </span>
+        <span className="meta">{copy.meta}</span>
+      </div>
+    </>
+  );
+}
+
+function ArrowUpRightIcon() {
+  return (
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true" focusable="false">
+      <path d="M3.5 8.5l5-5M4.5 3.5h4v4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function Featured({ card, number }: { card: ProjectCard; number: number }) {
+  return (
+    <Link className="project-link" href={`/projects/${card.slug}`}>
       <div
         className={card.reverse ? 'featured featured--reverse' : 'featured'}
         data-reveal
@@ -55,26 +87,21 @@ function Featured({ card }: { card: ProjectCard }) {
           <MediaFrame frame={card.frame} context="featured" />
         </div>
         <div className="featured__text">
-          <span className="tag">{copy.tag}</span>
-          <h3>{copy.title}</h3>
-          <p className="desc">{copy.blurb}</p>
-          <p className="meta">{copy.meta}</p>
+          <CardBody card={card} number={number} />
         </div>
       </div>
     </Link>
   );
 }
 
-function Card({ card, index }: { card: ProjectCard; index: number }) {
-  const copy = cardCopy(card);
+function Card({ card, index, number }: { card: ProjectCard; index: number; number: number }) {
   return (
-    <Link className="project-link" href={copy.href}>
+    <Link className="project-link" href={`/projects/${card.slug}`}>
       <article className="card" data-reveal style={{ '--i': index } as React.CSSProperties}>
         <MediaFrame frame={card.frame} context="card" />
-        <span className="tag">{copy.tag}</span>
-        <h3>{copy.title}</h3>
-        <p className="desc">{copy.blurb}</p>
-        <p className="meta">{copy.meta}</p>
+        <div className="card__body">
+          <CardBody card={card} number={number} />
+        </div>
       </article>
     </Link>
   );
@@ -94,22 +121,53 @@ export default function HomePage() {
     })
     .filter(({ featured, grid }) => featured.length + grid.length > 0);
 
+  // Cards are numbered in the order they are read, across all bands.
+  const numbers = new Map(
+    banded
+      .flatMap(({ featured, grid }) => [...featured, ...grid])
+      .map((card, i) => [card.slug, i + 1]),
+  );
+  const numberOf = (card: ProjectCard) => numbers.get(card.slug) ?? 0;
+
+  // Two-tone heading, as on the product site: the greeting in ink, the role
+  // dimmed. Splits the existing sentence; the copy itself is unchanged.
+  const comma = home.heading.indexOf(', ');
+  const headLead = comma > 0 ? home.heading.slice(0, comma + 1) : home.heading;
+  const headRest = comma > 0 ? home.heading.slice(comma + 2) : '';
+
   return (
     <>
       <section className="hero">
-        <div className="hero__row">
-          <div className="container">
-            <p className="eyebrow">{home.eyebrow}</p>
-            <h1>{home.heading}</h1>
-            <p className="stack">{home.stack}</p>
+        <HeroArc />
+        <div className="hero__inner container">
+          <p className="eyebrow">{home.eyebrow}</p>
+          <h1>
+            {headLead}
+            {headRest ? (
+              <>
+                {' '}
+                <span className="dim">{headRest}</span>
+              </>
+            ) : null}
+          </h1>
+          <p className="stack">{home.stack}</p>
+          <div className="hero__actions">
+            <Link className="btn btn--primary" href="/#systems">
+              {home.systems.heading}
+            </Link>
+            <Link className="btn btn--secondary" href="/experience">
+              {home.about.cta}
+            </Link>
           </div>
-          <Picture
-            className="hero__gif"
-            image={HERO_ANIMATION}
-            sizes="(max-width: 900px) min(64vw, 300px), min(30vw, 380px)"
-            loading="eager"
-          />
         </div>
+        {/* Outside the container: its z-index would isolate the blend mode,
+            and the mark's near-black backdrop would show as a box. */}
+        <Picture
+          className="hero__gif"
+          image={HERO_ANIMATION}
+          sizes="(max-width: 900px) min(64vw, 300px), 340px"
+          loading="eager"
+        />
       </section>
 
       <section className="about" id="about">
@@ -172,6 +230,9 @@ export default function HomePage() {
 
       <section className="systems" id="systems">
         <div className="container">
+          <p className="section-kicker" data-reveal>
+            {nav.find((item) => item.href === '/#systems')?.label}
+          </p>
           <h2 data-reveal>{home.systems.heading}</h2>
           <p className="intro" data-reveal style={{ '--i': 1 } as React.CSSProperties}>
             {home.systems.intro}
@@ -187,13 +248,13 @@ export default function HomePage() {
               </div>
 
               {featured.map((card) => (
-                <Featured card={card} key={card.slug} />
+                <Featured card={card} number={numberOf(card)} key={card.slug} />
               ))}
 
               {grid.length > 0 ? (
                 <div className="grid">
                   {grid.map((card, index) => (
-                    <Card card={card} index={index} key={card.slug} />
+                    <Card card={card} index={index} number={numberOf(card)} key={card.slug} />
                   ))}
                 </div>
               ) : null}

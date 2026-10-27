@@ -34,17 +34,6 @@ const MATERIAL = '0 -960 960 960';
 const BRAND = '0 0 24 24';
 
 /** Wordmark spark. */
-export function MarkIcon({ size = 26, className }: IconProps) {
-  return (
-    <Glyph
-      size={size}
-      className={className}
-      viewBox={MATERIAL}
-      d="m176-120-56-56 301-302-181-45 198-123-17-234 179 151 216-88-87 217 151 178-234-16-124 198-45-181-301 301Zm24-520-80-80 80-80 80 80-80 80Zm355 197 48-79 93 7-60-71 35-86-86 35-71-59 7 92-79 49 90 22 23 90Zm165 323-80-80 80-80 80 80-80 80ZM569-570Z"
-    />
-  );
-}
-
 export function GitHubIcon({ size = 15, className }: IconProps) {
   return (
     <Glyph

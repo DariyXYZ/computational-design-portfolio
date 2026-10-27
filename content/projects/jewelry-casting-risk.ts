@@ -12,7 +12,7 @@ export const jewelryCastingRisk: Project = {
       "src": "/assets/img/jewelry-casting-risk-hero.png",
       "alt": "Color-coded casting-risk analysis over the Grasshopper definition that produced it",
       "width": 1800,
-      "height": 846
+      "height": 861
     }
   },
   "blocks": [

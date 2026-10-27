@@ -290,7 +290,7 @@ h1[id], h2[id], h3[id], h4[id] { scroll-margin-top: calc(var(--nav-h) + 16px); }
 
 /* Kicker: small uppercase label with a short rule in front — the section
    marker the product portfolio uses above every heading. */
-.hero .eyebrow,
+.section-kicker,
 footer .eyebrow,
 .band__label {
   display: flex;
@@ -303,7 +303,7 @@ footer .eyebrow,
   text-transform: uppercase;
   color: var(--accent-text);
 }
-.hero .eyebrow::before,
+.section-kicker::before,
 footer .eyebrow::before,
 .band__label::before {
   content: "";
@@ -312,6 +312,37 @@ footer .eyebrow::before,
   background: currentColor;
   flex: none;
 }
+.section-kicker { margin-bottom: var(--s-4); }
+
+/* Two-tone heading: the second half quieter, as on the product site. */
+.dim { color: var(--ink-4); }
+
+/* Pill buttons. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 52px;
+  padding-inline: 26px;
+  border: 1px solid transparent;
+  border-radius: var(--r-pill);
+  font-size: var(--fs-body);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  text-decoration: none;
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease),
+    transform var(--dur-fast) var(--ease);
+}
+.btn:active { transform: translateY(1px); }
+.btn--primary { background: var(--ink); color: var(--paper); }
+.btn--primary:hover { background: color-mix(in srgb, var(--accent) 84%, var(--paper)); }
+.btn--secondary { background: var(--surface); color: var(--ink); border-color: var(--line); }
+.btn--secondary:hover { background: var(--sand-2); border-color: var(--accent); }
 
 /* =========================================================
    REACTIVE FIELD + INVERTED CURSOR
@@ -359,7 +390,8 @@ footer .eyebrow::before,
 }
 
 /* =========================================================
-   NAV
+   NAV — the product site's header: mark and links on the left,
+   GitHub pill and theme switch on the right, no rule until scrolled
    ========================================================= */
 
 .nav {
@@ -371,15 +403,17 @@ footer .eyebrow::before,
   z-index: 50;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: var(--s-6);
   padding-inline: var(--gutter);
   background: color-mix(in srgb, var(--paper) 82%, transparent);
   backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--line-2);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--dur) var(--ease);
 }
+.nav.is-scrolled { border-bottom-color: var(--line-2); }
 .nav__mark {
   display: inline-flex;
+  flex: none;
   align-items: center;
   gap: 10px;
   font-size: 1rem;
@@ -387,17 +421,23 @@ footer .eyebrow::before,
   letter-spacing: -0.02em;
   color: var(--ink);
   text-decoration: none;
-  transition: color var(--dur-fast) var(--ease);
 }
-.nav__mark:hover { color: var(--accent); }
-.nav__mark-icon { flex: none; width: 22px; height: 22px; }
+.nav__mark-icon {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+[data-theme='dark'] .nav__mark-icon { filter: invert(1); }
 
 .nav__links {
   display: flex;
   align-items: center;
   gap: var(--s-5);
+  margin-left: var(--s-4);
 }
 .nav__links a {
+  padding: 6px 0;
   font-size: var(--fs-sm);
   color: var(--ink-2);
   text-decoration: none;
@@ -405,25 +445,33 @@ footer .eyebrow::before,
 }
 .nav__links a:hover { color: var(--ink); }
 
-.nav__links .nav__cta {
+.nav__actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+}
+
+/* Secondary pill, like the product site's contact button. */
+.nav__cta {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  height: 40px;
-  padding-inline: 18px;
+  height: 36px;
+  padding-inline: 16px;
   font-size: var(--fs-sm);
   font-weight: 500;
-  color: var(--paper);
-  background: var(--ink);
-  border: 1px solid transparent;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
   border-radius: var(--r-pill);
   text-decoration: none;
-  transition: background-color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease),
+    transform var(--dur-fast) var(--ease);
 }
-.nav__links .nav__cta:hover {
-  color: var(--paper);
-  background: color-mix(in srgb, var(--accent) 84%, var(--paper));
-}
+.nav__cta:hover { background: var(--sand-2); border-color: var(--accent); }
 .nav__cta:active { transform: translateY(1px); }
 .nav__cta svg { flex: none; }
 
@@ -454,10 +502,9 @@ footer .eyebrow::before,
 .theme-toggle:hover .theme-toggle__icon { transform: rotate(-15deg); }
 
 @media (max-width: 640px) {
-  /* Section jump-links are one scroll away; keep the mark, theme and GitHub. */
-  .nav__links { gap: var(--s-2); }
-  .nav__links a:not(.nav__cta) { display: none; }
-  .nav__mark-text { display: none; }
+  /* Section jump-links are one scroll away; keep the mark, GitHub and theme. */
+  .nav__links { display: none; }
+  .nav__actions { gap: var(--s-2); }
 }
 
 section, footer { scroll-margin-top: var(--nav-h); }
@@ -493,20 +540,17 @@ section, footer { scroll-margin-top: var(--nav-h); }
 .back-link svg { flex: none; }
 
 /* =========================================================
-   HERO
+   HERO — centred, under a dotted half-ring, as on the product site
    ========================================================= */
 
 .hero {
   position: relative;
-  min-height: min(92vh, 780px);
-  padding-top: var(--nav-h);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  padding-top: calc(var(--nav-h) + clamp(56px, 8vw, 104px));
+  padding-bottom: clamp(48px, 6vw, 88px);
   overflow: clip;
 }
 
-/* Warm glow behind the mark — dark theme only, on white it reads as dirt. */
+/* Warm glow behind the ring — dark theme only, on white it reads as dirt. */
 [data-theme='dark'] .hero::before {
   content: "";
   position: absolute;
@@ -521,69 +565,113 @@ section, footer { scroll-margin-top: var(--nav-h); }
   z-index: 0;
 }
 
-.hero__row {
+.hero-arc {
+  position: absolute;
+  top: calc(var(--nav-h) - 130px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1400px, 132vw);
+  height: auto;
+  aspect-ratio: 1;
+  pointer-events: none;
+  z-index: 2;
+}
+.hero-arc__mark { opacity: 0; animation: arc-mark-in 140ms ease-out both; }
+.hero-arc__lead { opacity: 0; animation: arc-lead-out 520ms ease-out backwards; }
+.hero-arc__accent { opacity: 0; transition: opacity 120ms linear; }
+@keyframes arc-lead-out {
+  0%, 20% { opacity: 1; }
+  100% { opacity: 0; }
+}
+@keyframes arc-mark-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@media (max-width: 720px) {
+  .hero-arc { top: calc(var(--nav-h) - 38px); width: 124vw; }
+  .hero-arc__mark circle { r: 4px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-arc__mark { opacity: 1; animation: none; }
+  .hero-arc__accent { transition: none; }
+  .hero-arc__lead { opacity: 0; animation: none; }
+}
+
+.hero__inner {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  padding-inline: var(--gutter);
-}
-.hero__gif {
-  order: -1;
-  width: min(64vw, 300px);
-  height: auto;
-  position: relative;
-  z-index: 6;
-  margin-bottom: 8px;
-  mix-blend-mode: var(--hero-blend);
-  filter: var(--hero-filter);
-}
-@media (min-width: 900px) {
-  .hero__row {
-    flex-direction: row;
-    justify-content: center;
-    gap: clamp(20px, 3vw, 56px);
-    max-width: 1200px;
-    margin-inline: auto;
-  }
-  .hero .container {
-    width: fit-content;
-    max-width: 480px;
-    padding-inline: 0;
-  }
-  .hero__gif {
-    order: 0;
-    flex: none;
-    width: min(30vw, 380px);
-    margin-bottom: 0;
-  }
+  text-align: center;
+  gap: var(--s-5);
 }
 
-.hero .eyebrow { margin-bottom: var(--s-5); }
+/* Status pill with a live dot — the product site's availability badge. */
+.hero .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  height: 36px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  background: var(--surface);
+  font-size: var(--fs-sm);
+  color: var(--ink);
+}
+.hero .eyebrow::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #00ed00;
+  flex: none;
+}
+[data-theme='dark'] .hero .eyebrow::before { background: var(--accent); }
 
 .hero h1 {
-  font-size: clamp(2.1rem, 4.6vw, 3.6rem);
+  margin-top: var(--s-2);
+  font-size: clamp(2rem, 5.2vw, 3.6rem);
   letter-spacing: var(--ls-display);
-  line-height: 1.02;
-  max-width: 17ch;
+  line-height: 1.04;
+  max-width: 20ch;
   color: var(--ink);
 }
 
 .hero .stack {
-  margin-top: var(--s-6);
   font-family: var(--font-mono);
   font-size: var(--fs-xs);
   color: var(--ink-3);
 }
 
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--s-3);
+  margin-top: var(--s-2);
+}
+
+.hero__gif {
+  display: block;
+  width: min(64vw, 320px);
+  height: auto;
+  margin: var(--s-4) auto 0;
+  position: relative;
+  z-index: 6;
+  mix-blend-mode: var(--hero-blend);
+  filter: var(--hero-filter);
+}
+
 @media (prefers-reduced-motion: no-preference) {
-  .hero .eyebrow, .hero h1, .hero .stack {
+  .hero .eyebrow, .hero h1, .hero .stack, .hero__actions, .hero__gif {
     opacity: 0;
     animation: hero-in 760ms var(--ease) forwards;
   }
   .hero .eyebrow { animation-delay: 60ms; }
   .hero h1 { animation-delay: 140ms; }
-  .hero .stack { animation-delay: 300ms; }
+  .hero .stack { animation-delay: 220ms; }
+  .hero__actions { animation-delay: 300ms; }
+  .hero__gif { animation-delay: 480ms; }
   @keyframes hero-in {
     from { opacity: 0; transform: translateY(14px); }
     to { opacity: 1; transform: translateY(0); }
@@ -800,7 +888,6 @@ section, footer { scroll-margin-top: var(--nav-h); }
   justify-content: center;
   padding: clamp(24px, 4vw, 48px);
 }
-.featured__text .tag { margin-bottom: var(--s-5); }
 .featured__text h3 {
   font-size: clamp(1.5rem, 2.6vw, 2.1rem);
   font-weight: 400;
@@ -816,7 +903,7 @@ section, footer { scroll-margin-top: var(--nav-h); }
   max-width: 52ch;
   text-wrap: pretty;
 }
-.featured__text .meta { margin-top: var(--s-5); }
+.featured__text .card__foot { margin-top: var(--s-6); }
 
 @media (max-width: 780px) {
   .featured, .featured--reverse { grid-template-columns: 1fr; }
@@ -884,34 +971,81 @@ section, footer { scroll-margin-top: var(--nav-h); }
 .card {
   display: flex;
   flex-direction: column;
-  gap: var(--s-3);
   height: 100%;
-  padding-bottom: var(--s-6);
   border: 1px solid var(--line);
   border-radius: var(--r-lg);
   background: var(--surface);
   overflow: hidden;
 }
-.card > :not(.media-frame) { margin-inline: var(--s-6); }
 .card .media-frame {
   aspect-ratio: 16 / 10;
-  margin-bottom: var(--s-3);
   border: 0;
   border-bottom: 1px solid var(--line-2);
   border-radius: 0;
 }
+.card__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  padding: var(--s-6);
+}
 .card h3 {
-  font-size: clamp(1.15rem, 1.6vw, 1.35rem);
-  font-weight: 500;
-  letter-spacing: -0.022em;
-  line-height: 1.25;
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  font-weight: 400;
+  letter-spacing: var(--ls-head);
+  line-height: 1.15;
 }
 .card p.desc {
   color: var(--ink-2);
   font-size: var(--fs-sm);
   line-height: 1.55;
 }
-.card .meta { margin-top: auto; padding-top: var(--s-2); }
+
+/* "01 · Status" over the title, as on the product site's cards. */
+.card__kicker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: var(--s-1);
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+}
+.card__num { font-family: var(--font-mono); color: var(--accent-text); }
+.card__status { display: inline-flex; align-items: center; gap: 10px; }
+.card__status::before {
+  content: "";
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--ink-4);
+}
+
+/* Footer row: "View case" on the left, the tech line on the right. */
+.card__foot {
+  margin-top: auto;
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--line-2);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-5);
+}
+.card__body p.desc { margin-bottom: var(--s-3); }
+.card__more {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--ink);
+  transition: color var(--dur-fast) var(--ease);
+}
+.card__more svg { transition: transform var(--dur-fast) var(--ease); }
+.project-link:hover .card__more { color: var(--accent); }
+.project-link:hover .card__more svg { transform: translate(2px, -2px); }
+.card__foot .meta { text-align: right; }
 
 @media (prefers-reduced-motion: no-preference) {
   .featured, .card {
@@ -1256,7 +1390,8 @@ footer h2 {
   aspect-ratio: var(--group-ratio, 1 / 1);
   overflow: hidden;
   border-radius: var(--r-screen);
-  background: #0a0a0a;
+  /* Page colour, not a fixed black: several cells are transparent renders. */
+  background: var(--paper);
 }
 .media-group__cell img {
   width: 100%;
@@ -1337,7 +1472,7 @@ footer h2 {
   aspect-ratio: 1 / 1;
   border-radius: var(--r-lg);
   overflow: hidden;
-  background: #0a0a0a;
+  background: var(--paper);
 }
 .compare__result img {
   width: 100%;

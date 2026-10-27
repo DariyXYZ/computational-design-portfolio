@@ -22,6 +22,17 @@ export function PageEffects() {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const cleanups: Array<() => void> = [];
 
+    // --- Header rule ------------------------------------------------------
+    // The nav draws its bottom hairline only once the page has scrolled, as on
+    // the product site.
+    const navBar = document.querySelector<HTMLElement>('.nav');
+    if (navBar) {
+      const onScroll = () => navBar.classList.toggle('is-scrolled', window.scrollY > 8);
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+      cleanups.push(() => window.removeEventListener('scroll', onScroll));
+    }
+
     // --- Looping case clips ------------------------------------------------
     // Part of the cases' visual content, so they are not gated behind reduced
     // motion; they are paused when the tab is hidden or the clip leaves view.

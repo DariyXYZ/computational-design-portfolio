@@ -1,14 +1,17 @@
 import Link from 'next/link';
 
 import { nav, person, site } from '@/content/site';
-import { GitHubIcon, MarkIcon } from './icons';
+import { asset } from '@/lib/asset';
+import { GitHubIcon } from './icons';
 import { ThemeToggle } from './theme-toggle';
 
 /**
  * Primary navigation, rendered once in the root layout.
  *
- * The section links point at the index page's anchors, so they work from a case
- * page too — the old build wrote `../index.html#about` into every generated file.
+ * Laid out like the product-design portfolio's header: the mark and the
+ * section links on the left, the GitHub pill and the theme switch on the right.
+ * The section links point at the index page's anchors, so they work from a
+ * case page too.
  */
 export function SiteNav() {
   return (
@@ -16,7 +19,9 @@ export function SiteNav() {
       {/* The label is a span so narrow screens can drop it and keep the mark;
           aria-label then carries the name the hidden text used to give. */}
       <Link className="nav__mark" href="/" aria-label={site.wordmark}>
-        <MarkIcon className="nav__mark-icon" />
+        {/* Same mark as the product-design portfolio. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="nav__mark-icon" src={asset('/logo.svg')} alt="" aria-hidden="true" />
         <span className="nav__mark-text">{site.wordmark}</span>
       </Link>
       <div className="nav__links">
@@ -25,11 +30,13 @@ export function SiteNav() {
             {item.label}
           </Link>
         ))}
-        <ThemeToggle />
+      </div>
+      <div className="nav__actions">
         <a className="nav__cta" href={person.github} target="_blank" rel="noopener">
           <GitHubIcon size={13} />
           GitHub
         </a>
+        <ThemeToggle />
       </div>
     </nav>
   );

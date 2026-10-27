@@ -11,7 +11,7 @@ export const site = {
     "Dariy Nazarov's computational-design portfolio: Rhino and Grasshopper tools, fabrication systems, simulation, BIM interoperability, and AI-assisted geometry workflows.",
   /** Canonical origin + project path. Used for absolute metadata URLs. */
   url: 'https://dariyxyz.github.io/computational-design-portfolio',
-  themeColor: '#000000',
+  themeColor: '#ffffff',
   /** Falls back to this when a page defines no social image. */
   ogImage: '/assets/img/mcp-rhino-agent-cover-poster.jpg',
 } as const;
