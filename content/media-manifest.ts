@@ -398,6 +398,43 @@ export const mediaManifest: Record<string, readonly number[]> = {
     800,
     900
   ],
+  "/assets/img/solutions-hub-card.webp": [
+    400,
+    800,
+    960
+  ],
+  "/assets/img/solutions-hub-cover.webp": [
+    400,
+    800,
+    1200,
+    1800,
+    2396
+  ],
+  "/assets/img/solutions-hub-deck.webp": [
+    400,
+    800,
+    860
+  ],
+  "/assets/img/solutions-hub-feed.webp": [
+    400,
+    800,
+    860
+  ],
+  "/assets/img/solutions-hub-request-form.webp": [
+    400,
+    800,
+    860
+  ],
+  "/assets/img/solutions-hub-solution-guide.webp": [
+    400,
+    800,
+    860
+  ],
+  "/assets/img/solutions-hub-walkthrough-poster.jpg": [
+    400,
+    800,
+    860
+  ],
   "/assets/img/tessellation-studies-card.webp": [
     400,
     720

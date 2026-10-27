@@ -52,7 +52,7 @@ export const home = {
   systems: {
     heading: 'Selected Systems',
     intro:
-      "Ten systems, ranked by how real they are: what shipped, what's built, and what's still a study. Each page separates shipped work, built outcomes, and studies; unfinished documentation remains explicitly marked.",
+      "Eleven systems, ranked by how real they are: what shipped, what's built, and what's still a study. Each page separates shipped work, built outcomes, and studies; unfinished documentation remains explicitly marked.",
   },
   contact: {
     eyebrow: 'Contact',
@@ -62,8 +62,6 @@ export const home = {
   asideNote: [
     'Also built, not shown as headline work: ',
     { emphasis: 'a Grasshopper node-click heatmap' },
-    ' for auditing design workflows, and ',
-    { emphasis: 'a Telegram bot' },
-    ' that collects tasks across architecture teams.',
+    ' for auditing design workflows.',
   ] satisfies RichText,
 } as const;

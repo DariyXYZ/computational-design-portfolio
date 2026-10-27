@@ -852,7 +852,7 @@ section, footer { scroll-margin-top: var(--nav-h); }
   padding: 20px;
 }
 .media-frame svg { opacity: 0.6; }
-.media-frame span {
+.media-frame > span {
   font-size: var(--fs-xs);
   letter-spacing: var(--ls-label);
   text-transform: uppercase;
@@ -1311,6 +1311,9 @@ footer h2 {
   margin-inline: auto;
 }
 .project-block__aside img { width: 100%; height: auto; display: block; }
+/* A phone-shaped clip beside prose reads at phone size, not column size. */
+.project-block__aside .media-frame--video,
+.project-block__aside .media-frame:has(video) { max-width: 320px; }
 
 @media (max-width: 900px) {
   .project-content > .project-block--with-aside {

@@ -7,6 +7,7 @@ import { jewelryCastingRisk } from './projects/jewelry-casting-risk';
 import { mcpRhinoAgent } from './projects/mcp-rhino-agent';
 import { pedestrianFlow } from './projects/pedestrian-flow';
 import { revitPanelExport } from './projects/revit-panel-export';
+import { solutionsHub } from './projects/solutions-hub';
 import { tessellationStudies } from './projects/tessellation-studies';
 import { voxelArchitecture } from './projects/voxel-architecture';
 import { windComfort } from './projects/wind-comfort';
@@ -25,6 +26,7 @@ export const projects: readonly Project[] = [
   pedestrianFlow,
   daylightMassing,
   // In use
+  solutionsHub,
   revitPanelExport,
   windComfort,
   insolationMound,
@@ -147,6 +149,24 @@ export const cards: readonly ProjectCard[] = [
         alt: 'Massing study, stepped sun-access diagram',
         width: 720,
         height: 482,
+      },
+    },
+  },
+  
+  
+  {
+    slug: 'solutions-hub',
+    band: 'in-use',
+    placement: 'featured',
+    blurb:
+      "A Telegram Mini App that puts the department's 41 ready scripts, tools and project algorithms in front of architects first, and turns everything else into a request with its context attached, straight onto the department's Pyrus board.",
+    frame: {
+      kind: 'image',
+      image: {
+        src: '/assets/img/solutions-hub-card.webp',
+        alt: 'The Mini App on a phone, showing a topic card',
+        width: 960,
+        height: 720,
       },
     },
   },
