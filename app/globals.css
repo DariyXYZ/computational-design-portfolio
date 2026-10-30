@@ -175,7 +175,7 @@ html { scrollbar-color: var(--line) transparent; }
    to sit on a dark page. Inverting them back would swing every hue to its
    opposite, so the paired hue-rotate puts the colours where they started. */
 :root[data-theme='light'] .overview-card__icon img,
-:root[data-theme='light'] .code-media img {
+:root[data-theme='light'] .code-media:not(.code-media--natural) img {
   filter: invert(1) hue-rotate(180deg);
 }
 
@@ -1296,6 +1296,19 @@ footer h2 {
 }
 /* Auto margins stop a grid item stretching; a group has no cap, so fill. */
 .project-content > .media-row--wide .media-frame--group { width: 100%; }
+
+/* On desktop a wide row of several frames sits two abreast. Node canvases
+   (rendered bare, as .code-media) are line art with small labels, so a row
+   holding one stays single-column; an odd frame left at the end spans. */
+@media (min-width: 901px) {
+  .project-content > .media-row--wide:has(> .media-frame + .media-frame):not(:has(> .code-media)) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+  .project-content > .media-row--wide > .media-frame:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
 
 @media (max-width: 700px) {
   .project-content > .media-row--wide {

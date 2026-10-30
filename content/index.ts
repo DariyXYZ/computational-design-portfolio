@@ -182,8 +182,8 @@ export const cards: readonly ProjectCard[] = [
       image: {
         src: '/assets/img/insolation-mound-card.webp',
         alt: 'Voxel insolation mound built from per-window results',
-        width: 720,
-        height: 720,
+        width: 1440,
+        height: 1440,
       },
     },
   },
@@ -233,10 +233,10 @@ export const cards: readonly ProjectCard[] = [
     frame: {
       kind: 'image',
       image: {
-        src: '/assets/img/jewelry-casting-risk-cover-card.webp',
+        src: '/assets/img/jewelry-casting-risk-cover.webp',
         alt: 'Color-coded casting-risk analysis over a Grasshopper definition',
-        width: 720,
-        height: 405,
+        width: 1600,
+        height: 900,
       },
     },
   },

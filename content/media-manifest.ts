@@ -48,7 +48,8 @@ export const mediaManifest: Record<string, readonly number[]> = {
     1200,
     1800,
     2400,
-    3600
+    3600,
+    7200
   ],
   "/assets/img/copper-facade-panel-fit-poster.jpg": [
     400,
@@ -61,7 +62,9 @@ export const mediaManifest: Record<string, readonly number[]> = {
   ],
   "/assets/img/insolation-mound-card.webp": [
     400,
-    720
+    800,
+    1200,
+    1440
   ],
   "/assets/img/insolation-mound-heatmap-nodes.png": [
     400,
@@ -91,6 +94,7 @@ export const mediaManifest: Record<string, readonly number[]> = {
     1200,
     1800,
     2400,
+    3600,
     3840
   ],
   "/assets/img/insolation-mound-sunpath.jpg": [
@@ -107,6 +111,7 @@ export const mediaManifest: Record<string, readonly number[]> = {
     1200,
     1800,
     2400,
+    3600,
     3840
   ],
   "/assets/img/insolation-mound-windows-nodes.png": [
@@ -123,11 +128,8 @@ export const mediaManifest: Record<string, readonly number[]> = {
     1200,
     1800,
     2400,
+    3600,
     3840
-  ],
-  "/assets/img/jewelry-casting-risk-cover-card.webp": [
-    400,
-    720
   ],
   "/assets/img/jewelry-casting-risk-cover.webp": [
     400,
@@ -153,6 +155,7 @@ export const mediaManifest: Record<string, readonly number[]> = {
     1200,
     1800,
     2400,
+    3600,
     3840
   ],
   "/assets/img/jewelry-casting-risk-rejects.jpg": [
@@ -173,6 +176,7 @@ export const mediaManifest: Record<string, readonly number[]> = {
     1200,
     1800,
     2400,
+    3600,
     3840
   ],
   "/assets/img/jewelry-casting-risk-stone-ring.png": [
@@ -181,6 +185,7 @@ export const mediaManifest: Record<string, readonly number[]> = {
     1200,
     1800,
     2400,
+    3600,
     3840
   ],
   "/assets/img/jewelry-casting-risk-workflow.webp": [
@@ -361,16 +366,24 @@ export const mediaManifest: Record<string, readonly number[]> = {
   "/assets/img/pedestrian-flow-heatmap-poster.jpg": [
     400,
     800,
-    1152
+    1200,
+    1800,
+    2400,
+    2560
   ],
   "/assets/img/pedestrian-flow-home-poster.jpg": [
     400,
-    720
+    800,
+    1200,
+    1280
   ],
   "/assets/img/pedestrian-flow-install-poster.jpg": [
     400,
     800,
-    1152
+    1200,
+    1800,
+    2400,
+    2560
   ],
   "/assets/img/pedestrian-flow-nodes.png": [
     400,
@@ -378,17 +391,24 @@ export const mediaManifest: Record<string, readonly number[]> = {
     1200,
     1800,
     2400,
-    3600
+    3600,
+    7202
   ],
   "/assets/img/pedestrian-flow-people-poster.jpg": [
     400,
     800,
-    1152
+    1200,
+    1800,
+    2400,
+    2560
   ],
   "/assets/img/pedestrian-flow-template-poster.jpg": [
     400,
     800,
-    1152
+    1200,
+    1800,
+    2400,
+    2560
   ],
   "/assets/img/pedestrian-flow-toolbar.png": [
     400,
@@ -489,6 +509,7 @@ export const mediaManifest: Record<string, readonly number[]> = {
     1200,
     1800,
     2400,
-    3600
+    3600,
+    7200
   ]
 };

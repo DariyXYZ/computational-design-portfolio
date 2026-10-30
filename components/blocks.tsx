@@ -135,18 +135,26 @@ export function ProjectBlock({ block }: { block: Block }) {
       );
     }
 
-    case 'mediaRow':
+    case 'mediaRow': {
+      const count = block.frames.length;
+      // A wide row holding a bare canvas stays one column (see globals.css),
+      // so every frame in it paints the full breakout.
+      const singleColumn =
+        block.wide && block.frames.some((frame) => frame.kind === 'image' && frame.bare);
       return (
         <div className={block.wide ? 'media-row media-row--wide' : 'media-row'}>
           {block.frames.map((frame, index) => (
             <MediaFrame
               frame={frame}
               // A frame flagged `wide` spans the whole row; otherwise the row's
-              // frames share the width, and two abreast is the common case.
+              // frames share the width, and two abreast is the common case. In
+              // a wide row the odd frame left at the end spans too.
               context={
-                'wide' in frame && frame.wide
+                ('wide' in frame && frame.wide) ||
+                singleColumn ||
+                (block.wide && index === count - 1 && count % 2 === 1)
                   ? 'wide'
-                  : block.frames.length === 2
+                  : count === 2 || block.wide
                     ? 'pair'
                     : 'row'
               }
@@ -156,11 +164,12 @@ export function ProjectBlock({ block }: { block: Block }) {
           {block.credit ? <p className="compare__credit">{block.credit}</p> : null}
         </div>
       );
+    }
 
     case 'codeMedia':
       // Full-bleed screenshot with no frame chrome: `.code-media img` styles it.
       return (
-        <div className="code-media">
+        <div className={block.natural ? 'code-media code-media--natural' : 'code-media'}>
           <Picture
             image={block.image}
             sizes="(max-width: 1200px) 100vw, 1160px"

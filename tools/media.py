@@ -43,7 +43,7 @@ ANIMATED = {"hero-bg.webp"}
 # Rendered widths across the layout. Case media now breaks out of the text
 # container and paints up to ~1370 CSS px, so a 2x screen wants ~2700 real
 # pixels; the ladder has to reach that or the browser upscales.
-LADDER = (400, 800, 1200, 1800, 2400)
+LADDER = (400, 800, 1200, 1800, 2400, 3600)
 
 # Quality by rung, not one number for the whole ladder. A 400px rung is shown
 # small on a phone, where bandwidth costs more than the artefacts cost; an

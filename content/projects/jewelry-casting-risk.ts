@@ -178,6 +178,7 @@ export const jewelryCastingRisk: Project = {
     },
     {
       "kind": "codeMedia",
+      "natural": true,
       "image": {
         "src": "/assets/img/jewelry-casting-risk-result.png",
         "alt": "The reviewed mesh next to the finished cast ring, pavé-set and worn",

@@ -135,7 +135,15 @@ export type Block =
       credit?: string;
     }
   /** Full-bleed screenshot of a definition or source listing. */
-  | { kind: 'codeMedia'; image: ImageAsset }
+  | {
+      kind: 'codeMedia';
+      image: ImageAsset;
+      /**
+       * Real colours, not an inverted canvas: skips the light-theme inversion
+       * the Grasshopper exports need. For photo or render cutouts.
+       */
+      natural?: boolean;
+    }
   /** Headline figures, set large, ahead of the prose that explains them. */
   | { kind: 'metrics'; items: ReadonlyArray<Metric> }
   | { kind: 'overviewGrid'; cards: ReadonlyArray<OverviewCard> }
