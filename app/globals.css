@@ -1462,7 +1462,7 @@ footer h2 {
   width: 100%;
   height: 100%;
 }
-.media-frame--compare .blueprint--ref {
+:root .media-frame--compare .blueprint--ref {
   margin: 0;
   padding: 0;
   background: transparent;
@@ -1474,7 +1474,7 @@ footer h2 {
 .blueprint--ref .blueprint__frame {
   min-height: 0;
   overflow: hidden;
-  border-color: var(--line);
+  border: 0;
   border-radius: var(--r-screen);
 }
 .blueprint--ref .blueprint__frame img {
@@ -1584,11 +1584,10 @@ footer h2 {
 .direction__flow .chip--orange { color: var(--tone-orange-fg); background: var(--tone-orange-chip); border-color: var(--tone-orange-line); }
 .direction__arrow { color: var(--ink-4); font-size: 13px; }
 
-/* Square screenshots inside a direction breakdown are capped. */
+/* Direction shots fill the column, two abreast inside a group. */
 .direction .media-frame--wide,
 .direction .media-frame--group {
-  max-width: 640px;
-  margin-inline: auto;
+  width: 100%;
 }
 .direction .media-frame--compare,
 .direction .media-frame--compare + .compare__credit {

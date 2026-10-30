@@ -285,12 +285,6 @@ export const mediaManifest: Record<string, readonly number[]> = {
     1200,
     1800
   ],
-  "/assets/img/mcp-rhino-agent-geometry.jpg": [
-    400,
-    800,
-    1200,
-    1400
-  ],
   "/assets/img/mcp-rhino-agent-hero-poster.jpg": [
     400,
     800,
@@ -313,10 +307,6 @@ export const mediaManifest: Record<string, readonly number[]> = {
     700
   ],
   "/assets/img/mcp-rhino-agent-ov-5.png": [
-    400,
-    700
-  ],
-  "/assets/img/mcp-rhino-agent-ov-6.png": [
     400,
     700
   ],

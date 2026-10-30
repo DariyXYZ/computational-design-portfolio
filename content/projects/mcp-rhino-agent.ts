@@ -18,7 +18,7 @@ export const mcpRhinoAgent: Project = {
   "blocks": [
     {
       "kind": "prose",
-      "heading": "Six directions",
+      "heading": "Five directions",
       "paragraphs": [
         [
           "Each is a separate template: its own inputs, its own process, its own result."
@@ -127,26 +127,6 @@ export const mcpRhinoAgent: Project = {
               "tone": "purple"
             }
           ]
-        },
-        {
-          "badge": "06",
-          "tone": "orange",
-          "title": "Complex model → clean geometry",
-          "icon": {
-            "src": "/assets/img/mcp-rhino-agent-ov-6.png",
-            "alt": "",
-            "width": 700,
-            "height": 466
-          },
-          "flow": [
-            {
-              "label": "detailed Rhino model"
-            },
-            {
-              "label": "calculation geometry",
-              "tone": "orange"
-            }
-          ]
         }
       ]
     },
@@ -180,7 +160,7 @@ export const mcpRhinoAgent: Project = {
       "heading": "Method",
       "paragraphs": [
         [
-          "A rule-and-scenario library exposed over the Model Context Protocol (MCP): the agent reads a repository of scenarios, form-finding patterns, and a documented error library before writing a line, then RhinoMCP runs the resulting Python or C# script live inside the open Rhino file. Six directions of use share that same repository, each its own input, process, and result."
+          "A rule-and-scenario library exposed over the Model Context Protocol (MCP): the agent reads a repository of scenarios, form-finding patterns, and a documented error library before writing a line, then RhinoMCP runs the resulting Python or C# script live inside the open Rhino file. Five directions of use share that same repository, each its own input, process, and result."
         ]
       ]
     },
@@ -346,7 +326,7 @@ export const mcpRhinoAgent: Project = {
           "frames": [
             {
               "kind": "group",
-              "cols": 1,
+              "cols": 2,
               "ratio": "2 / 1",
               "cells": [
                 {
@@ -439,32 +419,6 @@ export const mcpRhinoAgent: Project = {
               "wide": true
             }
           ]
-        },
-        {
-          "badge": "06",
-          "tone": "orange",
-          "title": "Complex model → clean geometry",
-          "flow": [
-            {
-              "label": "detailed Rhino model"
-            },
-            {
-              "label": "calculation geometry",
-              "tone": "orange"
-            }
-          ],
-          "frames": [
-            {
-              "kind": "image",
-              "image": {
-                "src": "/assets/img/mcp-rhino-agent-geometry.jpg",
-                "alt": "The same kind of model simplified into clean, watertight geometry for downstream analysis, not just decoration",
-                "width": 1400,
-                "height": 1400
-              },
-              "wide": true
-            }
-          ]
         }
       ]
     },
@@ -504,7 +458,7 @@ export const mcpRhinoAgent: Project = {
       kind: 'metrics',
       items: [
         {
-          value: '6',
+          value: '5',
           label: 'Directions of use',
           note: 'Each with its own input, process and result, sharing one scenario repository',
         },
