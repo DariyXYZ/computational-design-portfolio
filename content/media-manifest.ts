@@ -56,15 +56,6 @@ export const mediaManifest: Record<string, readonly number[]> = {
     1200,
     1592
   ],
-  "/assets/img/daylight-massing-card.webp": [
-    400,
-    720
-  ],
-  "/assets/img/daylight-massing.jpg": [
-    400,
-    800,
-    900
-  ],
   "/assets/img/hero-bg.webp": [
     640
   ],
@@ -197,6 +188,30 @@ export const mediaManifest: Record<string, readonly number[]> = {
     800,
     1200,
     1800
+  ],
+  "/assets/img/kinetic-sculpture-atrium-poster.jpg": [
+    400,
+    800,
+    1200,
+    1800,
+    1920
+  ],
+  "/assets/img/kinetic-sculpture-card-poster.jpg": [
+    400,
+    800,
+    960
+  ],
+  "/assets/img/kinetic-sculpture-escalator-poster.jpg": [
+    400,
+    800,
+    1200,
+    1440
+  ],
+  "/assets/img/kinetic-sculpture-wave-poster.jpg": [
+    400,
+    800,
+    1200,
+    1440
   ],
   "/assets/img/mcp-rhino-agent-card.webp": [
     400,
@@ -389,15 +404,6 @@ export const mediaManifest: Record<string, readonly number[]> = {
     800,
     900
   ],
-  "/assets/img/revit-panel-export-card.webp": [
-    400,
-    720
-  ],
-  "/assets/img/revit-panel-export.jpg": [
-    400,
-    800,
-    900
-  ],
   "/assets/img/solutions-hub-card.webp": [
     400,
     800,
@@ -434,15 +440,6 @@ export const mediaManifest: Record<string, readonly number[]> = {
     400,
     800,
     860
-  ],
-  "/assets/img/tessellation-studies-card.webp": [
-    400,
-    720
-  ],
-  "/assets/img/tessellation-studies.jpg": [
-    400,
-    800,
-    900
   ],
   "/assets/img/voxel-architecture-card.jpg": [
     400,

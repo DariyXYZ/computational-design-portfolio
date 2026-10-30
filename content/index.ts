@@ -1,14 +1,12 @@
 import type { Band, Project, ProjectCard } from './types';
 
 import { copperFacadeBishkek } from './projects/copper-facade-bishkek';
-import { daylightMassing } from './projects/daylight-massing';
 import { insolationMound } from './projects/insolation-mound';
 import { jewelryCastingRisk } from './projects/jewelry-casting-risk';
+import { kineticSculpture } from './projects/kinetic-sculpture';
 import { mcpRhinoAgent } from './projects/mcp-rhino-agent';
 import { pedestrianFlow } from './projects/pedestrian-flow';
-import { revitPanelExport } from './projects/revit-panel-export';
 import { solutionsHub } from './projects/solutions-hub';
-import { tessellationStudies } from './projects/tessellation-studies';
 import { voxelArchitecture } from './projects/voxel-architecture';
 import { windComfort } from './projects/wind-comfort';
 
@@ -24,16 +22,14 @@ export const projects: readonly Project[] = [
   mcpRhinoAgent,
   copperFacadeBishkek,
   pedestrianFlow,
-  daylightMassing,
   // In use
   solutionsHub,
-  revitPanelExport,
   windComfort,
   insolationMound,
   // Studies
+  kineticSculpture,
   voxelArchitecture,
   jewelryCastingRisk,
-  tessellationStudies,
 ];
 
 export const projectsBySlug = new Map(projects.map((project) => [project.slug, project]));
@@ -136,22 +132,6 @@ export const cards: readonly ProjectCard[] = [
   },
   
   
-  {
-    slug: 'daylight-massing',
-    band: 'built',
-    placement: 'grid',
-    blurb:
-      'A daylight-driven massing optimizer that generates stepped, terraced forms directly from insolation constraints, not sculpted first and checked after.',
-    frame: {
-      kind: 'image',
-      image: {
-        src: '/assets/img/daylight-massing-card.webp',
-        alt: 'Massing study, stepped sun-access diagram',
-        width: 720,
-        height: 482,
-      },
-    },
-  },
   
   
   {
@@ -172,22 +152,6 @@ export const cards: readonly ProjectCard[] = [
   },
   
   
-  {
-    slug: 'revit-panel-export',
-    band: 'in-use',
-    placement: 'grid',
-    blurb:
-      'A Grasshopper-to-Revit bridge that exports parametric façade panels as scheduled Revit families. Panel count, area and type survive the round trip instead of being redrawn by hand.',
-    frame: {
-      kind: 'image',
-      image: {
-        src: '/assets/img/revit-panel-export-card.webp',
-        alt: 'Revit family schedule + GH definition',
-        width: 720,
-        height: 479,
-      },
-    },
-  },
   
   
   {
@@ -226,6 +190,21 @@ export const cards: readonly ProjectCard[] = [
   
   
   {
+    slug: 'kinetic-sculpture',
+    band: 'studies',
+    placement: 'grid',
+    blurb:
+      'A kinetic sculpture of folded paper flowers on cables. One Grasshopper rule sends waves of opening across the whole grid, and the motion goes on to 3ds Max as a point cache.',
+    frame: {
+      kind: 'video',
+      video: {
+        src: '/assets/img/kinetic-sculpture-card.mp4',
+        poster: '/assets/img/kinetic-sculpture-card-poster.jpg',
+        title: 'Paper flowers opening and folding in a wave across the hanger grid',
+      },
+    },
+  },
+  {
     slug: 'voxel-architecture',
     band: 'studies',
     placement: 'grid',
@@ -263,20 +242,4 @@ export const cards: readonly ProjectCard[] = [
   },
   
   
-  {
-    slug: 'tessellation-studies',
-    band: 'studies',
-    placement: 'grid',
-    blurb:
-      'A set of tessellation and paneling algorithms for freeform surfaces, each built around one real constraint (minimum panel count, node repetition, fabrication limits) and treated as an engineering problem, not a decoration.',
-    frame: {
-      kind: 'image',
-      image: {
-        src: '/assets/img/tessellation-studies-card.webp',
-        alt: 'Tiling pattern renders + GH definition',
-        width: 720,
-        height: 482,
-      },
-    },
-  },
 ];
