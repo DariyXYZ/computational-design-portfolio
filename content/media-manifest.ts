@@ -194,24 +194,28 @@ export const mediaManifest: Record<string, readonly number[]> = {
     800,
     1200,
     1800,
-    1920
+    2400,
+    2560
   ],
   "/assets/img/kinetic-sculpture-card-poster.jpg": [
     400,
     800,
-    960
+    1200,
+    1280
   ],
   "/assets/img/kinetic-sculpture-escalator-poster.jpg": [
     400,
     800,
     1200,
-    1440
+    1800,
+    2000
   ],
   "/assets/img/kinetic-sculpture-wave-poster.jpg": [
     400,
     800,
     1200,
-    1440
+    1800,
+    1960
   ],
   "/assets/img/mcp-rhino-agent-card.webp": [
     400,
