@@ -95,5 +95,20 @@ export const voxelArchitecture: Project = {
         },
       ],
     },
+    {
+      kind: 'mediaRow',
+      wide: true,
+      frames: [
+        {
+          kind: 'image',
+          image: {
+            src: '/assets/img/voxel-architecture-robot.jpg',
+            alt: 'A robot arm carving a stepped voxel form out of a foam block on a turntable',
+            width: 2752,
+            height: 1536,
+          },
+        },
+      ],
+    },
   ],
 };

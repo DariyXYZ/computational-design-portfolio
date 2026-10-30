@@ -495,6 +495,14 @@ export const mediaManifest: Record<string, readonly number[]> = {
     2400,
     3575
   ],
+  "/assets/img/voxel-architecture-robot.jpg": [
+    400,
+    800,
+    1200,
+    1800,
+    2400,
+    2752
+  ],
   "/assets/img/wind-comfort-card.webp": [
     400,
     720
