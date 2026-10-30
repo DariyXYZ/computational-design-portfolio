@@ -15,7 +15,7 @@ export const voxelArchitecture: Project = {
       src: '/assets/img/voxel-architecture-hero.mp4',
       poster: '/assets/img/voxel-architecture-hero-poster.jpg',
       title: 'A cutter passing through a terraced mass, opening a void through the middle of it and closing again',
-      width: 1576,
+      width: 1568,
       height: 1080,
     },
   },
